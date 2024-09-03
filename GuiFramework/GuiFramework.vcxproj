@@ -96,9 +96,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Platform\Win32\WinMain.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Include\Gui.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

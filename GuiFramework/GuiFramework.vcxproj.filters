@@ -42,11 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Platform\Win32\WinMain.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Include\Gui.h">
       <Filter>Source</Filter>
     </ClInclude>
