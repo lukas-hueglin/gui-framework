@@ -40,10 +40,18 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Source\Pch">
+      <UniqueIdentifier>{77331157-f222-4c40-a416-40c7be33eef3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Gui.h">
-      <Filter>Source</Filter>
+      <Filter>Source\Pch</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Gui.cpp">
+      <Filter>Source\Pch</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

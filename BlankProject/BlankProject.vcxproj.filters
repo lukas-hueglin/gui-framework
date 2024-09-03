@@ -26,7 +26,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BlankProject.h">
+    <ClInclude Include="Include\BlankProject.h">
       <Filter>Source\Public</Filter>
     </ClInclude>
   </ItemGroup>
