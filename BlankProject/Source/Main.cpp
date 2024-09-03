@@ -1,9 +1,9 @@
-#include<Windows.h>
+#include "Core/Application.h"
 
 int main(int argc, char** argv) {
 	
-	// print Hello, World!
-	MessageBox(0, L"Hello, World!", 0, 0);
+	// create new application
+	Application* app = new Application(argc, argv);
 
-	return 0;
+	return app->exec();
 }
