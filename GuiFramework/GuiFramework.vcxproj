@@ -98,7 +98,10 @@
   <ItemGroup>
     <ClInclude Include="Include\Common\MathUtils.h" />
     <ClInclude Include="Include\Core\Application.h" />
+    <ClInclude Include="Include\Core\Graphics2D.h" />
     <ClInclude Include="Include\Core\IApplication.h" />
+    <ClInclude Include="Include\Core\IGraphics.h" />
+    <ClInclude Include="Include\Core\IGraphics2D.h" />
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Application.h" />
     <ClInclude Include="Include\Style\Color.h" />

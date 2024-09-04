@@ -78,6 +78,15 @@
     <ClInclude Include="Include\Common\MathUtils.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\IGraphics.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\Graphics2D.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\IGraphics2D.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
