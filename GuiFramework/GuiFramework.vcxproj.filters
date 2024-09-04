@@ -87,6 +87,12 @@
     <ClInclude Include="Include\Core\IGraphics2D.h">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\IWindow.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\Window.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -103,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="Source\Common\MathUtils.cpp">
       <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\IWindow.cpp">
+      <Filter>Source\Core\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
