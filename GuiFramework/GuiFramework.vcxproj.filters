@@ -43,6 +43,15 @@
     <Filter Include="Source\Pch">
       <UniqueIdentifier>{77331157-f222-4c40-a416-40c7be33eef3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Style">
+      <UniqueIdentifier>{097bfe29-6e94-4f04-b0f9-fb300ff68739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Style\Public">
+      <UniqueIdentifier>{2a5adbf6-5881-4151-bc10-a5616a86be77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Style\Private">
+      <UniqueIdentifier>{bd088ff9-70f0-4038-a9de-0ab98e5cfeee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Gui.h">
@@ -57,6 +66,15 @@
     <ClInclude Include="Include\Platform\Win32\Win32Application.h">
       <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Style\Color.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\IDrawStyle.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\DrawStyle.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -64,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="Source\Core\IApplication.cpp">
       <Filter>Source\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\Color.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\IDrawStyle.cpp">
+      <Filter>Source\Style\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
