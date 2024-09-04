@@ -96,6 +96,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Common\MathUtils.h" />
     <ClInclude Include="Include\Core\Application.h" />
     <ClInclude Include="Include\Core\IApplication.h" />
     <ClInclude Include="Include\Gui.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Include\Style\IDrawStyle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\MathUtils.cpp" />
     <ClCompile Include="Source\Core\IApplication.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp" />
     <ClCompile Include="Source\Style\Color.cpp" />

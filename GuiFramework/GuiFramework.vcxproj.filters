@@ -75,6 +75,9 @@
     <ClInclude Include="Include\Style\DrawStyle.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Common\MathUtils.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Source\Style\IDrawStyle.cpp">
       <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\MathUtils.cpp">
+      <Filter>Source\Common\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
