@@ -106,6 +106,7 @@
     <ClInclude Include="Include\Core\Window.h" />
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Application.h" />
+    <ClInclude Include="Include\Platform\Win32\Win32Window.h" />
     <ClInclude Include="Include\Style\Color.h" />
     <ClInclude Include="Include\Style\DrawStyle.h" />
     <ClInclude Include="Include\Style\IDrawStyle.h" />
@@ -115,6 +116,7 @@
     <ClCompile Include="Source\Core\IApplication.cpp" />
     <ClCompile Include="Source\Core\IWindow.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp" />
+    <ClCompile Include="Source\Platform\Win32\Win32Window.cpp" />
     <ClCompile Include="Source\Style\Color.cpp" />
     <ClCompile Include="Source\Style\IDrawStyle.cpp" />
   </ItemGroup>

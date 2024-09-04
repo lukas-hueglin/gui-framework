@@ -93,6 +93,9 @@
     <ClInclude Include="Include\Core\Window.h">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32Window.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Source\Core\IWindow.cpp">
       <Filter>Source\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32Window.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

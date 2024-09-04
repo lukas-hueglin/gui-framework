@@ -3,8 +3,6 @@
 #include "Common/MathUtils.h"
 #include "Style/DrawStyle.h"
 
-#include "string"
-
 class GUI_API IGraphics2D : public IGraphics {
 
 public:
