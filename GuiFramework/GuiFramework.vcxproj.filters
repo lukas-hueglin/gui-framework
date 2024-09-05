@@ -69,9 +69,6 @@
     <ClInclude Include="Include\Style\Color.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Style\IDrawStyle.h">
-      <Filter>Source\Style\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Style\DrawStyle.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
@@ -113,7 +110,7 @@
     <ClCompile Include="Source\Style\Color.cpp">
       <Filter>Source\Style\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Style\IDrawStyle.cpp">
+    <ClCompile Include="Source\Style\DrawStyle.cpp">
       <Filter>Source\Style\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\MathUtils.cpp">

@@ -1,6 +1,16 @@
 #pragma once
+#include "Gui.h"
+#include "Style/Color.h"
 
-#ifdef WIN32
-	#include "Style/IDrawStyle.h"
-	using DrawStyle = IDrawStyle; // replace with actual windows implementation
-#endif
+class GUI_API DrawStyle {
+
+private:
+	Color* mp_edgeColor;
+	Color* mp_fillColor;
+
+	float m_edgeThickness;
+
+public:
+	DrawStyle();
+	~DrawStyle();
+};
