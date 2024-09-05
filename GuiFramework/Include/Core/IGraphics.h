@@ -5,5 +5,7 @@ class GUI_API IGraphics {
 
 private:
 	virtual void createGraphicsResources() = 0;
+	virtual void initGraphicsResources() = 0;
+
 	virtual void discardGraphicsResources() = 0;
 };

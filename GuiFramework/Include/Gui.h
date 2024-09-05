@@ -7,6 +7,12 @@
 
 	// include important headers
 	#include<Windows.h>
+	#include <d2d1.h>
+	#include <dwrite.h>
+
+	// add lib comments
+	#pragma comment(lib, "d2d1")
+	#pragma comment(lib, "dwrite")
 
 	// define macros
 	#define HInstance() GetModuleHandle(NULL)

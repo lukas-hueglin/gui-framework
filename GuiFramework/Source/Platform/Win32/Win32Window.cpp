@@ -19,6 +19,7 @@ Win32Window<GRAPHICS_TYPE>::~Win32Window() {
 template<class GRAPHICS_TYPE>
 void Win32Window<GRAPHICS_TYPE>::initialize(std::wstring title) {
 
+    // create win32 hWnd
     createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
 }
 
@@ -70,6 +71,9 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
 
         // set window handle member variable
         pThis->m_hWnd = hWnd;
+
+        // create graphics_type
+        pThis->mp_graphics = new GRAPHICS_TYPE(hWnd);
     }
     else {
 

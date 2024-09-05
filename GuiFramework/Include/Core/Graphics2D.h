@@ -1,6 +1,6 @@
 #pragma once
 
 #ifdef WIN32
-	#include "Core/IGraphics2D.h"
-	using Graphics2D = IGraphics2D; // replace with actual windows implementation
+	#include "Platform/Win32/Win32Graphics2D.h"
+	using Graphics2D = Win32Graphics2D;
 #endif
