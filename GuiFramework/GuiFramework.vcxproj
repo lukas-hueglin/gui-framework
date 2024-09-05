@@ -111,6 +111,7 @@
     <ClInclude Include="Include\Platform\Win32\Win32Window.h" />
     <ClInclude Include="Include\Style\Color.h" />
     <ClInclude Include="Include\Style\DrawStyle.h" />
+    <ClInclude Include="Include\Style\Style.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\MathUtils.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="Source\Platform\Win32\Win32Window.cpp" />
     <ClCompile Include="Source\Style\Color.cpp" />
     <ClCompile Include="Source\Style\DrawStyle.cpp" />
+    <ClCompile Include="Source\Style\Style.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Gui.cpp" />

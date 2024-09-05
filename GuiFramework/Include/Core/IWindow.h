@@ -21,9 +21,3 @@ private:
 	// make all other templated IWindow classes a friend
 	friend class IWindow;
 };
-
-
-template<>
-class GUI_API IWindow<Graphics2D> {
-	// add functions only to Graphics2D Window in future
-};

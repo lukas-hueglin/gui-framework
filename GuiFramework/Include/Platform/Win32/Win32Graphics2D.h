@@ -6,10 +6,10 @@ private:
 	HWND m_hWnd;
 
 protected:
-	ID2D1Factory* mp2DFactory;
-	IDWriteFactory* mpWriteFactory;
+	ID2D1Factory* mp_2DFactory;
+	IDWriteFactory* mp_writeFactory;
 
-	ID2D1HwndRenderTarget* mpRenderTarget;
+	ID2D1HwndRenderTarget* mp_renderTarget;
 
 public:
 	Win32Graphics2D(HWND hWnd);
