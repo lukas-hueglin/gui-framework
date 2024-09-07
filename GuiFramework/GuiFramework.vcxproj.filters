@@ -102,6 +102,9 @@
     <ClInclude Include="Include\Style\Style.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Style\DrawStyleBuilder.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Style\Style.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\DrawStyleBuilder.cpp">
       <Filter>Source\Style\Private</Filter>
     </ClCompile>
   </ItemGroup>

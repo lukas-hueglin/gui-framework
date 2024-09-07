@@ -19,7 +19,7 @@ DrawStyleBuilder& DrawStyleBuilder::fillColor(const Color& fillColor) {
 
 DrawStyleBuilder& DrawStyleBuilder::edgeThickness(const float edgeThickness) {
 
-	m_drawStyle.m_edgeThickness = edgeThickness
+	m_drawStyle.m_edgeThickness = edgeThickness;
 	return *this;
 }
 
