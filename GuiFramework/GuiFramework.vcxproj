@@ -103,10 +103,12 @@
     <ClInclude Include="Include\Core\IGraphics.h" />
     <ClInclude Include="Include\Core\IGraphics2D.h" />
     <ClInclude Include="Include\Core\IWindow.h" />
+    <ClInclude Include="Include\Core\MainWindow.h" />
     <ClInclude Include="Include\Core\Window.h" />
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Application.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h" />
+    <ClInclude Include="Include\Platform\Win32\Win32MainWindow.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Utils.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Window.h" />
     <ClInclude Include="Include\Style\Color.h" />
@@ -120,6 +122,7 @@
     <ClCompile Include="Source\Core\IWindow.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Graphics2D.cpp" />
+    <ClCompile Include="Source\Platform\Win32\Win32MainWindow.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Utils.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Window.cpp" />
     <ClCompile Include="Source\Style\Color.cpp" />

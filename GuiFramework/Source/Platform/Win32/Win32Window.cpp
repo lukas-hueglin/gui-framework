@@ -20,7 +20,7 @@ template<class GRAPHICS_TYPE>
 void Win32Window<GRAPHICS_TYPE>::initialize(std::wstring title) {
 
     // create win32 hWnd
-    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
+    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW | WS_VISIBLE);
 }
 
 template<class GRAPHICS_TYPE>
@@ -74,6 +74,9 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
 
         // create graphics_type
         pThis->mp_graphics = new GRAPHICS_TYPE(hWnd);
+
+        // show window
+        ShowWindow(hWnd, 1);
     }
     else {
 
@@ -86,13 +89,12 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
         // filter out some messages and handle them here
         switch (uMsg) {
 
+            // add paint, resize etc events here
 
         default:
             // call the child function for handling the messages
             return pThis->handleMessage(uMsg, wParam, lParam);
         }
-
-        
     }
     else {
 

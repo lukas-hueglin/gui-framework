@@ -105,6 +105,12 @@
     <ClInclude Include="Include\Style\DrawStyleBuilder.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32MainWindow.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\MainWindow.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -125,9 +131,6 @@
     <ClCompile Include="Source\Core\IWindow.cpp">
       <Filter>Source\Core\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\Win32Window.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Platform\Win32\Win32Graphics2D.cpp">
       <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
@@ -139,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="Source\Style\DrawStyleBuilder.cpp">
       <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32MainWindow.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32Window.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

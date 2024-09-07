@@ -27,8 +27,7 @@ private:
     );
 
 	static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-    virtual PCWSTR getClassName();
+    virtual LRESULT handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
 
-protected:
-    virtual LRESULT handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) { return S_OK; };
+    virtual PCWSTR getClassName();
 };
