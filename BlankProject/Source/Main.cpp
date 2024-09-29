@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 	Application* app = new Application(argc, argv);
 
 	// create new window
-	std::wstring s = L"Window";
+	const wchar_t* s = L"Window";
 	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
 
 	// create a widget

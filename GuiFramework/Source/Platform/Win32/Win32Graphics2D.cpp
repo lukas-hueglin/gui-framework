@@ -139,9 +139,41 @@ void Win32Graphics2D::drawRectangle(Math::Rect& rect, DrawStyle style) {
     }
 }
 
-void Win32Graphics2D::drawText(std::wstring text) {
+void Win32Graphics2D::drawText(const wchar_t* text, Math::Rect& rect, TextStyle style) {
 
-    // implement in future
+    // create hresult
+    HRESULT hr;
+
+    // create brush
+    ID2D1SolidColorBrush* p_brush;
+    hr = mp_renderTarget->CreateSolidColorBrush(Win32Utils::D2D1Color(style.getTextColor()), &p_brush);
+
+    // create text format
+    IDWriteTextFormat* p_textformat;
+    hr |= mp_writeFactory->CreateTextFormat(
+        style.getFontName(),
+        NULL,
+        DWRITE_FONT_WEIGHT_REGULAR,
+        DWRITE_FONT_STYLE_NORMAL,
+        DWRITE_FONT_STRETCH_NORMAL,
+        style.getFontSize(),
+        L"en-us",
+        &p_textformat
+    );
+
+    if (hr == S_OK) {
+        mp_renderTarget->DrawTextW(
+            text,
+            wcslen(text),
+            p_textformat,
+            Win32Utils::D2D1Rect(rect),
+            p_brush
+        );
+    }
+
+    // destroy brush and text format
+    Win32Utils::safeRelease(&p_brush);
+    Win32Utils::safeRelease(&p_textformat);
 }
 
 void Win32Graphics2D::scheduleRedraw() {

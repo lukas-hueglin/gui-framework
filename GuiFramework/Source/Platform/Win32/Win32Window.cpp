@@ -16,10 +16,10 @@ Win32Window<GRAPHICS_TYPE>::~Win32Window() {
 }
 
 template<class GRAPHICS_TYPE>
-void Win32Window<GRAPHICS_TYPE>::initialize(std::wstring title) {
+void Win32Window<GRAPHICS_TYPE>::initialize(const wchar_t* title) {
 
     // create win32 hWnd
-    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
+    createHwnd(title, WS_OVERLAPPEDWINDOW);
 }
 
 template<class GRAPHICS_TYPE>

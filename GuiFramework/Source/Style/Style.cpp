@@ -1,6 +1,7 @@
 #include "Gui.h"
 #include "Style/Style.h"
 #include "Style/DrawStyleBuilder.h"
+#include "Style/TextStyleBuilder.h"
 
 DrawStyle Style::Primary() {
 
@@ -32,4 +33,12 @@ DrawStyle Style::Highlight() {
 		.edgeColor(Color::DarkOrchid)
 		.fillColor(Color::DarkViolet)
 		.edgeThickness(1.0f);
+}
+
+TextStyle Style::Normal() {
+
+	return TextStyle::create()
+		.textColor(Color::Black)
+		.fontSize(12)
+		.fontName(L"SegoeUI");
 }

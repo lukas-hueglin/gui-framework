@@ -5,7 +5,7 @@ template<class GRAPHICS_TYPE>
 class GUI_API Win32MainWindow : public Win32Window<GRAPHICS_TYPE> {
 
 public:
-	static Win32MainWindow<GRAPHICS_TYPE>* create(std::wstring title);
+	static Win32MainWindow<GRAPHICS_TYPE>* create(const wchar_t* title);
 
 private:
 	PCWSTR getClassName() override;

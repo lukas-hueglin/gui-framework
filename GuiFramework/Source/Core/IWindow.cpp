@@ -12,7 +12,7 @@
 template class IWindow<Graphics2D>;
 
 // define all types that should be able to be created
-template MainWindow<Graphics2D>* IWindow<Graphics2D>::create(std::wstring title);
+template MainWindow<Graphics2D>* IWindow<Graphics2D>::create(const wchar_t* title);
 
 template<class GRAPHICS_TYPE>
 IWindow<GRAPHICS_TYPE>::IWindow() : mp_graphics(nullptr), mp_widget(nullptr), m_rect(Math::Rect(0, 0, 0, 0)) { }
@@ -129,7 +129,7 @@ void IWindow<GRAPHICS_TYPE>::onMouseRelease() {
 
 template<class GRAPHICS_TYPE>
 template<class DERIVED_TYPE>
-DERIVED_TYPE* IWindow<GRAPHICS_TYPE>::create(std::wstring title) {
+DERIVED_TYPE* IWindow<GRAPHICS_TYPE>::create(const wchar_t* title) {
 
 	// create and initialize window
 	DERIVED_TYPE* p_window = new DERIVED_TYPE;

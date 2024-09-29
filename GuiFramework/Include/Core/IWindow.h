@@ -19,7 +19,7 @@ public:
 	
 public:
 	template<class DERIVED_TYPE>
-	static DERIVED_TYPE* create(std::wstring title);
+	static DERIVED_TYPE* create(const wchar_t* title);
 
 	void setWidget(Widget* p_widget);
 
@@ -35,7 +35,7 @@ protected:
 	void onMouseRelease();
 
 private:
-	virtual void initialize(std::wstring title) = 0;
+	virtual void initialize(const wchar_t* title) = 0;
 
 	// make all other templated IWindow classes a friend
 	friend class IWindow;

@@ -29,7 +29,7 @@ public:
 	void drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle style);
 	void drawRectangle(Math::Rect& rect, DrawStyle style);
 
-	void drawText(std::wstring text /*, needs a text style */);
+	void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style);
 
 	void scheduleRedraw();
 

@@ -12,7 +12,7 @@ public:
 	~Win32Window();
 
 private:
-    void initialize(std::wstring title) override;
+    void initialize(const wchar_t* title) override;
 
     void createHwnd(
         PCWSTR lpWindowName,

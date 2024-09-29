@@ -1,5 +1,6 @@
 #pragma once
 #include "DrawStyle.h"
+#include "TextStyle.h"
 
 class Style {
 
@@ -12,4 +13,6 @@ public:
 
 	static DrawStyle Accent();
 	static DrawStyle Highlight();
+
+	static TextStyle Normal();
 };

@@ -6,7 +6,7 @@
 template class Win32MainWindow<Graphics2D>;
 
 template<class GRAPHICS_TYPE>
-Win32MainWindow<GRAPHICS_TYPE>* Win32MainWindow<GRAPHICS_TYPE>::create(std::wstring title) {
+Win32MainWindow<GRAPHICS_TYPE>* Win32MainWindow<GRAPHICS_TYPE>::create(const wchar_t* title) {
 	
 	return Win32Window<GRAPHICS_TYPE>::create<Win32MainWindow<GRAPHICS_TYPE>>(title);
 }
