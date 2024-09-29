@@ -30,6 +30,9 @@ protected:
 	void onPaint();
 	void onDestroy();
 	void onResize(Math::Rect rect);
+	void onMouseMove(Math::Point2D point);
+	void onMouseDown();
+	void onMouseRelease();
 
 private:
 	virtual void initialize(std::wstring title) = 0;

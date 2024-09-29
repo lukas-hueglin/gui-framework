@@ -78,6 +78,54 @@ void IWindow<GRAPHICS_TYPE>::onResize(Math::Rect rect) {
 	}
 }
 
+template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onMouseMove(Math::Point2D point) {
+
+	// check if a widget exists
+	if (mp_widget != nullptr) {
+
+		if (Math::pointInRect(mp_widget->getHitbox(), point)) {
+
+			// check if mouse was already hovering
+			if (!mp_widget->isMouseHovering()) {
+				mp_widget->onMouseEnter();
+			}
+
+			mp_widget->onMouseHover(point);
+		}
+		// check if mouse is registered as hovering
+		else if (mp_widget->isMouseHovering()) {
+			mp_widget->onMouseLeave();
+		}
+	}
+}
+
+template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onMouseDown() {
+
+	// check if a widget exists
+	if (mp_widget != nullptr) {
+
+		// check if mouse hovers over widget
+		if (mp_widget->isMouseHovering()) {
+			mp_widget->onMouseDown();
+		}
+	}
+}
+
+template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onMouseRelease() {
+
+	// check if a widget exists
+	if (mp_widget != nullptr) {
+
+		// check if mouse hovers over widget
+		if (mp_widget->isMouseHovering()) {
+			mp_widget->onMouseRelease();
+		}
+	}
+}
+
 
 template<class GRAPHICS_TYPE>
 template<class DERIVED_TYPE>

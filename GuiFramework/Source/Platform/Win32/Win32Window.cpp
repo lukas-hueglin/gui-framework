@@ -111,6 +111,21 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
             p_this->onResize(Math::Rect(rc));
             return 1;
 
+        case WM_MOUSEMOVE:
+
+            p_this->onMouseMove(Math::Point2D(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
+            return 1;
+
+        case WM_LBUTTONDOWN:
+
+            p_this->onMouseDown();
+            return 1;
+
+        case WM_LBUTTONUP:
+
+            p_this->onMouseRelease();
+            return 1;
+
         default:
             // call the child function for handling the messages
             return p_this->handleMessage(uMsg, wParam, lParam);

@@ -31,6 +31,8 @@ public:
 
 	void drawText(std::wstring text /*, needs a text style */);
 
+	void scheduleRedraw();
+
 private:
 	void initGraphicsResources();
 };

@@ -13,4 +13,6 @@ public:
 	virtual void drawRectangle(Math::Rect& rect, DrawStyle style) = 0;
 
 	virtual void drawText(std::wstring text /*, needs a text style */) = 0;
+
+	virtual void scheduleRedraw() = 0;
 };

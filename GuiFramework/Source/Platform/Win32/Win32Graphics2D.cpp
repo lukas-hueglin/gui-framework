@@ -143,3 +143,8 @@ void Win32Graphics2D::drawText(std::wstring text) {
 
     // implement in future
 }
+
+void Win32Graphics2D::scheduleRedraw() {
+
+    InvalidateRect(m_hWnd, 0, false);
+}
