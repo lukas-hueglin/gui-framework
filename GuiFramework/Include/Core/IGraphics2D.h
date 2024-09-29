@@ -4,6 +4,8 @@
 #include "Style/DrawStyle.h"
 #include "Style/TextStyle.h"
 
+enum Alignment;
+
 class GUI_API IGraphics2D : public IGraphics {
 
 public:
@@ -13,7 +15,7 @@ public:
 	virtual void drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle style) = 0;
 	virtual void drawRectangle(Math::Rect& rect, DrawStyle style) = 0;
 
-	virtual void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style) = 0;
+	virtual void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style, Alignment textAlignment) = 0;
 
 	virtual void scheduleRedraw() = 0;
 };

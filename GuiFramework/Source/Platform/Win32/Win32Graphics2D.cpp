@@ -1,6 +1,7 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32Graphics2D.h"
 #include "Platform/Win32/Win32Utils.h"
+#include "Widgets/Widget.h"
 
 Win32Graphics2D::Win32Graphics2D(HWND hWnd) : m_hWnd(hWnd), mp_2DFactory(nullptr), mp_writeFactory(nullptr), mp_renderTarget(nullptr) { }
 
@@ -139,7 +140,7 @@ void Win32Graphics2D::drawRectangle(Math::Rect& rect, DrawStyle style) {
     }
 }
 
-void Win32Graphics2D::drawText(const wchar_t* text, Math::Rect& rect, TextStyle style) {
+void Win32Graphics2D::drawText(const wchar_t* text, Math::Rect& rect, TextStyle style, Alignment textAlignment) {
 
     // create hresult
     HRESULT hr;
@@ -160,6 +161,14 @@ void Win32Graphics2D::drawText(const wchar_t* text, Math::Rect& rect, TextStyle 
         L"en-us",
         &p_textformat
     );
+
+    // align text
+    int horizontal_alignment = (3 - (textAlignment % 3)) % 3; // Left -> 0, Center -> 2, Right -> 1
+    int vertical_alignment = (3 - (textAlignment / 3)) % 3; // Top -> 0, Center -> 2, Bottom -> 1
+
+    p_textformat->SetTextAlignment((DWRITE_TEXT_ALIGNMENT) horizontal_alignment);
+    p_textformat->SetParagraphAlignment((DWRITE_PARAGRAPH_ALIGNMENT)vertical_alignment);
+
 
     if (hr == S_OK) {
         mp_renderTarget->DrawTextW(

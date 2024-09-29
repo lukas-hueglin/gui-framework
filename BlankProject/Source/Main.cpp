@@ -1,7 +1,13 @@
 #include "Core/Application.h"
 #include "Core/MainWindow.h"
 #include "Core/Graphics2D.h"
-#include "Widgets/Widget.h"
+#include "Widgets/Button.h"
+
+#include "Windows.h"
+
+void func() {
+	MessageBox(NULL, L"Hello, World!", L"Important Message", NULL);
+}
 
 int main(int argc, char** argv) {
 	
@@ -13,8 +19,11 @@ int main(int argc, char** argv) {
 	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
 
 	// create a widget
-	Widget* w = new Widget(window);
+	Button* w = new Button(window, L"Label");
 	w->setMargin(10);
+	w->setPadding(10);
+	w->connect(func);
+
 	window->setWidget(w);
 
 	return app->exec();

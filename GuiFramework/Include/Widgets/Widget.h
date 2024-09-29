@@ -21,12 +21,13 @@ enum GUI_API FillMode {
 };
 
 class GUI_API Widget {
-private:
+protected:
 	Graphics2D* mp_graphics;
 
 	Math::Rect m_minSize;
 	Math::Rect m_usedRect;
 	Math::Rect m_hitboxRect;
+	Math::Rect m_contentRect;
 
 	float m_margin;
 	float m_padding;
@@ -40,13 +41,14 @@ private:
 public:
 	Widget(Window<Graphics2D>* p_parent);
 
-	void onPaint();
+	virtual void onPaint();
 	void onResize(Math::Rect availableRect);
-	void onMouseHover(Math::Point2D point);
-	void onMouseEnter();
-	void onMouseLeave();
-	void onMouseDown();
-	void onMouseRelease();
+
+	virtual void onMouseHover(Math::Point2D point);
+	virtual void onMouseEnter();
+	virtual void onMouseLeave();
+	virtual void onMouseDown();
+	virtual void onMouseRelease();
 
 	void setMargin(float margin);
 	void setPadding(float padding);
