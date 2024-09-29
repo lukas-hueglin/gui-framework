@@ -1,6 +1,6 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32MainWindow.h"
-#include "Platform/Win32/Win32Window.h"
+#include "Core/Graphics2D.h"
 
 // define all used graphics types
 template class Win32MainWindow<Graphics2D>;

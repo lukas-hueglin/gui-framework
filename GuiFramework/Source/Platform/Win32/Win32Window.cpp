@@ -1,6 +1,5 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32Window.h"
-
 #include "Core/Graphics2D.h"
 
 // define all used graphics types
@@ -20,7 +19,7 @@ template<class GRAPHICS_TYPE>
 void Win32Window<GRAPHICS_TYPE>::initialize(std::wstring title) {
 
     // create win32 hWnd
-    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW | WS_VISIBLE);
+    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
 }
 
 template<class GRAPHICS_TYPE>
@@ -60,20 +59,20 @@ void Win32Window<GRAPHICS_TYPE>::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, 
 template<class GRAPHICS_TYPE>
 LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
-    Win32Window* pThis = nullptr;
+    Win32Window* p_this = nullptr;
 
     // Check if window is created
     if (uMsg == WM_NCCREATE) {
 
         CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;
-        pThis = (Win32Window*)pCreate->lpCreateParams;
-        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)pThis);
+        p_this = (Win32Window*)pCreate->lpCreateParams;
+        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)p_this);
 
         // set window handle member variable
-        pThis->m_hWnd = hWnd;
+        p_this->m_hWnd = hWnd;
 
         // create graphics_type
-        pThis->mp_graphics = new GRAPHICS_TYPE(hWnd);
+        p_this->mp_graphics = new GRAPHICS_TYPE(hWnd);
 
         // show window
         ShowWindow(hWnd, 1);
@@ -81,19 +80,40 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
     else {
 
         // get window pointer from the userdata
-        pThis = (Win32Window*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+        p_this = (Win32Window*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
     }
 
-    if (pThis) {
+    if (p_this) {
 
         // filter out some messages and handle them here
         switch (uMsg) {
 
-            // add paint, resize etc events here
+        case WM_CREATE:
+
+            p_this->onBegin();
+            return 1;
+
+        case WM_DESTROY:
+
+            p_this->onDestroy();
+            PostQuitMessage(0); // if any window is closed, the program will exit
+            return 1;
+
+        case WM_PAINT:
+
+            p_this->onPaint();
+            return 1;
+
+        case WM_SIZE:
+
+            RECT rc;
+            GetClientRect(p_this->m_hWnd, &rc);
+            p_this->onResize(Math::Rect(rc));
+            return 1;
 
         default:
             // call the child function for handling the messages
-            return pThis->handleMessage(uMsg, wParam, lParam);
+            return p_this->handleMessage(uMsg, wParam, lParam);
         }
     }
     else {

@@ -16,6 +16,6 @@ public:
 
     DrawStyleBuilder& edgeThickness(const float edgeThickness);
 
-    // convertion operator
+    // conversion operator
     operator DrawStyle();
 };

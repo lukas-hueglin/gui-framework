@@ -93,9 +93,6 @@
     <ClInclude Include="Include\Platform\Win32\Win32Window.h">
       <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Platform\Win32\Win32Utils.h">
       <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
@@ -110,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="Include\Core\MainWindow.h">
       <Filter>Source\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

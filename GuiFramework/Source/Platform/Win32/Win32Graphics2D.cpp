@@ -6,6 +6,23 @@ Win32Graphics2D::Win32Graphics2D(HWND hWnd) : m_hWnd(hWnd), mp_2DFactory(nullptr
 
 Win32Graphics2D::~Win32Graphics2D() { }
 
+void Win32Graphics2D::beginPaint() {
+
+    // initialize graphics resources
+    initGraphicsResources();
+
+    // begin painting
+    BeginPaint(this->m_hWnd, &m_ps);
+    mp_renderTarget->BeginDraw();
+}
+
+void Win32Graphics2D::endPaint() {
+
+    // end painting
+    mp_renderTarget->EndDraw();
+    EndPaint(this->m_hWnd, &m_ps);
+}
+
 void Win32Graphics2D::createGraphicsResources() {
 
     // Create D2D1 factory
@@ -40,7 +57,7 @@ void Win32Graphics2D::initGraphicsResources() {
         // TODO: check hresult
 
         // enable DPI awareness
-        SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+        //SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
     }
 }
 
@@ -51,7 +68,21 @@ void Win32Graphics2D::discardGraphicsResources() {
     Win32Utils::safeRelease(&mp_2DFactory);
 }
 
-void Win32Graphics2D::drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle& style) {
+void Win32Graphics2D::resizeCanvas() {
+
+    if (mp_renderTarget != nullptr) {
+
+        // get the window rectangle and size
+        RECT rc;
+        GetClientRect(this->m_hWnd, &rc);
+        D2D1_SIZE_U size = D2D1::SizeU(rc.right, rc.bottom);
+
+        mp_renderTarget->Resize(size);
+        InvalidateRect(this->m_hWnd, NULL, FALSE);
+    }
+}
+
+void Win32Graphics2D::drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle style) {
 
     // check if is is transparent
     if (style.getEdgeColor().a > 0.f) {
@@ -71,7 +102,7 @@ void Win32Graphics2D::drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle& st
     }
 }
 
-void Win32Graphics2D::drawRectangle(Math::Rect& rect, DrawStyle& style) {
+void Win32Graphics2D::drawRectangle(Math::Rect& rect, DrawStyle style) {
 
     // check if fill is transparent
     if (style.getFillColor().a > 0.f) {

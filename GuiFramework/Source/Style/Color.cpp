@@ -6,21 +6,21 @@ RGBColor::RGBColor(int hex) {
 	// extract alpha
 	if (hex > 0xffffff) {
 		a = (0xff & hex) / 255.0f;
-		hex = hex << 8;
+		hex = hex >> 8;
 	}
 	else { a = 1.0f; }
 
 	// extract blue
 	b = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 
 	// extract green
 	g = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 
 	// extract red
 	r = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 }
 
 RGBColor::RGBColor(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
@@ -30,21 +30,21 @@ HSVColor::HSVColor(int hex) {
 	// extract alpha
 	if (hex > 0xffffff) {
 		a = (0xff & hex) / 255.0f;
-		hex = hex << 8;
+		hex = hex >> 8;
 	}
 	else { a = 1.0f; }
 
 	// extract value
 	v = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 
 	// extract saturation
 	s = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 
 	// extract hue
 	h = (0xff & hex) / 255.0f;
-	hex = hex << 8;
+	hex = hex >> 8;
 }
 
 HSVColor::HSVColor(float h, float s, float v, float a) : h(h), s(s), v(v), a(a) { }

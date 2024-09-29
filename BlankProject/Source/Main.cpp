@@ -1,5 +1,6 @@
 #include "Core/Application.h"
 #include "Core/MainWindow.h"
+#include "Core/Graphics2D.h"
 
 int main(int argc, char** argv) {
 	

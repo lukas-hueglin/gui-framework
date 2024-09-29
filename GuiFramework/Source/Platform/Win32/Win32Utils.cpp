@@ -13,5 +13,5 @@ D2D1_RECT_F Win32Utils::D2D1Rect(Math::Rect& rect) {
 
 D2D1_COLOR_F Win32Utils::D2D1Color(Color& color){
 
-    return D2D1::ColorF(color.r, color.b, color.g, color.a);
+    return D2D1::ColorF(color.r, color.g, color.b, color.a);
 }
