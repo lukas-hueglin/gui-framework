@@ -1,6 +1,7 @@
 #include "Core/Application.h"
 #include "Core/MainWindow.h"
 #include "Core/Graphics2D.h"
+#include "Widgets/Widget.h"
 
 int main(int argc, char** argv) {
 	
@@ -10,6 +11,11 @@ int main(int argc, char** argv) {
 	// create new window
 	std::wstring s = L"Window";
 	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
+
+	// create a widget
+	Widget* w = new Widget(window);
+	w->setMargin(10);
+	window->setWidget(w);
 
 	return app->exec();
 }

@@ -19,4 +19,7 @@ namespace Math {
 		Rect(float left, float right, float top, float bottom);
 		Rect(RECT& rect);
 	};
+
+	Rect expandRect(Rect& rect, float offset);
+	Rect shrinkRect(Rect& rect, float offset);
 }

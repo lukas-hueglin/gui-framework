@@ -52,6 +52,15 @@
     <Filter Include="Source\Style\Private">
       <UniqueIdentifier>{bd088ff9-70f0-4038-a9de-0ab98e5cfeee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Widgets">
+      <UniqueIdentifier>{7f489dde-c6d2-4c08-ae60-d3bc0c9805dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Widgets\Public">
+      <UniqueIdentifier>{ef4d9f27-58a4-4aab-839c-3eea00969851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Widgets\Private">
+      <UniqueIdentifier>{5bc4c026-85bb-4161-8e71-8260490d547c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Gui.h">
@@ -111,6 +120,9 @@
     <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h">
       <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\Widget.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -148,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\Win32\Win32Window.cpp">
       <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Widget.cpp">
+      <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

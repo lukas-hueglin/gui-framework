@@ -2,10 +2,14 @@
 #include "Gui.h"
 #include "Common/MathUtils.h"
 
+// forward declare widget
+class Widget;
+
 template<class GRAPHICS_TYPE>
 class GUI_API IWindow {
 protected:
 	GRAPHICS_TYPE* mp_graphics;
+	Widget* mp_widget;
 
 	Math::Rect m_rect;
 
@@ -16,6 +20,10 @@ public:
 public:
 	template<class DERIVED_TYPE>
 	static DERIVED_TYPE* create(std::wstring title);
+
+	void setWidget(Widget* p_widget);
+
+	GRAPHICS_TYPE* getGraphics();
 
 protected:
 	void onBegin();

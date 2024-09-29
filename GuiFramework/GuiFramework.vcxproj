@@ -115,6 +115,7 @@
     <ClInclude Include="Include\Style\DrawStyle.h" />
     <ClInclude Include="Include\Style\DrawStyleBuilder.h" />
     <ClInclude Include="Include\Style\Style.h" />
+    <ClInclude Include="Include\Widgets\Widget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\MathUtils.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="Source\Style\DrawStyle.cpp" />
     <ClCompile Include="Source\Style\DrawStyleBuilder.cpp" />
     <ClCompile Include="Source\Style\Style.cpp" />
+    <ClCompile Include="Source\Widgets\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Gui.cpp" />
