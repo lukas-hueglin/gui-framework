@@ -7,6 +7,21 @@ Math::Rect::Rect(float left, float right, float top, float bottom) : left(left),
 
 Math::Rect::Rect(RECT& rect) : left(rect.left), right(rect.right), top(rect.top), bottom(rect.bottom) { }
 
+float Math::Rect::getWidth() {
+	return right - left;
+}
+
+float Math::Rect::getHeight() {
+	return bottom - top;
+}
+
+Math::Point2D Math::Rect::getCenter() {
+	return Math::Point2D((left + right)/2, (top + bottom)/2);
+}
+
+Math::Size::Size(float width, float height) : width(width), height(height) { }
+
+
 Math::Rect Math::expandRect(Math::Rect& rect, float offset) {
 	return Math::Rect(rect.left - offset, rect.right + offset, rect.top - offset, rect.bottom + offset);
 }

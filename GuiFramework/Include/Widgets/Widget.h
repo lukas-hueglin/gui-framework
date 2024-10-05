@@ -24,7 +24,7 @@ class GUI_API Widget {
 protected:
 	Graphics2D* mp_graphics;
 
-	Math::Rect m_minSize;
+	Math::Size m_minSize;
 	Math::Rect m_usedRect;
 	Math::Rect m_hitboxRect;
 	Math::Rect m_contentRect;
@@ -52,6 +52,8 @@ public:
 
 	void setMargin(float margin);
 	void setPadding(float padding);
+	void setAlignment(Alignment alignment);
+	void setFillMode(FillMode fillMode);
 
 	bool isMouseHovering();
 

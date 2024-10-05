@@ -18,6 +18,17 @@ namespace Math {
 
 		Rect(float left, float right, float top, float bottom);
 		Rect(RECT& rect);
+
+		float getWidth();
+		float getHeight();
+		Point2D getCenter();
+	};
+
+	struct GUI_API Size {
+		float width;
+		float height;
+
+		Size(float width, float height);
 	};
 
 	Rect expandRect(Rect& rect, float offset);
