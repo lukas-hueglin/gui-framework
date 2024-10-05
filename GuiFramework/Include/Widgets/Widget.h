@@ -42,7 +42,7 @@ public:
 	Widget(Window<Graphics2D>* p_parent);
 
 	virtual void onPaint();
-	void onResize(Math::Rect availableRect);
+	virtual void onResize(Math::Rect availableRect);
 
 	virtual void onMouseHover(Math::Point2D point);
 	virtual void onMouseEnter();
@@ -50,10 +50,17 @@ public:
 	virtual void onMouseDown();
 	virtual void onMouseRelease();
 
+	float getMargin();
+	float getPadding();
+	Alignment getAlignment();
+	FillMode getFillMode();
+	Math::Size getMinSize();
+
 	void setMargin(float margin);
 	void setPadding(float padding);
 	void setAlignment(Alignment alignment);
 	void setFillMode(FillMode fillMode);
+	void setMinSize(Math::Size size);
 
 	bool isMouseHovering();
 

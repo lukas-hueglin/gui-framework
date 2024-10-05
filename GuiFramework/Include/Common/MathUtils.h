@@ -29,6 +29,8 @@ namespace Math {
 		float height;
 
 		Size(float width, float height);
+
+		Size operator+(Size b);
 	};
 
 	Rect expandRect(Rect& rect, float offset);

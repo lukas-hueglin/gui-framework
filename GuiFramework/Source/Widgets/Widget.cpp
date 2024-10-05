@@ -123,6 +123,26 @@ void Widget::onMouseRelease() {
 	mp_graphics->scheduleRedraw();
 }
 
+float Widget::getMargin() {
+	return m_margin;
+}
+
+float Widget::getPadding() {
+	return m_padding;
+}
+
+Alignment Widget::getAlignment() {
+	return m_alignment;
+}
+
+FillMode Widget::getFillMode() {
+	return m_fillMode;
+}
+
+Math::Size Widget::getMinSize() {
+	return m_minSize;
+}
+
 void Widget::setMargin(float margin) {
 
 	m_margin = margin;
@@ -148,6 +168,11 @@ void Widget::setAlignment(Alignment alignment) {
 void Widget::setFillMode(FillMode fillMode) {
 
 	m_fillMode = fillMode;
+}
+
+void Widget::setMinSize(Math::Size size) {
+
+	m_minSize = size;
 }
 
 bool Widget::isMouseHovering() {

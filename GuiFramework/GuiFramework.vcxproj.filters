@@ -135,6 +135,9 @@
     <ClInclude Include="Include\Widgets\Label.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\LinearLayout.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -186,6 +189,9 @@
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\Label.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\LinearLayout.cpp">
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>

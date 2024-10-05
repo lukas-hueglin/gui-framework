@@ -21,6 +21,10 @@ Math::Point2D Math::Rect::getCenter() {
 
 Math::Size::Size(float width, float height) : width(width), height(height) { }
 
+Math::Size Math::Size::operator+(Size b) {
+	return Math::Size(width + b.width, height + b.height);
+}
+
 
 Math::Rect Math::expandRect(Math::Rect& rect, float offset) {
 	return Math::Rect(rect.left - offset, rect.right + offset, rect.top - offset, rect.bottom + offset);

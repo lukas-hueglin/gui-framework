@@ -119,6 +119,7 @@
     <ClInclude Include="Include\Style\TextStyleBuilder.h" />
     <ClInclude Include="Include\Widgets\Button.h" />
     <ClInclude Include="Include\Widgets\Label.h" />
+    <ClInclude Include="Include\Widgets\LinearLayout.h" />
     <ClInclude Include="Include\Widgets\Widget.h" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClCompile Include="Source\Style\TextStyleBuilder.cpp" />
     <ClCompile Include="Source\Widgets\Button.cpp" />
     <ClCompile Include="Source\Widgets\Label.cpp" />
+    <ClCompile Include="Source\Widgets\LinearLayout.cpp" />
     <ClCompile Include="Source\Widgets\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
