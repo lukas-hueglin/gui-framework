@@ -35,6 +35,33 @@ DrawStyle Style::Highlight() {
 		.edgeThickness(1.0f);
 }
 
+#ifdef DEBUG_UI
+DrawStyle Style::Debug1() {
+
+	return DrawStyle::create()
+		.edgeColor(Color::Red)
+		.fillColor(Color::Transparent)
+		.edgeThickness(1.0f);
+}
+
+DrawStyle Style::Debug2() {
+
+	return DrawStyle::create()
+		.edgeColor(Color::Green)
+		.fillColor(Color::Transparent)
+		.edgeThickness(1.0f);
+}
+
+DrawStyle Style::Debug3() {
+
+	return DrawStyle::create()
+		.edgeColor(Color::Blue)
+		.fillColor(Color::Transparent)
+		.edgeThickness(1.0f);
+}
+#endif
+
+
 TextStyle Style::Normal() {
 
 	return TextStyle::create()

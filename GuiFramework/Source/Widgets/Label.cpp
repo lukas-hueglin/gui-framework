@@ -6,6 +6,10 @@ Label::Label(Window<Graphics2D>* p_parent, const wchar_t* text) : Widget(p_paren
 
 void Label::onPaint() {
 
+#ifdef DEBUG_UI
+	Widget::onPaint();
+#endif
+
 	// draw text
 	mp_graphics->drawText(m_text, m_contentRect, Style::Normal(), m_textAlignment);
 }

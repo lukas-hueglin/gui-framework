@@ -20,9 +20,8 @@ int main(int argc, char** argv) {
 	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
 
 	// create a layout
-	LinearLayout* l = new LinearLayout(window, Orientation::Vertical);
-	l->setFillMode(FillMode::Expand);
-	window->setWidget(l);
+	LinearLayout* l1 = new LinearLayout(window, Orientation::Vertical);
+	window->setLayout(l1);
 
 	// create a widget
 	Button* w1 = new Button(window, L"Button 1");
@@ -35,14 +34,26 @@ int main(int argc, char** argv) {
 	w2->setMargin(10);
 	w2->setPadding(10);
 
+	// create a layout
+	LinearLayout* l2 = new LinearLayout(window, Orientation::Horizontal);
+	l2->setAlignment(Alignment::Center);
+	l2->setFillMode(FillMode::Shrink);
+
 	// create a button
-	Button* w3 = new Button(window, L"Button 2");
+	Button* w3 = new Button(window, L"Left Button");
 	w3->setMargin(10);
 	w3->setPadding(10);
 
-	l->addWidget(w1);
-	l->addWidget(w2);
-	l->addWidget(w3);
+	// create a button
+	Button* w4 = new Button(window, L"Right Button");
+	w4->setMargin(10);
+	w4->setPadding(10);
+
+	l2->addFrame(w3);
+	l2->addFrame(w4);
+
+	l1->addFrame(w1);
+	l1->addFrame(l2);
 
 	return app->exec();
 }

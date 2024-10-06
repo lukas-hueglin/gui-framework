@@ -138,6 +138,15 @@
     <ClInclude Include="Include\Widgets\LinearLayout.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\Frame.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Layout.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\WidgetUtils.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -193,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="Source\Widgets\LinearLayout.cpp">
       <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Frame.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Layout.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\WidgetUtils.cpp">
+      <Filter>Source\Common\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

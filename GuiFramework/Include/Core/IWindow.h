@@ -2,16 +2,17 @@
 #include "Gui.h"
 #include "Common/MathUtils.h"
 
-// forward declare widget
-class Widget;
+// forward declare layout
+class Layout;
 
 template<class GRAPHICS_TYPE>
 class GUI_API IWindow {
 protected:
 	GRAPHICS_TYPE* mp_graphics;
-	Widget* mp_widget;
-
 	Math::Rect m_rect;
+
+	Layout* mp_layout;
+	bool m_layoutMouseHover;
 
 public:
 	IWindow();
@@ -21,7 +22,7 @@ public:
 	template<class DERIVED_TYPE>
 	static DERIVED_TYPE* create(const wchar_t* title);
 
-	void setWidget(Widget* p_widget);
+	void setLayout(Layout* p_layout);
 
 	GRAPHICS_TYPE* getGraphics();
 

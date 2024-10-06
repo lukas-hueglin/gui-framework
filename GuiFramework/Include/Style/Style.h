@@ -14,5 +14,11 @@ public:
 	static DrawStyle Accent();
 	static DrawStyle Highlight();
 
+#ifdef DEBUG_UI
+	static DrawStyle Debug1();
+	static DrawStyle Debug2();
+	static DrawStyle Debug3();
+#endif
+
 	static TextStyle Normal();
 };
