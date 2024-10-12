@@ -15,7 +15,7 @@ template class IWindow<Graphics2D>;
 template MainWindow<Graphics2D>* IWindow<Graphics2D>::create(const wchar_t* title);
 
 template<class GRAPHICS_TYPE>
-IWindow<GRAPHICS_TYPE>::IWindow() : mp_graphics(nullptr), mp_layout(nullptr), m_rect(Math::Rect(0, 0, 0, 0)), m_layoutMouseHover(false) { }
+IWindow<GRAPHICS_TYPE>::IWindow() : mp_graphics(nullptr), mp_layout(nullptr), m_rect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_layoutMouseHover(false) { }
 
 template<class GRAPHICS_TYPE>
 IWindow<GRAPHICS_TYPE>::~IWindow() { }

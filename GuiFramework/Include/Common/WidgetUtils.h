@@ -1,7 +1,8 @@
 #pragma once
 #include "Gui.h"
 
-enum GUI_API Alignment {
+
+enum GUI_API Alignment : int {
 	TopLeft = 0,
 	TopCenter = 1,
 	TopRight = 2,
@@ -22,3 +23,11 @@ enum GUI_API Orientation {
 	Horizontal = 0,
 	Vertical = 1
 };
+
+enum GUI_API Justification : int {
+	Leading = 0,
+	Middle = 1,
+	Trailing = 2
+};
+
+Justification getJustification(Alignment& alignment, Orientation& orientation);

@@ -134,6 +134,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\Common\MathUtils.h" />
+    <ClInclude Include="Include\Common\Point2D.h" />
+    <ClInclude Include="Include\Common\Rect.h" />
+    <ClInclude Include="Include\Common\Size.h" />
     <ClInclude Include="Include\Common\WidgetUtils.h" />
     <ClInclude Include="Include\Core\Application.h" />
     <ClInclude Include="Include\Core\Graphics2D.h" />
@@ -164,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\MathUtils.cpp" />
+    <ClCompile Include="Source\Common\Point2D.cpp" />
+    <ClCompile Include="Source\Common\Rect.cpp" />
+    <ClCompile Include="Source\Common\Size.cpp" />
     <ClCompile Include="Source\Common\WidgetUtils.cpp" />
     <ClCompile Include="Source\Core\IApplication.cpp" />
     <ClCompile Include="Source\Core\IWindow.cpp" />

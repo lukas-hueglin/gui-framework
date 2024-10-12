@@ -8,84 +8,55 @@ void LinearLayout::onResize(Math::Rect availableRect) {
 	// call parent function
 	Layout::onResize(availableRect);
 
-	// iterate over all frames and get shrink size
-	Math::Size sumSize = Math::Size(0, 0);
-	float sumWeights = 0;
+	// iterate over all frames and get the sum of all the shrinking frames sizes
+	Math::Size sumShrinkSize = Math::Size(0.0f, 0.0f);
+	float sumExpandWeights = 0;
 
 	for (int i = 0; i < m_frames.size(); ++i) {
 		
-		if (m_frames.at(i)->getFillMode() == FillMode::Expand) {
-
-			sumWeights += m_weights.at(i);
-		}
-		else {
-
-			sumSize = sumSize + m_frames.at(i)->getMinSize();
-		}
+		if (m_frames.at(i)->getFillMode() == FillMode::Expand)
+			sumExpandWeights += m_weights.at(i);
+		else
+			sumShrinkSize += m_frames.at(i)->getMinSize();
 	}
 
 	// iterate over all frames again and set their available space
-	Math::Rect available = m_contentRect;
+	Math::Rect avRect = m_contentRect;
 
-	// check if horizontal or vertical orientation is set
-	if (m_orientation == Orientation::Horizontal) {
+	// calculate space required for shrink widgets and space left for expanding widgets
+	float shrinkSpan = sumShrinkSize[m_orientation];
+	float spaceLeft = avRect.getSize()[m_orientation] - shrinkSpan;
 
-		// calculate integral sizes
-		float expandWidth = 1;
+	// calculate integral sizes
+	float expandSpan;
+	float frameSpan;
 
-		if (sumWeights == 0) {
-			available.left += (available.getWidth() - sumSize.width) / 2 * (m_alignment % 3);
-		}
-		else {
-			expandWidth = (available.getWidth() - sumSize.width) / sumWeights;
-		}
-
-		for (int i = 0; i < m_frames.size(); ++i) {
-
-			if (m_frames.at(i)->getFillMode() == FillMode::Expand) {
-
-				available.right = available.left + expandWidth * m_weights.at(i);
-			}
-			else {
-
-				available.right = available.left + m_frames.at(i)->getMinSize().width;
-			}
-
-			// resize frame
-			m_frames.at(i)->onResize(available);
-
-			// set left for next one
-			available.left = available.right;
-		}
+	// check if expanding widgets are present
+	if (sumExpandWeights == 0) {
+		// if not align the content
+		avRect.left() += spaceLeft / 2 * (int) getJustification(m_alignment, m_orientation);
 	}
 	else {
-		// calculate integral sizes
-		float expandHeight = 1;
+		// if there are calculate the size of each one.
+		expandSpan = spaceLeft / sumExpandWeights;
+	}
 
-		if (sumWeights == 0) {
-			available.top += (available.getHeight() - sumSize.height) / 2 * (m_alignment / 2);
-		}
-		else {
-			expandHeight = (available.getHeight() - sumSize.height) / sumWeights;
-		}
+	// iterate over all frames and set their sizes
+	for (int i = 0; i < m_frames.size(); ++i) {
 
-		for (int i = 0; i < m_frames.size(); ++i) {
+		if (m_frames.at(i)->getFillMode() == FillMode::Expand)
+			 frameSpan = expandSpan * m_weights.at(i);
+		else
+			frameSpan =  m_frames.at(i)->getMinSize()[m_orientation];
 
-			if (m_frames.at(i)->getFillMode() == FillMode::Expand) {
+		// resize avRect
+		avRect.bottomRight()[m_orientation] = avRect.topLeft()[m_orientation] + frameSpan;
 
-				available.bottom = available.top + expandHeight * m_weights.at(i);
-			}
-			else {
+		// resize frame
+		m_frames.at(i)->onResize(avRect);
 
-				available.bottom = available.top + m_frames.at(i)->getMinSize().height;
-			}
-
-			// resize frame
-			m_frames.at(i)->onResize(available);
-
-			// set top for next one
-			available.top = available.bottom;
-		}
+		// set left for next one
+		avRect.topLeft()[m_orientation] = avRect.bottomRight()[m_orientation];
 	}
 	
 }

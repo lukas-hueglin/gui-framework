@@ -147,6 +147,15 @@
     <ClInclude Include="Include\Common\WidgetUtils.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Common\Point2D.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\Rect.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\Size.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -210,6 +219,15 @@
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\WidgetUtils.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Point2D.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Rect.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Size.cpp">
       <Filter>Source\Common\Private</Filter>
     </ClCompile>
   </ItemGroup>
