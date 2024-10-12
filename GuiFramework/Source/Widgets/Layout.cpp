@@ -68,10 +68,10 @@ void Layout::onMouseLeave() {
 	}
 }
 
-void Layout::onMouseDown() {
+void Layout::onMouseDown(bool doubleClk) {
 
 	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseDown();
+		m_mouseHoverFrame->onMouseDown(doubleClk);
 	}
 }
 
@@ -79,6 +79,20 @@ void Layout::onMouseRelease() {
 
 	if (m_mouseHoverFrame != nullptr) {
 		m_mouseHoverFrame->onMouseRelease();
+	}
+}
+
+void Layout::onKeyDown(Key key) {
+
+	if (m_mouseHoverFrame != nullptr) {
+		m_mouseHoverFrame->onKeyDown(key);
+	}
+}
+
+void Layout::onKeyDown(char key) {
+
+	if (m_mouseHoverFrame != nullptr) {
+		m_mouseHoverFrame->onKeyDown(key);
 	}
 }
 

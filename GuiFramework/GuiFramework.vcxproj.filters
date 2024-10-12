@@ -156,6 +156,9 @@
     <ClInclude Include="Include\Common\Size.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Common\EventUtils.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -228,6 +231,9 @@
       <Filter>Source\Common\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\Size.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\EventUtils.cpp">
       <Filter>Source\Common\Private</Filter>
     </ClCompile>
   </ItemGroup>

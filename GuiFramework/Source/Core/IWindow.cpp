@@ -118,14 +118,14 @@ void IWindow<GRAPHICS_TYPE>::onMouseMove(Math::Point2D point) {
 }
 
 template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onMouseDown() {
+void IWindow<GRAPHICS_TYPE>::onMouseDown(bool doubleClk) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
 
 		// check if mouse hovers over layout
 		if (m_layoutMouseHover) {
-			mp_layout->onMouseDown();
+			mp_layout->onMouseDown(doubleClk);
 		}
 	}
 }
@@ -139,6 +139,32 @@ void IWindow<GRAPHICS_TYPE>::onMouseRelease() {
 		// check if mouse hovers over layout
 		if (m_layoutMouseHover) {
 			mp_layout->onMouseRelease();
+		}
+	}
+}
+
+template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onKeyDown(Key key) {
+
+	// check if a layout exists
+	if (mp_layout != nullptr) {
+
+		// check if mouse hovers over layout
+		if (m_layoutMouseHover) {
+			mp_layout->onKeyDown(key);
+		}
+	}
+}
+
+template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onKeyDown(char key) {
+
+	// check if a layout exists
+	if (mp_layout != nullptr) {
+
+		// check if mouse hovers over layout
+		if (m_layoutMouseHover) {
+			mp_layout->onKeyDown(key);
 		}
 	}
 }

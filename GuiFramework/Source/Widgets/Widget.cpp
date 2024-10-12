@@ -24,7 +24,7 @@ void Widget::onMouseLeave() {
 	requestRedraw();
 }
 
-void Widget::onMouseDown() {
+void Widget::onMouseDown(bool doubleClk) {
 
 	m_mouseDown = true;
 	requestRedraw();
@@ -35,3 +35,7 @@ void Widget::onMouseRelease() {
 	m_mouseDown = false;
 	requestRedraw();
 }
+
+void Widget::onKeyDown(Key key) { }
+
+void Widget::onKeyDown(char key) { }

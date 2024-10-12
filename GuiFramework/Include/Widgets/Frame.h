@@ -34,8 +34,11 @@ public:
 	virtual void onMouseHover(Math::Point2D point) = 0;
 	virtual void onMouseEnter() = 0;
 	virtual void onMouseLeave() = 0;
-	virtual void onMouseDown() = 0;
+	virtual void onMouseDown(bool doubleClk) = 0;
 	virtual void onMouseRelease() = 0;
+
+	virtual void onKeyDown(Key key) = 0;
+	virtual void onKeyDown(char key) = 0;
 
 	float getMargin();
 	float getPadding();

@@ -133,6 +133,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Common\EventUtils.h" />
     <ClInclude Include="Include\Common\MathUtils.h" />
     <ClInclude Include="Include\Common\Point2D.h" />
     <ClInclude Include="Include\Common\Rect.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Include\Widgets\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\EventUtils.cpp" />
     <ClCompile Include="Source\Common\MathUtils.cpp" />
     <ClCompile Include="Source\Common\Point2D.cpp" />
     <ClCompile Include="Source\Common\Rect.cpp" />

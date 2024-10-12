@@ -1,6 +1,7 @@
 #pragma once
 #include "Gui.h"
 #include "Common/MathUtils.h"
+#include "Common/EventUtils.h"
 
 // forward declare layout
 class Layout;
@@ -34,8 +35,11 @@ protected:
 	void onDestroy();
 	void onResize(Math::Rect rect);
 	void onMouseMove(Math::Point2D point);
-	void onMouseDown();
+	void onMouseDown(bool doubleClk);
 	void onMouseRelease();
+
+	void onKeyDown(Key key);
+	void onKeyDown(char key);
 
 private:
 	virtual void initialize(const wchar_t* title) = 0;

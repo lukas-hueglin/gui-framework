@@ -17,6 +17,7 @@ void Button::onMouseRelease() {
 
 	// call parent first, then call connected function
 	Widget::onMouseRelease();
+
 	if (mp_func != nullptr) {
 		mp_func();
 	}

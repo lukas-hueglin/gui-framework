@@ -19,6 +19,9 @@ public:
 	virtual void onMouseHover(Math::Point2D point);
 	virtual void onMouseEnter();
 	virtual void onMouseLeave();
-	virtual void onMouseDown();
+	virtual void onMouseDown(bool doubleClk);
 	virtual void onMouseRelease();
+
+	virtual void onKeyDown(Key key);
+	virtual void onKeyDown(char key);
 };

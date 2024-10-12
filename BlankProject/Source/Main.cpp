@@ -4,12 +4,6 @@
 #include "Widgets/Button.h"
 #include "Widgets/LinearLayout.h"
 
-#include "Windows.h"
-
-void func() {
-	MessageBox(NULL, L"Hello, World!", L"Important Message", NULL);
-}
-
 int main(int argc, char** argv) {
 	
 	// create new application
@@ -28,7 +22,6 @@ int main(int argc, char** argv) {
 	Button* w1 = new Button(window, L"Button 1");
 	w1->setMargin(10);
 	w1->setPadding(10);
-	w1->connect(func);
 
 	// create a label
 	Label* w2 = new Label(window, L"Label");

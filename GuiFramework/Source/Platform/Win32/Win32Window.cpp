@@ -1,5 +1,6 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32Window.h"
+#include "Platform/Win32/Win32Utils.h"
 #include "Core/Graphics2D.h"
 
 // define all used graphics types
@@ -27,6 +28,7 @@ void Win32Window<GRAPHICS_TYPE>::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, 
 
     // create window class struct
     WNDCLASS wc = { 0 };
+    wc.style = CS_DBLCLKS;
 
     // Check if class is already registered
     if (!GetClassInfo(HInstance(), getClassName(), &wc)) {
@@ -116,14 +118,35 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
             p_this->onMouseMove(Math::Point2D(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
             return 1;
 
+        case WM_LBUTTONDBLCLK:
+
+            p_this->onMouseDown(true);
+            return 1;
+
         case WM_LBUTTONDOWN:
 
-            p_this->onMouseDown();
+            //p_this->onMouseDown(false);
             return 1;
 
         case WM_LBUTTONUP:
 
             p_this->onMouseRelease();
+            return 1;
+
+        case WM_KEYDOWN:
+        {
+            Key key = Win32Utils::convertWin32Keys(wParam);
+            if (key != Key::Empty) {
+                p_this->onKeyDown(key);
+            }
+            return 1;
+        }
+        case WM_CHAR:
+
+            // if characters are printable
+            if (wParam >= 0x20 && wParam <= 0x7E) {
+                p_this->onKeyDown((char) wParam);
+            }
             return 1;
 
         default:
