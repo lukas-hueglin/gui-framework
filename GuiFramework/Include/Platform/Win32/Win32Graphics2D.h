@@ -31,8 +31,6 @@ public:
 
 	void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style, Alignment textAlignment);
 
-	void scheduleRedraw();
-
 private:
 	void initGraphicsResources();
 };

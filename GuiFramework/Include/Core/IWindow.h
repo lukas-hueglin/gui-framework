@@ -27,6 +27,8 @@ public:
 	GRAPHICS_TYPE* getGraphics();
 
 protected:
+	void onTick(float deltaTime);
+
 	void onBegin();
 	void onPaint();
 	void onDestroy();
@@ -40,4 +42,5 @@ private:
 
 	// make all other templated IWindow classes a friend
 	friend class IWindow;
+	friend class IApplication;
 };

@@ -15,6 +15,7 @@ public:
 	Layout(Window<Graphics2D>* p_parent);
 
 	void onPaint() override;
+	void onTick(float deltaTime) override;
 
 	void onMouseHover(Math::Point2D point) override;
 	void onMouseEnter() override;

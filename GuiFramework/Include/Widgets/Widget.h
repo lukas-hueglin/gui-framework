@@ -14,6 +14,8 @@ protected:
 public:
 	Widget(Window<Graphics2D>* p_parent);
 
+	virtual void onTick(float deltaTime);
+
 	virtual void onMouseHover(Math::Point2D point);
 	virtual void onMouseEnter();
 	virtual void onMouseLeave();

@@ -8,28 +8,30 @@ Widget::Widget(Window<Graphics2D>* p_parent) :
 	m_mouseHover(false),
 	m_mouseDown(false) {}
 
+void Widget::onTick(float deltaTime) { }
+
 void Widget::onMouseHover(Math::Point2D point) { }
 
 void Widget::onMouseEnter() {
 
 	m_mouseHover = true;
-	mp_graphics->scheduleRedraw();
+	requestRedraw();
 }
 
 void Widget::onMouseLeave() {
 
 	m_mouseHover = false;
-	mp_graphics->scheduleRedraw();
+	requestRedraw();
 }
 
 void Widget::onMouseDown() {
 
 	m_mouseDown = true;
-	mp_graphics->scheduleRedraw();
+	requestRedraw();
 }
 
 void Widget::onMouseRelease() {
 
 	m_mouseDown = false;
-	mp_graphics->scheduleRedraw();
+	requestRedraw();
 }

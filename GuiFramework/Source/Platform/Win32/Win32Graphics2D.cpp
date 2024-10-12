@@ -184,8 +184,3 @@ void Win32Graphics2D::drawText(const wchar_t* text, Math::Rect& rect, TextStyle 
     Win32Utils::safeRelease(&p_brush);
     Win32Utils::safeRelease(&p_textformat);
 }
-
-void Win32Graphics2D::scheduleRedraw() {
-
-    InvalidateRect(m_hWnd, 0, false);
-}

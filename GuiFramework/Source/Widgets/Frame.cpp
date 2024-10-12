@@ -13,16 +13,21 @@ Frame::Frame(Window<Graphics2D>* p_parent) :
 	m_alignment(Alignment::Center),
 	m_fillMode(FillMode::Shrink),
 
-	m_margin(0), m_padding(0) {}
+	m_margin(0), m_padding(0),
+
+	m_immediateMode(false),
+	m_requestRedraw(false) {}
 
 
-#ifdef DEBUG_UI
 void Frame::onPaint() {
+#ifdef DEBUG_UI
 	mp_graphics->drawRectangle(m_usedRect, Style::Debug1());
 	mp_graphics->drawRectangle(m_hitboxRect, Style::Debug2());
 	mp_graphics->drawRectangle(m_contentRect, Style::Debug3());
-}
 #endif
+
+	m_requestRedraw = false;
+}
 
 void Frame::onResize(Math::Rect availableRect) {
 
@@ -155,4 +160,28 @@ void Frame::setFillMode(FillMode fillMode) {
 Math::Rect Frame::getHitbox() {
 
 	return m_hitboxRect;
+}
+
+bool Frame::hasRequestedRedraw() {
+
+	return m_requestRedraw || m_immediateMode;
+}
+
+bool Frame::isImmediateMode() {
+	return m_immediateMode;
+}
+
+void Frame::requestRedraw() {
+
+	m_requestRedraw = true;
+}
+
+void Frame::enableImmediateMode() {
+
+	m_immediateMode = true;
+}
+
+void Frame::disableImmediateMode() {
+
+	m_immediateMode = false;
 }

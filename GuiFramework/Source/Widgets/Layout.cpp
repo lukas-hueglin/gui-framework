@@ -8,17 +8,29 @@ Layout::Layout(Window<Graphics2D>* p_parent) : Frame(p_parent), m_mouseHoverFram
 
 	// override alignment to TopLeft
 	m_alignment = Alignment::TopLeft;
+
+	// override immediate mode
+	enableImmediateMode();
 }
 
 void Layout::onPaint() {
 
-#ifdef DEBUG_UI
 	Frame::onPaint();
-#endif
 
 	// iterate over all frames
 	for (Frame* w : m_frames) {
 		w->onPaint();
+	}
+}
+
+void Layout::onTick(float deltaTime) {
+
+	// iterate over all frames
+	for (Frame* w : m_frames) {
+		if (w->isImmediateMode())
+			w->onTick(deltaTime);
+		if (w->hasRequestedRedraw())
+			w->onPaint();
 	}
 }
 

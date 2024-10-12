@@ -34,6 +34,21 @@ GRAPHICS_TYPE* IWindow<GRAPHICS_TYPE>::getGraphics() {
 }
 
 template<class GRAPHICS_TYPE>
+void IWindow<GRAPHICS_TYPE>::onTick(float deltaTime) {
+
+	// begin painting
+	mp_graphics->beginPaint();
+
+	// update layout
+	if (mp_layout != nullptr) {
+		mp_layout->onTick(deltaTime);
+	}
+
+	// end painting
+	mp_graphics->endPaint();
+}
+
+template<class GRAPHICS_TYPE>
 void IWindow<GRAPHICS_TYPE>::onBegin() {
 
 	mp_graphics->createGraphicsResources();

@@ -16,6 +16,4 @@ public:
 	virtual void drawRectangle(Math::Rect& rect, DrawStyle style) = 0;
 
 	virtual void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style, Alignment textAlignment) = 0;
-
-	virtual void scheduleRedraw() = 0;
 };

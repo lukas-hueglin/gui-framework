@@ -20,14 +20,14 @@ protected:
 	float m_margin;
 	float m_padding;
 
+	bool m_immediateMode;
+	bool m_requestRedraw;
+
 public:
 	Frame(Window<Graphics2D>* p_parent);
 
-#ifdef DEBUG_UI
 	virtual void onPaint();
-#else
-	virtual void onPaint() = 0;
-#endif
+	virtual void onTick(float deltaTime) = 0;
 
 	virtual void onResize(Math::Rect availableRect);
 
@@ -50,4 +50,12 @@ public:
 	void setFillMode(FillMode fillMode);
 
 	Math::Rect getHitbox();
+
+	bool hasRequestedRedraw();
+	bool isImmediateMode();
+
+protected:
+	void requestRedraw();
+	void enableImmediateMode();
+	void disableImmediateMode();
 };

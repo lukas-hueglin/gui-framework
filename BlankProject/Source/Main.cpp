@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 	// create new window
 	const wchar_t* s = L"Window";
 	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
+	app->setMainWindow(window);
 
 	// create a layout
 	LinearLayout* l1 = new LinearLayout(window, Orientation::Vertical);
