@@ -125,7 +125,7 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
 
         case WM_LBUTTONDOWN:
 
-            //p_this->onMouseDown(false);
+            p_this->onMouseDown(false);
             return 1;
 
         case WM_LBUTTONUP:

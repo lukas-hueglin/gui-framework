@@ -21,6 +21,7 @@ void Widget::onMouseEnter() {
 void Widget::onMouseLeave() {
 
 	m_mouseHover = false;
+	m_mouseDown = false;
 	requestRedraw();
 }
 

@@ -3,6 +3,7 @@
 #include "Core/Graphics2D.h"
 #include "Widgets/Button.h"
 #include "Widgets/LinearLayout.h"
+#include "Widgets/Slider.h"
 
 int main(int argc, char** argv) {
 	
@@ -19,7 +20,7 @@ int main(int argc, char** argv) {
 	window->setLayout(l1);
 
 	// create a widget
-	Button* w1 = new Button(window, L"Button 1");
+	Slider<float>* w1 = new Slider<float>(window, 1, 0, 10);
 	w1->setMargin(10);
 	w1->setPadding(10);
 
