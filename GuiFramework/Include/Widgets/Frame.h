@@ -23,8 +23,16 @@ protected:
 	bool m_immediateMode;
 	bool m_requestRedraw;
 
+#ifdef DEBUG_UI
+private:
+	GeometryResource* mp_debugResource1;
+	GeometryResource* mp_debugResource2;
+	GeometryResource* mp_debugResource3;
+#endif
+
 public:
-	Frame(Window<Graphics2D>* p_parent);
+	Frame(Window* p_parent);
+	~Frame();
 
 	virtual void onPaint();
 	virtual void onTick(float deltaTime) = 0;

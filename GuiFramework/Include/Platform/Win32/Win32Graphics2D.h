@@ -2,6 +2,7 @@
 #include "Core/IGraphics2D.h"
 
 class GUI_API Win32Graphics2D : public IGraphics2D {
+
 private:
 	HWND m_hWnd;
 
@@ -21,16 +22,18 @@ public:
 	void beginPaint();
 	void endPaint();
 
-	void createGraphicsResources();
-	void discardGraphicsResources();
+	void createGraphicsAssets();
+	void discardGraphicsAssets();
 
 	void resizeCanvas();
 
-	void drawLine(Math::Point2D& x, Math::Point2D& y, DrawStyle style);
-	void drawRectangle(Math::Rect& rect, DrawStyle style);
-
-	void drawText(const wchar_t* text, Math::Rect& rect, TextStyle style, Alignment textAlignment);
-
 private:
-	void initGraphicsResources();
+	void initGraphicsAssets();
+
+	ID2D1HwndRenderTarget* getRenderTarget();
+	IDWriteFactory* getWriteFactory();
+
+	// make geometry and text resource a friend
+	friend class Win32GeometryResource;
+	friend class Win32TextResource;
 };

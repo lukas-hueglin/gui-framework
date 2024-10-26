@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
 
 	// create new window
 	const wchar_t* s = L"Window";
-	MainWindow<Graphics2D>* window = MainWindow<Graphics2D>::create(s);
+	MainWindow* window = MainWindow::create(s);
 	app->setMainWindow(window);
 
 	// create a layout

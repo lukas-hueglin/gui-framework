@@ -1,5 +1,6 @@
 #pragma once
 #include "Widgets/Widget.h"
+#include "Core/TextResource.h"
 
 class GUI_API Label : public Widget {
 
@@ -8,8 +9,11 @@ private:
 
 	Alignment m_textAlignment;
 
+	TextResource* mp_textResource;
+
 public:
-	Label(Window<Graphics2D>* p_parent, const wchar_t* text);
+	Label(Window* p_parent, const wchar_t* text);
+	~Label();
 
 	void onPaint() override;
 

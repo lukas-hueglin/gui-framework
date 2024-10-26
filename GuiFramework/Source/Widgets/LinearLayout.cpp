@@ -1,7 +1,7 @@
 #include "Gui.h"
 #include "Widgets/LinearLayout.h"
 
-LinearLayout::LinearLayout(Window<Graphics2D>* p_parent, Orientation orientation) : Layout(p_parent), m_orientation(orientation) { }
+LinearLayout::LinearLayout(Window* p_parent, Orientation orientation) : Layout(p_parent), m_orientation(orientation) { }
 
 void LinearLayout::onResize(Math::Rect availableRect) {
 

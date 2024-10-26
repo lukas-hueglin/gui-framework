@@ -12,7 +12,7 @@ protected:
 	bool m_mouseDown;
 
 public:
-	Widget(Window<Graphics2D>* p_parent);
+	Widget(Window* p_parent);
 
 	virtual void onTick(float deltaTime);
 

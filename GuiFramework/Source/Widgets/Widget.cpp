@@ -2,7 +2,7 @@
 #include "Widgets/Widget.h"
 #include "Style/Style.h"
 
-Widget::Widget(Window<Graphics2D>* p_parent) :
+Widget::Widget(Window* p_parent) :
 	Frame(p_parent),
 
 	m_mouseHover(false),

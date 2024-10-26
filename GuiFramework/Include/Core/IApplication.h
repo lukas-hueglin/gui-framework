@@ -6,7 +6,7 @@
 class GUI_API IApplication {
 
 private:
-	MainWindow<Graphics2D>* mp_mainWindow;
+	MainWindow* mp_mainWindow;
 
 public:
 	IApplication(int argc, char** argv);
@@ -15,5 +15,5 @@ public:
 	virtual int exec() = 0;
 	void onTick(float deltaTime);
 
-	void setMainWindow(MainWindow<Graphics2D>* p_mainWindow);
+	void setMainWindow(MainWindow* p_mainWindow);
 };

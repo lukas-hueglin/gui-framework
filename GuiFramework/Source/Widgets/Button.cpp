@@ -2,12 +2,22 @@
 #include "Widgets/Button.h"
 #include "Style/Style.h"
 
-Button::Button(Window<Graphics2D>* p_parent, const wchar_t* text) : Label(p_parent, text), mp_func(nullptr) { }
+Button::Button(Window* p_parent, const wchar_t* text) : Label(p_parent, text), mp_func(nullptr) {
+
+	// create geometry resources
+	mp_rectangleResource = new GeometryResource(mp_graphics, Style::Secondary());
+}
+
+Button::~Button() {
+	
+	delete mp_rectangleResource;
+}
 
 void Button::onPaint() {
 
 	// draw background
-	mp_graphics->drawRectangle(m_hitboxRect, m_mouseDown ? Style::Highlight() : m_mouseHover ? Style::Accent() : Style::Secondary());
+	mp_rectangleResource->setStyle(m_mouseDown ? Style::Highlight() : m_mouseHover ? Style::Accent() : Style::Secondary());
+	mp_rectangleResource->drawRectangle(m_hitboxRect);
 
 	// draw text
 	Label::onPaint();

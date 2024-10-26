@@ -8,14 +8,28 @@ template class Slider<double>;
 template class Slider<int>;
 
 template<typename T>
-Slider<T>::Slider(Window<Graphics2D>* p_parent, T value, T min, T max) :
+Slider<T>::Slider(Window* p_parent, T value, T min, T max) :
 	Widget(p_parent),
 	
 	m_value(value), m_min(min), m_max(max),
 	m_textAlignment(Alignment::CenterLeft),
 	
 	m_sliderRect(Math::Rect(0.f, 0.f, 0.f, 0.f)),
-	m_enterValue(false) {}
+	m_enterValue(false) {
+
+	// create geometry and text resources
+	mp_backgroundResource = new GeometryResource(mp_graphics, Style::Secondary());
+	mp_sliderResource = new GeometryResource(mp_graphics, Style::Accent());
+	mp_textResource = new TextResource(mp_graphics, Style::Normal());
+}
+
+template<typename T>
+Slider<T>::~Slider() {
+
+	delete mp_backgroundResource;
+	delete mp_sliderResource;
+	delete mp_textResource;
+}
 
 template<typename T>
 void Slider<T>::onPaint() {
@@ -23,16 +37,16 @@ void Slider<T>::onPaint() {
 	Widget::onPaint();
 
 	// draw background
-	mp_graphics->drawRectangle(m_hitboxRect, Style::Secondary());
+	mp_backgroundResource->drawRectangle(m_hitboxRect);
 
 	// draw slider
-	mp_graphics->drawRectangle(m_sliderRect, Style::Accent());
+	mp_sliderResource->drawRectangle(m_sliderRect);
 
 	// draw text
 	wchar_t fmt[] = L"%.2f";
 	_snwprintf_s(m_buffer, MAX_STRING_SIZE, sizeof(fmt), fmt, m_value);
 
-	mp_graphics->drawText(m_buffer, m_contentRect, Style::Normal(), m_textAlignment);
+	mp_textResource->drawText(m_buffer, m_contentRect, m_textAlignment);
 }
 
 template<typename T>

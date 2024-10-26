@@ -1,7 +1,7 @@
 #include "Gui.h"
 #include "Widgets/Layout.h"
 
-Layout::Layout(Window<Graphics2D>* p_parent) : Frame(p_parent), m_mouseHoverFrame(nullptr) {
+Layout::Layout(Window* p_parent) : Frame(p_parent), m_mouseHoverFrame(nullptr) {
 	
 	// override FillMode to Expand
 	m_fillMode = FillMode::Expand;

@@ -8,33 +8,28 @@
 
 #include "Style/Style.h"
 
-// define all types of Graphics to be used
-template class IWindow<Graphics2D>;
-
 // define all types that should be able to be created
-template MainWindow<Graphics2D>* IWindow<Graphics2D>::create(const wchar_t* title);
+template MainWindow* IWindow::create(const wchar_t* title);
 
-template<class GRAPHICS_TYPE>
-IWindow<GRAPHICS_TYPE>::IWindow() : mp_graphics(nullptr), mp_layout(nullptr), m_rect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_layoutMouseHover(false) { }
+IWindow::IWindow() : mp_graphics(nullptr), mp_layout(nullptr), m_rect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_layoutMouseHover(false) { }
 
-template<class GRAPHICS_TYPE>
-IWindow<GRAPHICS_TYPE>::~IWindow() { }
+IWindow::~IWindow() {
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::setLayout(Layout* p_layout) {
+	delete mp_backgroundResource;
+}
+
+void IWindow::setLayout(Layout* p_layout) {
 
 	mp_layout = p_layout;
 	mp_layout->onResize(m_rect);
 }
 
-template<class GRAPHICS_TYPE>
-GRAPHICS_TYPE* IWindow<GRAPHICS_TYPE>::getGraphics() {
+Graphics2D* IWindow::getGraphics() {
 
 	return mp_graphics;
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onTick(float deltaTime) {
+void IWindow::onTick(float deltaTime) {
 
 	// begin painting
 	mp_graphics->beginPaint();
@@ -48,20 +43,24 @@ void IWindow<GRAPHICS_TYPE>::onTick(float deltaTime) {
 	mp_graphics->endPaint();
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onBegin() {
+void IWindow::onBegin() {
 
-	mp_graphics->createGraphicsResources();
+	mp_graphics->createGraphicsAssets();
 }
 
 
-void IWindow<Graphics2D>::onPaint() {
+void IWindow::onPaint() {
 
 	// begin painting
 	mp_graphics->beginPaint();
 
+	if (mp_backgroundResource == nullptr) {
+		// create geometry reesource
+		mp_backgroundResource = new GeometryResource(mp_graphics, Style::Primary());
+	}
+
 	// draw background
-	mp_graphics->drawRectangle(m_rect, Style::Primary());
+	mp_backgroundResource->drawRectangle(m_rect);
 
 	// draw layout
 	if (mp_layout != nullptr) {
@@ -72,14 +71,12 @@ void IWindow<Graphics2D>::onPaint() {
 	mp_graphics->endPaint();
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onDestroy() {
+void IWindow::onDestroy() {
 
-	mp_graphics->discardGraphicsResources();
+	mp_graphics->discardGraphicsAssets();
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onResize(Math::Rect rect) {
+void IWindow::onResize(Math::Rect rect) {
 
 	// update rect
 	m_rect = rect;
@@ -93,8 +90,7 @@ void IWindow<GRAPHICS_TYPE>::onResize(Math::Rect rect) {
 	}
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onMouseMove(Math::Point2D point) {
+void IWindow::onMouseMove(Math::Point2D point) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
@@ -117,8 +113,7 @@ void IWindow<GRAPHICS_TYPE>::onMouseMove(Math::Point2D point) {
 	}
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onMouseDown(bool doubleClk) {
+void IWindow::onMouseDown(bool doubleClk) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
@@ -130,8 +125,7 @@ void IWindow<GRAPHICS_TYPE>::onMouseDown(bool doubleClk) {
 	}
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onMouseRelease() {
+void IWindow::onMouseRelease() {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
@@ -143,8 +137,7 @@ void IWindow<GRAPHICS_TYPE>::onMouseRelease() {
 	}
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onKeyDown(Key key) {
+void IWindow::onKeyDown(Key key) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
@@ -156,8 +149,7 @@ void IWindow<GRAPHICS_TYPE>::onKeyDown(Key key) {
 	}
 }
 
-template<class GRAPHICS_TYPE>
-void IWindow<GRAPHICS_TYPE>::onKeyDown(char key) {
+void IWindow::onKeyDown(char key) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
@@ -170,13 +162,12 @@ void IWindow<GRAPHICS_TYPE>::onKeyDown(char key) {
 }
 
 
-template<class GRAPHICS_TYPE>
 template<class DERIVED_TYPE>
-DERIVED_TYPE* IWindow<GRAPHICS_TYPE>::create(const wchar_t* title) {
+DERIVED_TYPE* IWindow::create(const wchar_t* title) {
 
 	// create and initialize window
 	DERIVED_TYPE* p_window = new DERIVED_TYPE;
-	((IWindow<GRAPHICS_TYPE>*)p_window)->initialize(title);
+	((IWindow*)p_window)->initialize(title);
 
 	return p_window;
 }

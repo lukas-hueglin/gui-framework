@@ -2,7 +2,7 @@
 #include "Widgets/Frame.h"
 #include "Style/Style.h"
 
-Frame::Frame(Window<Graphics2D>* p_parent) :
+Frame::Frame(Window* p_parent) :
 	mp_graphics(p_parent->getGraphics()),
 
 	m_minSize(Math::Size(500, 100)),
@@ -16,14 +16,32 @@ Frame::Frame(Window<Graphics2D>* p_parent) :
 	m_margin(0), m_padding(0),
 
 	m_immediateMode(false),
-	m_requestRedraw(false) {}
+	m_requestRedraw(false) {
+
+#ifdef DEBUG_UI
+	// create geometry resources
+	mp_debugResource1 = new GeometryResource(mp_graphics, Style::Debug1());
+	mp_debugResource2 = new GeometryResource(mp_graphics, Style::Debug2());
+	mp_debugResource3 = new GeometryResource(mp_graphics, Style::Debug3());
+#endif
+
+}
+
+Frame::~Frame() {
+
+#ifdef DEBUG_UI
+	delete mp_debugResource1;
+	delete mp_debugResource2;
+	delete mp_debugResource3;
+#endif
+}
 
 
 void Frame::onPaint() {
 #ifdef DEBUG_UI
-	mp_graphics->drawRectangle(m_usedRect, Style::Debug1());
-	mp_graphics->drawRectangle(m_hitboxRect, Style::Debug2());
-	mp_graphics->drawRectangle(m_contentRect, Style::Debug3());
+	mp_debugResource1->drawRectangle(m_usedRect);
+	mp_debugResource2->drawRectangle(m_hitboxRect);
+	mp_debugResource3->drawRectangle(m_contentRect);
 #endif
 
 	m_requestRedraw = false;
@@ -43,7 +61,6 @@ void Frame::onResize(Math::Rect availableRect) {
 
 			m_usedRect.left() = availableRect.left();
 			m_usedRect.right() = m_usedRect.left() + min(m_minSize.width(), availableRect.getWidth());
-
 		}
 
 		// if horizontal aligned center

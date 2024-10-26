@@ -1,8 +1,7 @@
 #pragma once
 #include "Core/IWindow.h"
 
-template<class GRAPHICS_TYPE>
-class GUI_API Win32Window : public IWindow<GRAPHICS_TYPE> {
+class GUI_API Win32Window : public IWindow {
 
 protected:
 	HWND m_hWnd;

@@ -2,23 +2,18 @@
 #include "Platform/Win32/Win32MainWindow.h"
 #include "Core/Graphics2D.h"
 
-// define all used graphics types
-template class Win32MainWindow<Graphics2D>;
 
-template<class GRAPHICS_TYPE>
-Win32MainWindow<GRAPHICS_TYPE>* Win32MainWindow<GRAPHICS_TYPE>::create(const wchar_t* title) {
+Win32MainWindow* Win32MainWindow::create(const wchar_t* title) {
 	
-	return Win32Window<GRAPHICS_TYPE>::create<Win32MainWindow<GRAPHICS_TYPE>>(title);
+	return Win32Window::create<Win32MainWindow>(title);
 }
 
-template<class GRAPHICS_TYPE>
-PCWSTR Win32MainWindow<GRAPHICS_TYPE>::getClassName() {
+PCWSTR Win32MainWindow::getClassName() {
 
 	return L"MainWindow";
 }
 
-template<class GRAPHICS_TYPE>
-LRESULT Win32MainWindow<GRAPHICS_TYPE>::handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT Win32MainWindow::handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	
 	switch (uMsg) {
 

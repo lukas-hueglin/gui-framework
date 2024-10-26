@@ -8,7 +8,7 @@ private:
 	Orientation m_orientation;
 
 public:
-	LinearLayout(Window<Graphics2D>* p_parent, Orientation orientation);
+	LinearLayout(Window* p_parent, Orientation orientation);
 
 public:
 	void onResize(Math::Rect availableRect) override;

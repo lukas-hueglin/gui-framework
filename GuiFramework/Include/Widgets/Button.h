@@ -6,8 +6,11 @@ class GUI_API Button : public Label {
 private:
 	void (*mp_func)();
 
+	GeometryResource* mp_rectangleResource;
+
 public:
-	Button(Window<Graphics2D>* p_parent, const wchar_t* text);
+	Button(Window* p_parent, const wchar_t* text);
+	~Button();
 
 	void onPaint() override;
 	void onMouseRelease() override;

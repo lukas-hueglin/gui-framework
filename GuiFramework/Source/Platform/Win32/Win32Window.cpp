@@ -3,28 +3,21 @@
 #include "Platform/Win32/Win32Utils.h"
 #include "Core/Graphics2D.h"
 
-// define all used graphics types
-template class Win32Window<Graphics2D>;
 
+Win32Window::Win32Window() : m_hWnd(NULL) { }
 
-template<class GRAPHICS_TYPE>
-Win32Window<GRAPHICS_TYPE>::Win32Window() : m_hWnd(NULL) { }
-
-template<class GRAPHICS_TYPE>
-Win32Window<GRAPHICS_TYPE>::~Win32Window() {
+Win32Window::~Win32Window() {
 
     DestroyWindow(m_hWnd);
 }
 
-template<class GRAPHICS_TYPE>
-void Win32Window<GRAPHICS_TYPE>::initialize(const wchar_t* title) {
+void Win32Window::initialize(const wchar_t* title) {
 
     // create win32 hWnd
     createHwnd(title, WS_OVERLAPPEDWINDOW);
 }
 
-template<class GRAPHICS_TYPE>
-void Win32Window<GRAPHICS_TYPE>::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu) {
+void Win32Window::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu) {
 
     // create window class struct
     WNDCLASS wc = { 0 };
@@ -58,8 +51,7 @@ void Win32Window<GRAPHICS_TYPE>::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, 
     );
 }
 
-template<class GRAPHICS_TYPE>
-LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
     Win32Window* p_this = nullptr;
 
@@ -74,7 +66,7 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
         p_this->m_hWnd = hWnd;
 
         // create graphics_type
-        p_this->mp_graphics = new GRAPHICS_TYPE(hWnd);
+        p_this->mp_graphics = new Graphics2D(hWnd);
 
         // show window
         ShowWindow(hWnd, 1);
@@ -160,8 +152,7 @@ LRESULT Win32Window<GRAPHICS_TYPE>::windowProc(HWND hWnd, UINT uMsg, WPARAM wPar
     }
 }
 
-template<class GRAPHICS_TYPE>
-PCWSTR Win32Window<GRAPHICS_TYPE>::getClassName() {
+PCWSTR Win32Window::getClassName() {
     
     return L"Window";
 }

@@ -2,18 +2,22 @@
 #include "Gui.h"
 #include "Common/MathUtils.h"
 #include "Common/EventUtils.h"
+#include "Core/GeometryResource.h"
+#include "Core/Graphics2D.h"
 
 // forward declare layout
 class Layout;
 
-template<class GRAPHICS_TYPE>
 class GUI_API IWindow {
 protected:
-	GRAPHICS_TYPE* mp_graphics;
+	Graphics2D* mp_graphics;
 	Math::Rect m_rect;
 
 	Layout* mp_layout;
 	bool m_layoutMouseHover;
+
+private:
+	GeometryResource* mp_backgroundResource;
 
 public:
 	IWindow();
@@ -25,7 +29,7 @@ public:
 
 	void setLayout(Layout* p_layout);
 
-	GRAPHICS_TYPE* getGraphics();
+	Graphics2D* getGraphics();
 
 protected:
 	void onTick(float deltaTime);

@@ -10,7 +10,7 @@ void IApplication::onTick(float deltaTime) {
 	}
 }
 
-void IApplication::setMainWindow(MainWindow<Graphics2D>* p_mainWindow) {
+void IApplication::setMainWindow(MainWindow* p_mainWindow) {
 
 	mp_mainWindow = p_mainWindow;
 }
