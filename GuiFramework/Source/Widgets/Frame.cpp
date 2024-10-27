@@ -5,7 +5,7 @@
 Frame::Frame(Window* p_parent) :
 	mp_graphics(p_parent->getGraphics()),
 
-	m_minSize(Math::Size(500, 100)),
+	m_minSize(Math::Size(150, 50)),
 	m_usedRect(Math::Rect(0.f, 0.0f, 0.f, 0.f)),
 	m_hitboxRect(Math::Rect(0.f, 0.f, 0.f, 0.f)),
 	m_contentRect(Math::Rect(0.f, 0.f, 0.f, 0.f)),

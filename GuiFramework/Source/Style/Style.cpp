@@ -53,6 +53,17 @@ DrawStyle Style::TextSelection() {
 		.edgeThickness(1.0f);
 }
 
+DrawStyle Style::Slider()
+{
+	RGBColor fillColor = Color::DarkViolet;
+	fillColor.a = 0.5;
+
+	return DrawStyle::create()
+		.edgeColor(Color::DarkOrchid)
+		.fillColor(fillColor)
+		.edgeThickness(1.0f);
+}
+
 #ifdef DEBUG_UI
 DrawStyle Style::Debug1() {
 

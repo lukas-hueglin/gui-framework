@@ -180,6 +180,9 @@
     <ClInclude Include="Include\Widgets\TextBox.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\Slider.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -270,6 +273,9 @@
       <Filter>Source\Core\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\TextBox.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Slider.cpp">
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,6 +16,7 @@ public:
 
 	static DrawStyle Cursor();
 	static DrawStyle TextSelection();
+	static DrawStyle Slider();
 
 #ifdef DEBUG_UI
 	static DrawStyle Debug1();

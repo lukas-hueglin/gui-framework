@@ -23,7 +23,8 @@ int main(int argc, char** argv) {
 	window->setLayout(l1);
 
 	// create a widget
-	TextBox* w1 = new TextBox(window, std::wstring(L"Edit this Text"));
+	Slider<int>* w1 = new Slider<int>(window, 4, 0, 10);
+	w1->setSuffix(L" \u03a9");
 	w1->setMargin(10);
 	w1->setPadding(10);
 

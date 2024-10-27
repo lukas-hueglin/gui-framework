@@ -1,9 +1,9 @@
 #pragma once
-#include "Widgets/Widget.h"
+#include "Widgets/TextBox.h"
 #include "Core/TextResource.h"
 
 template<typename T>
-class GUI_API Slider : public Widget {
+class GUI_API Slider : public TextBox {
 
 private:
 	T m_value;
@@ -11,15 +11,8 @@ private:
 	T m_max;
 
 	Math::Rect m_sliderRect;
-	Alignment m_textAlignment;
 
-	bool m_enterValue;
-	wchar_t m_buffer[MAX_STRING_SIZE];
-
-	GeometryResource* mp_backgroundResource;
 	GeometryResource* mp_sliderResource;
-
-	TextResource* mp_textResource;
 
 
 public:
@@ -30,8 +23,11 @@ public:
 	void onResize(Math::Rect availableRect) override;
 
 	void onMouseHover(Math::Point2D point) override;
-	void onMouseDown(bool doubleClk, Math::Point2D point) override;
-	void onKeyDown(Key key) override;
-	void onKeyDown(char key) override;
 
+	void setRequireDoubleClk(bool requireDoubleClk) = delete;
+
+private:
+	bool filterInput(char key) override;
+
+	void disableEditMode(bool backup);
 };
