@@ -14,7 +14,7 @@ public:
     TextStyleBuilder& textColor(const Color& textColor);
 
     TextStyleBuilder& fontSize(const float fontSize);
-    TextStyleBuilder& fontName(const wchar_t* fontName);
+    TextStyleBuilder& fontName(std::wstring fontName);
 
     // conversion operator
     operator TextStyle();

@@ -20,8 +20,8 @@ public:
 	void onMouseHover(Math::Point2D point) override;
 	void onMouseEnter() override;
 	void onMouseLeave() override;
-	void onMouseDown(bool doubleClk) override;
-	void onMouseRelease() override;
+	void onMouseDown(bool doubleClk, Math::Point2D point) override;
+	void onMouseRelease(Math::Point2D point) override;
 
 	void onKeyDown(Key key);
 	void onKeyDown(char key);

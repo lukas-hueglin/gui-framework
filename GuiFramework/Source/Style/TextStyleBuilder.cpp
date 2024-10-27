@@ -1,7 +1,7 @@
 #include "Gui.h"
 #include "Style/TextStyleBuilder.h"
 #include "Style/TextStyle.h"
-
+#include <string>
 
 TextStyleBuilder::TextStyleBuilder(TextStyle& textStyle) : m_textStyle(textStyle) { }
 
@@ -17,7 +17,7 @@ TextStyleBuilder& TextStyleBuilder::fontSize(const float fontSize) {
 	return *this;
 }
 
-TextStyleBuilder& TextStyleBuilder::fontName(const wchar_t* fontName) {
+TextStyleBuilder& TextStyleBuilder::fontName(std::wstring fontName) {
 
 	m_textStyle.m_fontName = fontName;
 	return *this;

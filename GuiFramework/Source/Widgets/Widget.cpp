@@ -25,13 +25,13 @@ void Widget::onMouseLeave() {
 	requestRedraw();
 }
 
-void Widget::onMouseDown(bool doubleClk) {
+void Widget::onMouseDown(bool doubleClk, Math::Point2D point) {
 
 	m_mouseDown = true;
 	requestRedraw();
 }
 
-void Widget::onMouseRelease() {
+void Widget::onMouseRelease(Math::Point2D point) {
 
 	m_mouseDown = false;
 	requestRedraw();

@@ -3,7 +3,7 @@
 #include "Core/Graphics2D.h"
 
 
-Win32MainWindow* Win32MainWindow::create(const wchar_t* title) {
+Win32MainWindow* Win32MainWindow::create(std::wstring title) {
 	
 	return Win32Window::create<Win32MainWindow>(title);
 }

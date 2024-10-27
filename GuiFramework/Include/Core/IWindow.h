@@ -25,7 +25,7 @@ public:
 	
 public:
 	template<class DERIVED_TYPE>
-	static DERIVED_TYPE* create(const wchar_t* title);
+	static DERIVED_TYPE* create(std::wstring title);
 
 	void setLayout(Layout* p_layout);
 
@@ -39,14 +39,14 @@ protected:
 	void onDestroy();
 	void onResize(Math::Rect rect);
 	void onMouseMove(Math::Point2D point);
-	void onMouseDown(bool doubleClk);
-	void onMouseRelease();
+	void onMouseDown(bool doubleClk, Math::Point2D point);
+	void onMouseRelease(Math::Point2D point);
 
 	void onKeyDown(Key key);
 	void onKeyDown(char key);
 
 private:
-	virtual void initialize(const wchar_t* title) = 0;
+	virtual void initialize(std::wstring title) = 0;
 
 	// make all other templated IWindow classes a friend
 	friend class IWindow;

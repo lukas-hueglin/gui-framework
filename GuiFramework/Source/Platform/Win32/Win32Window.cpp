@@ -11,10 +11,10 @@ Win32Window::~Win32Window() {
     DestroyWindow(m_hWnd);
 }
 
-void Win32Window::initialize(const wchar_t* title) {
+void Win32Window::initialize(std::wstring title) {
 
     // create win32 hWnd
-    createHwnd(title, WS_OVERLAPPEDWINDOW);
+    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
 }
 
 void Win32Window::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu) {
@@ -112,17 +112,17 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
         case WM_LBUTTONDBLCLK:
 
-            p_this->onMouseDown(true);
+            p_this->onMouseDown(true, Math::Point2D(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
             return 1;
 
         case WM_LBUTTONDOWN:
 
-            p_this->onMouseDown(false);
+            p_this->onMouseDown(false, Math::Point2D(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
             return 1;
 
         case WM_LBUTTONUP:
 
-            p_this->onMouseRelease();
+            p_this->onMouseRelease(Math::Point2D(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
             return 1;
 
         case WM_KEYDOWN:

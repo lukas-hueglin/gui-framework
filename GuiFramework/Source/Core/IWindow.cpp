@@ -9,7 +9,7 @@
 #include "Style/Style.h"
 
 // define all types that should be able to be created
-template MainWindow* IWindow::create(const wchar_t* title);
+template MainWindow* IWindow::create(std::wstring title);
 
 IWindow::IWindow() : mp_graphics(nullptr), mp_layout(nullptr), m_rect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_layoutMouseHover(false) { }
 
@@ -113,26 +113,26 @@ void IWindow::onMouseMove(Math::Point2D point) {
 	}
 }
 
-void IWindow::onMouseDown(bool doubleClk) {
+void IWindow::onMouseDown(bool doubleClk, Math::Point2D point) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
 
 		// check if mouse hovers over layout
 		if (m_layoutMouseHover) {
-			mp_layout->onMouseDown(doubleClk);
+			mp_layout->onMouseDown(doubleClk, point);
 		}
 	}
 }
 
-void IWindow::onMouseRelease() {
+void IWindow::onMouseRelease(Math::Point2D point) {
 
 	// check if a layout exists
 	if (mp_layout != nullptr) {
 
 		// check if mouse hovers over layout
 		if (m_layoutMouseHover) {
-			mp_layout->onMouseRelease();
+			mp_layout->onMouseRelease(point);
 		}
 	}
 }
@@ -163,7 +163,7 @@ void IWindow::onKeyDown(char key) {
 
 
 template<class DERIVED_TYPE>
-DERIVED_TYPE* IWindow::create(const wchar_t* title) {
+DERIVED_TYPE* IWindow::create(std::wstring title) {
 
 	// create and initialize window
 	DERIVED_TYPE* p_window = new DERIVED_TYPE;

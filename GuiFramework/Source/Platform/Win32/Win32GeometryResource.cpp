@@ -25,9 +25,11 @@ void Win32GeometryResource::initGraphicsAssets() {
 	}
 }
 
-void Win32GeometryResource::drawLine(Math::Point2D& x, Math::Point2D& y) {
+void Win32GeometryResource::drawLine(Math::Point2D& a, Math::Point2D& b) {
 
-	mp_graphics->getRenderTarget()->DrawLine(Win32Utils::D2D1Point(x), Win32Utils::D2D1Point(y), mp_edgeBrush, m_style.getEdgeThickness());
+	if (mp_edgeBrush != nullptr) {
+		mp_graphics->getRenderTarget()->DrawLine(Win32Utils::D2D1Point(a), Win32Utils::D2D1Point(b), mp_edgeBrush, m_style.getEdgeThickness());
+	}
 }
 
 void Win32GeometryResource::drawRectangle(Math::Rect& rect) {

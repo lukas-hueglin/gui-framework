@@ -1,7 +1,7 @@
 #pragma once
 #include "Gui.h"
 #include "Style/Color.h"
-
+#include <string>
 
 class TextStyleBuilder;
 
@@ -10,7 +10,7 @@ class GUI_API TextStyle {
 private:
 	Color m_textColor;
 	float m_fontSize;
-	const wchar_t* m_fontName;
+	std::wstring m_fontName;
 
 private:
 	TextStyle();
@@ -22,7 +22,7 @@ public:
 
 	Color& getTextColor();
 	float getFontSize();
-	const wchar_t* getFontName();
+	std::wstring getFontName();
 
 	friend class TextStyleBuilder;
 };

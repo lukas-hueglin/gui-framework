@@ -9,11 +9,11 @@ private:
 	GeometryResource* mp_rectangleResource;
 
 public:
-	Button(Window* p_parent, const wchar_t* text);
+	Button(Window* p_parent, std::wstring text);
 	~Button();
 
 	void onPaint() override;
-	void onMouseRelease() override;
+	void onMouseRelease(Math::Point2D point) override;
 
 	void connect(void (*func)());
 

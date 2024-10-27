@@ -15,7 +15,7 @@ public:
 	IGeometryResource(Graphics2D* graphics, DrawStyle style);
 
 public:
-	virtual void drawLine(Math::Point2D& x, Math::Point2D& y) = 0;
+	virtual void drawLine(Math::Point2D& a, Math::Point2D& b) = 0;
 	virtual void drawRectangle(Math::Rect& rect) = 0;
 
 	virtual void setStyle(DrawStyle style) = 0;

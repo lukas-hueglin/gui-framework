@@ -14,7 +14,7 @@ private:
 	void initGraphicsAssets();
 
 public:
-	void drawLine(Math::Point2D& x, Math::Point2D& y);
+	void drawLine(Math::Point2D& a, Math::Point2D& b);
 	void drawRectangle(Math::Rect& rect);
 
 	void setStyle(DrawStyle style);

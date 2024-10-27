@@ -4,6 +4,9 @@
 #include "Widgets/Button.h"
 #include "Widgets/LinearLayout.h"
 #include "Widgets/Slider.h"
+#include "Widgets/TextBox.h"
+#include <string>
+
 
 int main(int argc, char** argv) {
 	
@@ -11,7 +14,7 @@ int main(int argc, char** argv) {
 	Application* app = new Application(argc, argv);
 
 	// create new window
-	const wchar_t* s = L"Window";
+	std::wstring s = L"Window";
 	MainWindow* window = MainWindow::create(s);
 	app->setMainWindow(window);
 
@@ -20,7 +23,7 @@ int main(int argc, char** argv) {
 	window->setLayout(l1);
 
 	// create a widget
-	Slider<float>* w1 = new Slider<float>(window, 1, 0, 10);
+	TextBox* w1 = new TextBox(window, std::wstring(L"Edit this Text"));
 	w1->setMargin(10);
 	w1->setPadding(10);
 

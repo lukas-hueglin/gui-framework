@@ -14,6 +14,9 @@ public:
 	static DrawStyle Accent();
 	static DrawStyle Highlight();
 
+	static DrawStyle Cursor();
+	static DrawStyle TextSelection();
+
 #ifdef DEBUG_UI
 	static DrawStyle Debug1();
 	static DrawStyle Debug2();

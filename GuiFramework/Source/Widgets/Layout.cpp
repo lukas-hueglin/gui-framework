@@ -68,17 +68,17 @@ void Layout::onMouseLeave() {
 	}
 }
 
-void Layout::onMouseDown(bool doubleClk) {
+void Layout::onMouseDown(bool doubleClk, Math::Point2D point) {
 
 	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseDown(doubleClk);
+		m_mouseHoverFrame->onMouseDown(doubleClk, point);
 	}
 }
 
-void Layout::onMouseRelease() {
+void Layout::onMouseRelease(Math::Point2D point) {
 
 	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseRelease();
+		m_mouseHoverFrame->onMouseRelease(point);
 	}
 }
 

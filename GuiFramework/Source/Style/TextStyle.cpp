@@ -20,6 +20,6 @@ float TextStyle::getFontSize() {
 	return m_fontSize;
 }
 
-const wchar_t* TextStyle::getFontName() {
+std::wstring TextStyle::getFontName() {
 	return m_fontName;
 }

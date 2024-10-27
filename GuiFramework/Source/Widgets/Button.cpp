@@ -2,7 +2,7 @@
 #include "Widgets/Button.h"
 #include "Style/Style.h"
 
-Button::Button(Window* p_parent, const wchar_t* text) : Label(p_parent, text), mp_func(nullptr) {
+Button::Button(Window* p_parent, std::wstring text) : Label(p_parent, text), mp_func(nullptr) {
 
 	// create geometry resources
 	mp_rectangleResource = new GeometryResource(mp_graphics, Style::Secondary());
@@ -23,10 +23,10 @@ void Button::onPaint() {
 	Label::onPaint();
 }
 
-void Button::onMouseRelease() {
+void Button::onMouseRelease(Math::Point2D point) {
 
 	// call parent first, then call connected function
-	Widget::onMouseRelease();
+	Widget::onMouseRelease(point);
 
 	if (mp_func != nullptr) {
 		mp_func();

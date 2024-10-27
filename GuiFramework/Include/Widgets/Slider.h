@@ -30,7 +30,7 @@ public:
 	void onResize(Math::Rect availableRect) override;
 
 	void onMouseHover(Math::Point2D point) override;
-	void onMouseDown(bool doubleClk) override;
+	void onMouseDown(bool doubleClk, Math::Point2D point) override;
 	void onKeyDown(Key key) override;
 	void onKeyDown(char key) override;
 

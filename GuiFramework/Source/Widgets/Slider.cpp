@@ -79,9 +79,9 @@ void Slider<T>::onMouseHover(Math::Point2D point) {
 }
 
 template<typename T>
-void Slider<T>::onMouseDown(bool doubleClk) {
+void Slider<T>::onMouseDown(bool doubleClk, Math::Point2D point) {
 
-	Widget::onMouseDown(doubleClk);
+	Widget::onMouseDown(doubleClk, point);
 	
 	if (doubleClk) {
 		m_enterValue = true;

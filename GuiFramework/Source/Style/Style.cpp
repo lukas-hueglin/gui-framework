@@ -35,6 +35,24 @@ DrawStyle Style::Highlight() {
 		.edgeThickness(1.0f);
 }
 
+DrawStyle Style::Cursor() {
+	return DrawStyle::create()
+		.edgeColor(Color::Black)
+		.fillColor(Color::Transparent)
+		.edgeThickness(1.0f);
+}
+
+DrawStyle Style::TextSelection() {
+
+	RGBColor fillColor = Color::Blue;
+	fillColor.a = 0.5;
+
+	return DrawStyle::create()
+		.edgeColor(Color::LightBlue)
+		.fillColor(fillColor)
+		.edgeThickness(1.0f);
+}
+
 #ifdef DEBUG_UI
 DrawStyle Style::Debug1() {
 

@@ -4,7 +4,7 @@
 class GUI_API Win32MainWindow : public Win32Window {
 
 public:
-	static Win32MainWindow* create(const wchar_t* title);
+	static Win32MainWindow* create(std::wstring title);
 
 private:
 	PCWSTR getClassName() override;
