@@ -149,6 +149,7 @@
     <ClInclude Include="Include\Core\IWindow.h" />
     <ClInclude Include="Include\Core\MainWindow.h" />
     <ClInclude Include="Include\Core\ITextResource.h" />
+    <ClInclude Include="Include\Core\Object.h" />
     <ClInclude Include="Include\Core\TextResource.h" />
     <ClInclude Include="Include\Core\Window.h" />
     <ClInclude Include="Include\Gui.h" />
@@ -166,6 +167,8 @@
     <ClInclude Include="Include\Style\TextStyle.h" />
     <ClInclude Include="Include\Style\TextStyleBuilder.h" />
     <ClInclude Include="Include\Widgets\Button.h" />
+    <ClInclude Include="Include\Widgets\ComboBox.h" />
+    <ClInclude Include="Include\Widgets\DropDown.h" />
     <ClInclude Include="Include\Widgets\Frame.h" />
     <ClInclude Include="Include\Widgets\Label.h" />
     <ClInclude Include="Include\Widgets\Layout.h" />
@@ -199,6 +202,8 @@
     <ClCompile Include="Source\Style\TextStyle.cpp" />
     <ClCompile Include="Source\Style\TextStyleBuilder.cpp" />
     <ClCompile Include="Source\Widgets\Button.cpp" />
+    <ClCompile Include="Source\Widgets\ComboBox.cpp" />
+    <ClCompile Include="Source\Widgets\DropDown.cpp" />
     <ClCompile Include="Source\Widgets\Frame.cpp" />
     <ClCompile Include="Source\Widgets\Label.cpp" />
     <ClCompile Include="Source\Widgets\Layout.cpp" />

@@ -3,10 +3,13 @@
 #include "Core/Window.h"
 #include "Core/Graphics2D.h"
 #include "Common/WidgetUtils.h"
+#include "Core/Object.h"
 
 
-class GUI_API Frame {
+class GUI_API Frame : public Object {
+
 protected:
+	Window* mp_parent;
 	Graphics2D* mp_graphics;
 
 	Math::Size m_minSize;

@@ -7,7 +7,6 @@ class GUI_API Label : public Widget {
 
 protected:
 	std::wstring m_text;
-
 	Alignment m_textAlignment;
 
 	TextResource* mp_textResource;

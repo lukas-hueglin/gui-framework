@@ -3,6 +3,7 @@
 #include "Style/Style.h"
 
 Frame::Frame(Window* p_parent) :
+	mp_parent(p_parent),
 	mp_graphics(p_parent->getGraphics()),
 
 	m_minSize(Math::Size(150, 50)),

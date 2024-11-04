@@ -3,8 +3,9 @@
 
 class GUI_API Button : public Label {
 
-private:
-	void (*mp_func)();
+protected:
+	Object* mp_client;
+	int m_id;
 
 	GeometryResource* mp_rectangleResource;
 
@@ -15,6 +16,5 @@ public:
 	void onPaint() override;
 	void onMouseRelease(Math::Point2D point) override;
 
-	void connect(void (*func)());
-
+	void connect(Object* p_client, int id);
 };

@@ -7,27 +7,30 @@
 
 // forward declare layout
 class Layout;
+class DropDown;
 
 class GUI_API IWindow {
+
 protected:
 	Graphics2D* mp_graphics;
 	Math::Rect m_rect;
 
 	Layout* mp_layout;
+	DropDown* mp_dropDown;
 	bool m_layoutMouseHover;
-
-private:
-	GeometryResource* mp_backgroundResource;
+	bool m_dropDownMouseHover;
 
 public:
 	IWindow();
-	~IWindow();
 	
 public:
 	template<class DERIVED_TYPE>
 	static DERIVED_TYPE* create(std::wstring title);
 
 	void setLayout(Layout* p_layout);
+
+	void registerDropDown(DropDown* p_dropDown);
+	void unregisterDropDown();
 
 	Graphics2D* getGraphics();
 
@@ -48,7 +51,7 @@ protected:
 private:
 	virtual void initialize(std::wstring title) = 0;
 
-	// make all other templated IWindow classes a friend
-	friend class IWindow;
+
+	// make IApplication a friend class
 	friend class IApplication;
 };

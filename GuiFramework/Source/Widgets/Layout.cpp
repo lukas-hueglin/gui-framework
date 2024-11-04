@@ -1,5 +1,6 @@
 #include "Gui.h"
 #include "Widgets/Layout.h"
+#include "Style/Style.h"
 
 Layout::Layout(Window* p_parent) : Frame(p_parent), m_mouseHoverFrame(nullptr) {
 	
@@ -9,13 +10,23 @@ Layout::Layout(Window* p_parent) : Frame(p_parent), m_mouseHoverFrame(nullptr) {
 	// override alignment to TopLeft
 	m_alignment = Alignment::TopLeft;
 
+	// create geometry resource
+	mp_backgroundResource = new GeometryResource(mp_graphics, Style::Primary());
+
 	// override immediate mode
 	enableImmediateMode();
+}
+
+Layout::~Layout() {
+	delete mp_backgroundResource;
 }
 
 void Layout::onPaint() {
 
 	Frame::onPaint();
+
+	// draw background
+	mp_backgroundResource->drawRectangle(m_usedRect);
 
 	// iterate over all frames
 	for (Frame* w : m_frames) {

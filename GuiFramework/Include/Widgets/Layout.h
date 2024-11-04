@@ -11,8 +11,11 @@ protected:
 private:
 	Frame* m_mouseHoverFrame;
 
+	GeometryResource* mp_backgroundResource;
+
 public:
 	Layout(Window* p_parent);
+	~Layout();
 
 	void onPaint() override;
 	void onTick(float deltaTime) override;

@@ -7,6 +7,7 @@
 
 
 class GUI_API Widget : public Frame {
+
 protected:
 	bool m_mouseHover;
 	bool m_mouseDown;

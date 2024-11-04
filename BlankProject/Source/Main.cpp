@@ -5,6 +5,7 @@
 #include "Widgets/LinearLayout.h"
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
+#include "Widgets/ComboBox.h"
 #include <string>
 
 
@@ -48,11 +49,17 @@ int main(int argc, char** argv) {
 	w4->setMargin(10);
 	w4->setPadding(10);
 
+	// create a combobox
+	ComboBox* w5 = new ComboBox(window, std::vector<std::wstring>({L"Number 1", L"Number 2", L"Number 3", L"Number 4"}));
+	w5->setMargin(10);
+	w5->setPadding(10);
+
 	l2->addFrame(w3);
 	l2->addFrame(w4);
 
 	l1->addFrame(w1);
 	l1->addFrame(l2);
+	l1->addFrame(w5);
 
 	return app->exec();
 }
