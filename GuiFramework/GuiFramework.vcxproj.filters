@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resources">
@@ -60,6 +60,15 @@
     </Filter>
     <Filter Include="Source\Widgets\Private">
       <UniqueIdentifier>{5bc4c026-85bb-4161-8e71-8260490d547c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Common\Reflection">
+      <UniqueIdentifier>{18898b45-783f-4da4-ad0a-e2e8f595d2d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Common\Reflection\Public">
+      <UniqueIdentifier>{95584ef3-79ad-4312-8ff5-3a68b3a7fec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Common\Reflection\Private">
+      <UniqueIdentifier>{d9deb7cd-a843-4e05-9961-89c5287a8717}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +201,18 @@
     <ClInclude Include="Include\Core\Object.h">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Common\XmlHandler.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\IFunctional.h">
+      <Filter>Source\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\Reflection\Field.h">
+      <Filter>Source\Common\Reflection\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\Reflection\Internal.h">
+      <Filter>Source\Common\Reflection\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -292,6 +313,18 @@
     </ClCompile>
     <ClCompile Include="Source\Widgets\DropDown.cpp">
       <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\XmlHandler.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\IFunctional.cpp">
+      <Filter>Source\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Reflection\Field.cpp">
+      <Filter>Source\Common\Reflection\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Reflection\Internal.cpp">
+      <Filter>Source\Common\Reflection\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

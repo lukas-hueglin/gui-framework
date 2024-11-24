@@ -7,4 +7,7 @@ public:
 
 public:
 	int exec();
+
+protected:
+	std::wstring getIniPath();
 };

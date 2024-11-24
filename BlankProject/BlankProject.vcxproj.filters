@@ -24,9 +24,21 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Application.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Functional.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\BlankProject.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Application.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Functional.h">
       <Filter>Source\Public</Filter>
     </ClInclude>
   </ItemGroup>

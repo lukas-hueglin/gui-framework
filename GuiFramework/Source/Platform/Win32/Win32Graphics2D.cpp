@@ -13,15 +13,19 @@ void Win32Graphics2D::beginPaint() {
     initGraphicsAssets();
 
     // begin painting
-    BeginPaint(this->m_hWnd, &m_ps);
-    mp_renderTarget->BeginDraw();
+    if (mp_renderTarget != nullptr) {
+        BeginPaint(this->m_hWnd, &m_ps);
+        mp_renderTarget->BeginDraw();
+    }
 }
 
 void Win32Graphics2D::endPaint() {
 
     // end painting
-    mp_renderTarget->EndDraw();
-    EndPaint(this->m_hWnd, &m_ps);
+    if (mp_renderTarget != nullptr) {
+        mp_renderTarget->EndDraw();
+        EndPaint(this->m_hWnd, &m_ps);
+    }
 }
 
 void Win32Graphics2D::createGraphicsAssets() {
@@ -41,7 +45,7 @@ void Win32Graphics2D::initGraphicsAssets() {
 
     HRESULT hr = S_OK;
 
-    if (mp_renderTarget == nullptr) {
+    if (mp_renderTarget == nullptr && mp_2DFactory != nullptr) {
 
         // Get the window rectangle and size
         RECT rc;

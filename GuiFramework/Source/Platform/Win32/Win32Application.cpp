@@ -1,11 +1,17 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32Application.h"
+#include "shlobj.h"
+
 #include <chrono>
 #include <iostream>
+#include <sstream>
 
 Win32Application::Win32Application(int argc, char** argv) : IApplication(argc, argv) { }
 
 int Win32Application::exec() {
+
+    // call onBegin
+    onBegin();
 
     //AllocConsole();
     //freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
@@ -18,7 +24,7 @@ int Win32Application::exec() {
 
     // get and translate windows message
     MSG msg = { };
-    while (true) {
+    while (msg.message != WM_QUIT) {
 
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             
@@ -36,9 +42,32 @@ int Win32Application::exec() {
                 lastFrame = now;
             }
         }
-
-
     }
 
+    // call onClose
+    onClose();
+
 	return 0;
+}
+
+std::wstring Win32Application::getIniPath() {
+
+    // create a path
+    PWSTR appDataLocal;
+    HRESULT hr;
+
+    // read app data location
+    hr = SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &appDataLocal);
+
+    // create path
+    std::wstringstream ss;
+    ss << appDataLocal << L"\\" << getApplicationName();
+
+    // Create Folder
+    CreateDirectory(ss.str().c_str(), NULL);
+
+    // add file name
+    ss << L"\\" << PROJECT_NAME << L".ini";
+
+    return ss.str();
 }

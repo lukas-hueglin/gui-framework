@@ -1,4 +1,6 @@
-#include "Core/Application.h"
+#include "Application.h"
+#include "Functional.h"
+
 #include "Core/MainWindow.h"
 #include "Core/Graphics2D.h"
 #include "Widgets/Button.h"
@@ -6,13 +8,15 @@
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
 #include "Widgets/ComboBox.h"
+
 #include <string>
 
-
 int main(int argc, char** argv) {
-	
+
 	// create new application
-	Application* app = new Application(argc, argv);
+	App* app = new App(argc, argv);
+	Functional* functional = new Functional();
+	app->addFunctional(functional);
 
 	// create new window
 	std::wstring s = L"Window";
