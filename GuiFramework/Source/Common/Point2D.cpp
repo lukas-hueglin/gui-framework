@@ -2,6 +2,8 @@
 #include "Common/Point2D.h"
 #include "Common/WidgetUtils.h"
 
+#include <math.h>
+
 Math::Point2D::Point2D(float x, float y) : m_x(x), m_y(y) { }
 
 float& Math::Point2D::x() {
@@ -10,6 +12,10 @@ float& Math::Point2D::x() {
 
 float& Math::Point2D::y() {
 	return m_y;
+}
+
+float Math::Point2D::length() {
+	return sqrt(m_x*m_x + m_y*m_y);
 }
 
 float& Math::Point2D::operator[](Orientation orientation) {

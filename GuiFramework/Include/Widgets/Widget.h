@@ -12,6 +12,9 @@ protected:
 	bool m_mouseHover;
 	bool m_mouseDown;
 
+	Math::Point2D m_lastMousePos;
+	Math::Point2D m_mouseDelta;
+
 public:
 	Widget(Window* p_parent);
 
@@ -22,6 +25,7 @@ public:
 	virtual void onMouseLeave();
 	virtual void onMouseDown(bool doubleClk, Math::Point2D point);
 	virtual void onMouseRelease(Math::Point2D point);
+	virtual void onMouseScroll(bool up, bool shift, bool ctr);
 
 	virtual void onKeyDown(Key key);
 	virtual void onKeyDown(char key);

@@ -66,6 +66,10 @@ void Win32Graphics2D::initGraphicsAssets() {
     }
 }
 
+ID2D1Factory* Win32Graphics2D::get2DFactory(){
+    return mp_2DFactory;
+}
+
 ID2D1HwndRenderTarget* Win32Graphics2D::getRenderTarget() {
     return mp_renderTarget;
 }

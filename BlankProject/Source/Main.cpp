@@ -8,6 +8,7 @@
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
 #include "Widgets/ComboBox.h"
+#include "Widgets/Plot.h"
 
 #include <string>
 
@@ -53,6 +54,10 @@ int main(int argc, char** argv) {
 	w4->setMargin(10);
 	w4->setPadding(10);
 
+	// create a plot
+	Plot* plot = new Plot(window);
+	plot->setFillMode(FillMode::Expand);
+
 	// create a combobox
 	ComboBox* w5 = new ComboBox(window, std::vector<std::wstring>({L"Number 1", L"Number 2", L"Number 3", L"Number 4"}));
 	w5->setMargin(10);
@@ -64,6 +69,7 @@ int main(int argc, char** argv) {
 	l1->addFrame(w1);
 	l1->addFrame(l2);
 	l1->addFrame(w5);
+	l1->addFrame(plot);
 
 	return app->exec();
 }

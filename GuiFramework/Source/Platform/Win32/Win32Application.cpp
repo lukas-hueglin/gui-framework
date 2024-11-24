@@ -3,19 +3,16 @@
 #include "shlobj.h"
 
 #include <chrono>
-#include <iostream>
-#include <sstream>
 
 Win32Application::Win32Application(int argc, char** argv) : IApplication(argc, argv) { }
 
 int Win32Application::exec() {
 
+    // setup console if debug mode
+    SETUP_CONSOLE()
+
     // call onBegin
     onBegin();
-
-    //AllocConsole();
-    //freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
-    //std::cout << "This works" << std::endl;
 
     // create time stamp and duration object
     std::chrono::time_point<std::chrono::system_clock> now, lastFrame;

@@ -30,6 +30,7 @@ public:
 private:
 	void initGraphicsAssets();
 
+	ID2D1Factory* get2DFactory();
 	ID2D1HwndRenderTarget* getRenderTarget();
 	IDWriteFactory* getWriteFactory();
 

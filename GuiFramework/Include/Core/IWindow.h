@@ -45,6 +45,8 @@ protected:
 	void onMouseDown(bool doubleClk, Math::Point2D point);
 	void onMouseRelease(Math::Point2D point);
 
+	void onMouseScroll(bool up, bool shift, bool ctr);
+
 	void onKeyDown(Key key);
 	void onKeyDown(char key);
 

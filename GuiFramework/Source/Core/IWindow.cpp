@@ -184,6 +184,18 @@ void IWindow::onMouseRelease(Math::Point2D point) {
 	}
 }
 
+void IWindow::onMouseScroll(bool up, bool shift, bool ctr) {
+
+	// check if a layout exists
+	if (mp_layout != nullptr) {
+
+		// check if mouse hovers over layout
+		if (m_layoutMouseHover) {
+			mp_layout->onMouseScroll(up, shift, ctr);
+		}
+	}
+}
+
 void IWindow::onKeyDown(Key key) {
 
 	// check if a layout exists

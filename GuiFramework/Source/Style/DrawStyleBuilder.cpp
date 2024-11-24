@@ -17,6 +17,12 @@ DrawStyleBuilder& DrawStyleBuilder::fillColor(const Color& fillColor) {
 	return *this;
 }
 
+DrawStyleBuilder& DrawStyleBuilder::lineStyle(const LineStyle lineStyle) {
+
+	m_drawStyle.m_lineStyle = lineStyle;
+	return *this;
+}
+
 DrawStyleBuilder& DrawStyleBuilder::edgeThickness(const float edgeThickness) {
 
 	m_drawStyle.m_edgeThickness = edgeThickness;

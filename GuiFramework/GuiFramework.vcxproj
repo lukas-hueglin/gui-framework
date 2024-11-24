@@ -167,6 +167,7 @@
     <ClInclude Include="Include\Style\Color.h" />
     <ClInclude Include="Include\Style\DrawStyle.h" />
     <ClInclude Include="Include\Style\DrawStyleBuilder.h" />
+    <ClInclude Include="Include\Style\LineStyle.h" />
     <ClInclude Include="Include\Style\Style.h" />
     <ClInclude Include="Include\Style\TextStyle.h" />
     <ClInclude Include="Include\Style\TextStyleBuilder.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Include\Widgets\Label.h" />
     <ClInclude Include="Include\Widgets\Layout.h" />
     <ClInclude Include="Include\Widgets\LinearLayout.h" />
+    <ClInclude Include="Include\Widgets\Plot.h" />
     <ClInclude Include="Include\Widgets\Slider.h" />
     <ClInclude Include="Include\Widgets\TextBox.h" />
     <ClInclude Include="Include\Widgets\Widget.h" />
@@ -216,6 +218,7 @@
     <ClCompile Include="Source\Widgets\Label.cpp" />
     <ClCompile Include="Source\Widgets\Layout.cpp" />
     <ClCompile Include="Source\Widgets\LinearLayout.cpp" />
+    <ClCompile Include="Source\Widgets\Plot.cpp" />
     <ClCompile Include="Source\Widgets\Slider.cpp" />
     <ClCompile Include="Source\Widgets\TextBox.cpp" />
     <ClCompile Include="Source\Widgets\Widget.cpp" />

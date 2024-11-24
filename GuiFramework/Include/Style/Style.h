@@ -18,6 +18,9 @@ public:
 	static DrawStyle TextSelection();
 	static DrawStyle Slider();
 
+	static DrawStyle AxisLine();
+	static DrawStyle AxisLineDashed();
+
 #ifdef DEBUG_UI
 	static DrawStyle Debug1();
 	static DrawStyle Debug2();

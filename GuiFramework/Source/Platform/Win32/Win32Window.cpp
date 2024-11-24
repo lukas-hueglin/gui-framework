@@ -141,6 +141,15 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
             }
             return 1;
 
+        case WM_MOUSEWHEEL:
+        {
+            // extract data
+            float zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+            int fwKeys = GET_KEYSTATE_WPARAM(wParam);
+
+            p_this->onMouseScroll(GET_WHEEL_DELTA_WPARAM(wParam) > 0, (fwKeys >> 2) & 1, (fwKeys >> 3) & 1);
+            return 1;
+        }
         default:
             // call the child function for handling the messages
             return p_this->handleMessage(uMsg, wParam, lParam);

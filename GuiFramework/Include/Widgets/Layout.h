@@ -25,6 +25,7 @@ public:
 	void onMouseLeave() override;
 	void onMouseDown(bool doubleClk, Math::Point2D point) override;
 	void onMouseRelease(Math::Point2D point) override;
+	void onMouseScroll(bool up, bool shift, bool ctr) override;
 
 	void onKeyDown(Key key);
 	void onKeyDown(char key);

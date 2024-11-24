@@ -64,6 +64,23 @@ DrawStyle Style::Slider()
 		.edgeThickness(1.0f);
 }
 
+DrawStyle Style::AxisLine()
+{
+	return DrawStyle::create()
+		.edgeColor(Color::Black)
+		.fillColor(Color::Black)
+		.edgeThickness(1.0f);
+}
+
+DrawStyle Style::AxisLineDashed()
+{
+	return DrawStyle::create()
+		.edgeColor(Color::Black)
+		.fillColor(Color::Transparent)
+		.lineStyle(LineStyle::Dashed)
+		.edgeThickness(1.0f);
+}
+
 #ifdef DEBUG_UI
 DrawStyle Style::Debug1() {
 

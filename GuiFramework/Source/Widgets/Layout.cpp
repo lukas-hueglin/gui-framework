@@ -93,6 +93,13 @@ void Layout::onMouseRelease(Math::Point2D point) {
 	}
 }
 
+void Layout::onMouseScroll(bool up, bool shift, bool ctr) {
+
+	if (m_mouseHoverFrame != nullptr) {
+		m_mouseHoverFrame->onMouseScroll(up, shift, ctr);
+	}
+}
+
 void Layout::onKeyDown(Key key) {
 
 	if (m_mouseHoverFrame != nullptr) {

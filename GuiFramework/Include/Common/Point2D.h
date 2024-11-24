@@ -16,6 +16,8 @@ namespace Math {
 		float& x();
 		float& y();
 
+		float length();
+
 		float& operator[](Orientation orientation);
 
 		Point2D operator+(Point2D point);

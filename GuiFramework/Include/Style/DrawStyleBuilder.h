@@ -13,6 +13,7 @@ public:
 public:
     DrawStyleBuilder& edgeColor(const Color& edgeColor);
     DrawStyleBuilder& fillColor(const Color& fillColor);
+    DrawStyleBuilder& lineStyle(const LineStyle lineStyle);
 
     DrawStyleBuilder& edgeThickness(const float edgeThickness);
 

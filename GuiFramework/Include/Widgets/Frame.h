@@ -47,6 +47,7 @@ public:
 	virtual void onMouseLeave() = 0;
 	virtual void onMouseDown(bool doubleClk, Math::Point2D point) = 0;
 	virtual void onMouseRelease(Math::Point2D point) = 0;
+	virtual void onMouseScroll(bool up, bool shift, bool ctr) = 0;
 
 	virtual void onKeyDown(Key key) = 0;
 	virtual void onKeyDown(char key) = 0;
