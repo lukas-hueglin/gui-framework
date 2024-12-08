@@ -1,6 +1,6 @@
 #pragma once
 #include "Gui.h"
-
+#include <string>
 
 enum GUI_API Alignment : int {
 	TopLeft = 0,
@@ -31,3 +31,5 @@ enum GUI_API Justification : int {
 };
 
 Justification getJustification(Alignment& alignment, Orientation& orientation);
+
+std::wstring floatToString(float value);

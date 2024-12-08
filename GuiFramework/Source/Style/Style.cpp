@@ -36,6 +36,7 @@ DrawStyle Style::Highlight() {
 }
 
 DrawStyle Style::Cursor() {
+
 	return DrawStyle::create()
 		.edgeColor(Color::Black)
 		.fillColor(Color::Transparent)
@@ -53,8 +54,8 @@ DrawStyle Style::TextSelection() {
 		.edgeThickness(1.0f);
 }
 
-DrawStyle Style::Slider()
-{
+DrawStyle Style::Slider() {
+
 	RGBColor fillColor = Color::DarkViolet;
 	fillColor.a = 0.5;
 
@@ -64,21 +65,46 @@ DrawStyle Style::Slider()
 		.edgeThickness(1.0f);
 }
 
-DrawStyle Style::AxisLine()
-{
+DrawStyle Style::AxisLine() {
+
 	return DrawStyle::create()
 		.edgeColor(Color::Black)
 		.fillColor(Color::Black)
 		.edgeThickness(1.0f);
 }
 
-DrawStyle Style::AxisLineDashed()
-{
+DrawStyle Style::AxisLineDashed() {
+
 	return DrawStyle::create()
 		.edgeColor(Color::Black)
 		.fillColor(Color::Transparent)
 		.lineStyle(LineStyle::Dashed)
 		.edgeThickness(1.0f);
+}
+
+DrawStyle Style::Plot3(int index) {
+
+	DrawStyleBuilder builder = DrawStyle::create()
+		.fillColor(Color::Transparent)
+		.lineStyle(LineStyle::Dashed)
+		.edgeThickness(2.0f);
+
+	switch (index) {
+
+	case 0:
+		builder.edgeColor(Color::Red);
+		break;
+	case 1:
+		builder.edgeColor(Color::Blue);
+		break;
+	case 2:
+		builder.edgeColor(Color::Green);
+		break;
+	default:
+		builder.edgeColor(Color::Black);
+	}
+
+	return builder;
 }
 
 #ifdef DEBUG_UI

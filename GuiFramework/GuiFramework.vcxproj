@@ -179,6 +179,8 @@
     <ClInclude Include="Include\Widgets\Layout.h" />
     <ClInclude Include="Include\Widgets\LinearLayout.h" />
     <ClInclude Include="Include\Widgets\Plot.h" />
+    <ClInclude Include="Include\Widgets\PlotSeries.h" />
+    <ClInclude Include="Include\Widgets\PlotSeries1D.h" />
     <ClInclude Include="Include\Widgets\Slider.h" />
     <ClInclude Include="Include\Widgets\TextBox.h" />
     <ClInclude Include="Include\Widgets\Widget.h" />
@@ -219,6 +221,8 @@
     <ClCompile Include="Source\Widgets\Layout.cpp" />
     <ClCompile Include="Source\Widgets\LinearLayout.cpp" />
     <ClCompile Include="Source\Widgets\Plot.cpp" />
+    <ClCompile Include="Source\Widgets\PlotSeries.cpp" />
+    <ClCompile Include="Source\Widgets\PlotSeries1D.cpp" />
     <ClCompile Include="Source\Widgets\Slider.cpp" />
     <ClCompile Include="Source\Widgets\TextBox.cpp" />
     <ClCompile Include="Source\Widgets\Widget.cpp" />

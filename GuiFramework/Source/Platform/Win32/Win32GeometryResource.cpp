@@ -56,6 +56,63 @@ void Win32GeometryResource::drawLine(Math::Point2D& a, Math::Point2D& b) {
 	}
 }
 
+void Win32GeometryResource::drawPolygon(std::vector<Math::Point2D> * p_points) {
+
+	// get 2d factory
+	ID2D1Factory* p_2DFactory = mp_graphics->get2DFactory();
+
+	// create triangle
+	ID2D1GeometrySink* p_sink;
+	ID2D1PathGeometry* p_pathGeometry;
+	HRESULT hr;
+
+	if (p_2DFactory != nullptr) {
+
+		// Create path geometry
+		hr = p_2DFactory->CreatePathGeometry(&p_pathGeometry);
+
+		if (SUCCEEDED(hr)) {
+
+			// Write to the path geometry using the geometry sink.
+			hr = p_pathGeometry->Open(&p_sink);
+
+			if (SUCCEEDED(hr)) {
+
+				// begin figure
+				p_sink->BeginFigure(
+					Win32Utils::D2D1Point(p_points->at(0)),
+					D2D1_FIGURE_BEGIN_FILLED
+				);
+
+				// add all points
+				for (Math::Point2D& point : (*p_points)) {
+					p_sink->AddLine(Win32Utils::D2D1Point(point));
+				}
+
+				// end figure
+				p_sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+				hr = p_sink->Close();
+			}
+		}
+
+		// draw 
+		ID2D1HwndRenderTarget* p_renderTarget = mp_graphics->getRenderTarget();
+
+		if (mp_edgeBrush != nullptr && p_renderTarget != nullptr) {
+
+			p_renderTarget->DrawGeometry(p_pathGeometry, mp_edgeBrush);
+		}
+		else {
+			initGraphicsAssets();
+		}
+
+		// delete resources
+		Win32Utils::safeRelease(&p_sink);
+		Win32Utils::safeRelease(&p_pathGeometry);
+	}
+}
+
 void Win32GeometryResource::drawArrow(Math::Point2D& a, Math::Point2D& b, float size) {
 
 	// calculate arrow head
@@ -133,6 +190,30 @@ void Win32GeometryResource::drawRectangle(Math::Rect& rect) {
 	}
 	else {
 		initGraphicsAssets();
+	}
+}
+
+void Win32GeometryResource::setMask(Math::Rect& rect) {
+
+	// get render target
+	ID2D1HwndRenderTarget* p_renderTarget = mp_graphics->getRenderTarget();
+
+	if(p_renderTarget != nullptr) {
+		p_renderTarget->PushAxisAlignedClip(
+			Win32Utils::D2D1Rect(rect),
+			D2D1_ANTIALIAS_MODE_PER_PRIMITIVE
+		);
+
+	}
+}
+
+void Win32GeometryResource::releaseMask() {
+
+	// get render target
+	ID2D1HwndRenderTarget* p_renderTarget = mp_graphics->getRenderTarget();
+
+	if (p_renderTarget != nullptr) {
+		p_renderTarget->PopAxisAlignedClip();
 	}
 }
 

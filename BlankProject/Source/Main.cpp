@@ -9,8 +9,10 @@
 #include "Widgets/TextBox.h"
 #include "Widgets/ComboBox.h"
 #include "Widgets/Plot.h"
+#include "Widgets/PlotSeries1D.h"
 
 #include <string>
+#include <numbers>
 
 int main(int argc, char** argv) {
 
@@ -57,6 +59,18 @@ int main(int argc, char** argv) {
 	// create a plot
 	Plot* plot = new Plot(window);
 	plot->setFillMode(FillMode::Expand);
+	plot->setXUnit(Unit::Radians);
+
+	// create a plot series
+	float data[100];
+
+	for (int i = 0; i < 100; ++i) {
+		data[i] = sin(i / 50.0 * std::numbers::pi);
+	}
+
+	PlotSeries1D* series = new PlotSeries1D(plot, data, 0, 2*std::numbers::pi, 100);
+
+	plot->addPlotSeries(series);
 
 	// create a combobox
 	ComboBox* w5 = new ComboBox(window, std::vector<std::wstring>({L"Number 1", L"Number 2", L"Number 3", L"Number 4"}));

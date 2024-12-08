@@ -17,8 +17,12 @@ private:
 
 public:
 	void drawLine(Math::Point2D& a, Math::Point2D& b);
+	void drawPolygon(std::vector<Math::Point2D>* p_points);
 	void drawArrow(Math::Point2D& a, Math::Point2D& b, float size);
 	void drawRectangle(Math::Rect& rect);
+
+	void setMask(Math::Rect& rect);
+	void releaseMask();
 
 	void setStyle(DrawStyle style);
 

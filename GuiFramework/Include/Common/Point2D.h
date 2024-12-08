@@ -10,6 +10,7 @@ namespace Math {
 		float m_y;
 
 	public:
+		Point2D();
 		Point2D(float x, float y);
 
 	public:

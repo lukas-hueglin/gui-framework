@@ -12,6 +12,7 @@ namespace Math {
 		Point2D m_bottomRight;
 
 	public:
+		Rect();
 		Rect(float left, float right, float top, float bottom);
 		Rect(Point2D& topLeft, Point2D& bottomRight);
 		Rect(RECT& rect);

@@ -27,7 +27,7 @@
 #endif
 
 // debug
-#ifdef DEBUG
+#ifdef DEBUG_UI
 
 	// include dependencies
 	#include <iostream>

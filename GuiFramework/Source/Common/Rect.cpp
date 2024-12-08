@@ -1,6 +1,8 @@
 #include "Gui.h"
 #include "Common/Rect.h"
 
+Math::Rect::Rect() : m_topLeft(Math::Point2D()), m_bottomRight(Math::Point2D()) { }
+
 Math::Rect::Rect(float left, float right, float top, float bottom) : m_topLeft(Math::Point2D(left, top)), m_bottomRight(Math::Point2D(right, bottom)) {}
 
 Math::Rect::Rect(Point2D& topLeft, Point2D& bottomRight) : m_topLeft(topLeft), m_bottomRight(bottomRight) { }

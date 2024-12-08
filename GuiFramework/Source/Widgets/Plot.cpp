@@ -1,9 +1,11 @@
 #include "Gui.h"
 #include "Widgets/Plot.h"
 #include "Style/Style.h"
+#include "Common/WidgetUtils.h"
 
 #include <iostream>
 #include <math.h>
+#include <numbers>
 
 Plot::Plot(Window* p_parent) : Widget(p_parent), m_plotRect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_plotBounds(Math::Rect(0.f, 1.f, 1.f, 0.f)), m_lockXZoom(false), m_lockYZoom(false) {
 
@@ -39,35 +41,57 @@ void Plot::onPaint() {
 	mp_axisGeometryResource->drawArrow(origin, x_axis, 10.0f);
 	mp_axisGeometryResource->drawArrow(origin, y_axis, 10.0f);
 
-	// calculate spacing
-	float width = m_plotBounds.getWidth();
-	float height = -m_plotBounds.getHeight();
 
-	int p_x = floor(log10(width));
-	float q_x = pow(10, p_x);
-	int p_y = floor(log10(height));
-	float q_y = pow(10, p_y);
+	// define prescaler
+	float prescaler_x = m_xAxisUnit == Unit::Radians ? std::numbers::pi : 1.0f;
+	float prescaler_y = m_yAxisUnit == Unit::Radians ? std::numbers::pi : 1.0f;
 
-	// starting point
-	float b_x = ceil(m_plotBounds.left() / q_x) * q_x;
-	float b_y = ceil(m_plotBounds.bottom() / q_y) * q_y;
+	// get width and height
+	float width = m_plotBounds.getWidth() / prescaler_x;
+	float height = -m_plotBounds.getHeight() / prescaler_y;
+
+	// calculate step width
+	float xStep, yStep;
+	if (m_xAxisUnit == Unit::Radians) {
+		xStep = calculateTickStep(width, 4, 2, 1);
+	}
+	else {
+		xStep = calculateTickStep(width, 5, 10, 5);
+	}
+	if (m_yAxisUnit == Unit::Radians) {
+		yStep = calculateTickStep(height, 4, 2, 1);
+	}
+	else {
+		yStep = calculateTickStep(height, 5, 10, 5);
+	}
+
+	// calculate starting point
+	// shift plot bounds magnitude_x/y numer of decimal places to the left before ceiling
+	float x0 = ceil(m_plotBounds.left() / xStep / prescaler_x) * xStep;
+	float y0 = ceil(m_plotBounds.bottom() / yStep / prescaler_y) * yStep;
+
+	// create suffix (pi if unit is radians and else empty
+	std::wstring xSuffix = m_xAxisUnit == Unit::Radians ? L"\u03C0" : L"";
+	std::wstring ySuffix = m_yAxisUnit == Unit::Radians ? L"\u03C0" : L"";
 
 	// draw 10 lines
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 25; ++i) {
 
-		// subtract the height because the refrence frame in the plot is flipped (top > bottom)
-		float x = b_x + q_x * i;
-		float y = b_y + q_y * i;
-
-		DEBUG_PRINTLN(x)
+		float x = x0 + xStep * i;
+		float y = y0 + yStep * i;
 
 		// check if line is in plot
 		if (x < m_plotBounds.right()) {
-			drawVerticalTicks(x);
+			drawVerticalTicks(x * prescaler_x, floatToString(x) + xSuffix);
 		}
 		if (y < m_plotBounds.top()) {
-			drawHorizontalTicks(y);
+			drawHorizontalTicks(y * prescaler_y, floatToString(y) + ySuffix);
 		}
+	}
+
+	// plot series
+	for (PlotSeries* p_series : mp_series) {
+		p_series->onPaint(m_plotRect);
 	}
 }
 
@@ -96,7 +120,7 @@ void Plot::onMouseHover(Math::Point2D point) {
 void Plot::onMouseScroll(bool up, bool shift, bool ctr) {
 
 	// get zoom factor
-	float zoom = up ? 1.5f : 0.666f;
+	float zoom = up ? 0.666f : 1.5f;
 
 	// create variables
 	float left, right, top, bottom;
@@ -130,6 +154,31 @@ void Plot::setLockYZoom(bool lock) {
 	m_lockYZoom = lock;
 }
 
+void Plot::setXAxisScale(AxisScale scale) {
+
+	m_xAxisScale = scale;
+}
+
+void Plot::setYAxisScale(AxisScale scale) {
+
+	m_yAxisScale = scale;
+}
+
+void Plot::setXUnit(Unit unit) {
+
+	m_xAxisUnit = unit;
+}
+
+void Plot::setYUnit(Unit unit) {
+
+	m_yAxisUnit = unit;
+}
+
+void Plot::addPlotSeries(PlotSeries* p_plotSeries) {
+
+	mp_series.push_back(p_plotSeries);
+}
+
 Math::Point2D Plot::plotToScreenSpace(Math::Point2D point) {
 
 	float x = (point.x() - m_plotBounds.left()) / m_plotBounds.getWidth() * m_plotRect.getWidth() + m_plotRect.left();
@@ -154,7 +203,24 @@ Math::Point2D Plot::relativeScreenToPlotSpace(Math::Point2D point) {
 	return Math::Point2D(x, y);
 }
 
-void Plot::drawHorizontalTicks(float value) {
+float Plot::calculateTickStep(float width, int prefDivs, int base, float prefactor) {
+
+	// calculate approximate step width
+	float approxStep = width / prefDivs;
+
+	// get number of digits in decimal representation
+	float digits = floor(logf(approxStep) / logf(base));
+
+	// calculate magnitude of step (base^n)
+	float mag = powf(base, digits);
+
+	// calculate real step (prefactor*base^n or base^n)
+	float step = approxStep / mag >= prefactor / 2 ? prefactor * mag : mag;
+
+	return step;
+}
+
+void Plot::drawHorizontalTicks(float value, std::wstring text) {
 
 	// calculate points
 	Math::Point2D lineBegin = plotToScreenSpace(Math::Point2D(m_plotBounds.left(), value));
@@ -169,16 +235,11 @@ void Plot::drawHorizontalTicks(float value) {
 	// draw tick
 	mp_axisGeometryResource->drawLine(tickBegin, tickEnd);
 
-	// convert to string
-	std::wstringstream wss;
-	wss << value;
-	std::wstring text = wss.str();
-
-	// draw value
+	// draw text
 	mp_textResource->drawText(text, textRect, Alignment::CenterRight);
 }
 
-void Plot::drawVerticalTicks(float value) {
+void Plot::drawVerticalTicks(float value, std::wstring text) {
 
 	// calculate points
 	Math::Point2D lineBegin = plotToScreenSpace(Math::Point2D(value, m_plotBounds.bottom()));
@@ -193,11 +254,6 @@ void Plot::drawVerticalTicks(float value) {
 	// draw tick
 	mp_axisGeometryResource->drawLine(tickBegin, tickEnd);
 
-	// convert to string
-	std::wstringstream wss;
-	wss << value;
-	std::wstring text = wss.str();
-
-	// draw value
+	// draw text
 	mp_textResource->drawText(text, textRect, Alignment::TopCenter);
 }

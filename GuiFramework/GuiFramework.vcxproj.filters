@@ -219,6 +219,12 @@
     <ClInclude Include="Include\Widgets\Plot.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\PlotSeries.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\PlotSeries1D.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -333,6 +339,12 @@
       <Filter>Source\Common\Reflection\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\Plot.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\PlotSeries.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\PlotSeries1D.cpp">
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>

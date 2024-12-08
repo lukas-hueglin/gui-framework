@@ -21,6 +21,8 @@ public:
 	static DrawStyle AxisLine();
 	static DrawStyle AxisLineDashed();
 
+	static DrawStyle Plot3(int index);
+
 #ifdef DEBUG_UI
 	static DrawStyle Debug1();
 	static DrawStyle Debug2();
