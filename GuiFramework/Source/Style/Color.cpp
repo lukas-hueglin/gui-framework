@@ -1,6 +1,8 @@
 #include "Gui.h"
 #include "Style/Color.h"
 
+RGBColor::RGBColor() : r(0.0f), g(0.0f), b(0.0f), a(0.0f) { }
+
 RGBColor::RGBColor(int hex) {
 
 	// extract alpha
@@ -24,6 +26,31 @@ RGBColor::RGBColor(int hex) {
 }
 
 RGBColor::RGBColor(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
+
+RGBColor RGBColor::lighten(float value) const {
+
+	float new_r = min(max(r * value, 0.0f), 1.0f);
+	float new_g = min(max(g * value, 0.0f), 1.0f);
+	float new_b = min(max(b * value, 0.0f), 1.0f);
+
+	return RGBColor(new_r, new_g, new_b, a);
+}
+
+RGBColor RGBColor::darken(float value) const {
+
+	float new_r = min(max(r / value, 0.0f), 1.0f);
+	float new_g = min(max(g / value, 0.0f), 1.0f);
+	float new_b = min(max(b / value, 0.0f), 1.0f);
+
+	return RGBColor(new_r, new_g, new_b, a);
+}
+
+RGBColor RGBColor::makeTransparent(float value) const {
+	RGBColor newColor = *this;
+	newColor.a *= value;
+
+	return newColor;
+}
 
 HSVColor::HSVColor(int hex) {
 

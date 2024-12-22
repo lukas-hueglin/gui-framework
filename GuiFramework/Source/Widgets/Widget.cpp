@@ -2,15 +2,33 @@
 #include "Widgets/Widget.h"
 #include "Style/Style.h"
 
-Widget::Widget(Window* p_parent) :
+Widget::Widget(Window* p_parent, WidgetStyle style) :
 	Frame(p_parent),
 
 	m_mouseHover(false),
 	m_mouseDown(false),
 	m_lastMousePos(Math::Point2D(.0f, .0f)),
-	m_mouseDelta(Math::Point2D(.0f, .0f)) {}
+	m_mouseDelta(Math::Point2D(.0f, .0f)),
+
+	m_widgetImpl(mp_graphics, style) {}
+
+void Widget::onPaint() {
+
+	m_widgetImpl.onPaint();
+
+	// call parent function
+	Frame::onPaint();
+}
 
 void Widget::onTick(float deltaTime) { }
+
+void Widget::onResize(Math::Rect availableRect) {
+
+	// call parent function
+	Frame::onResize(availableRect);
+
+	m_widgetImpl.onResize(m_contentRect);
+}
 
 void Widget::onMouseHover(Math::Point2D point) {
 	

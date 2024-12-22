@@ -7,40 +7,23 @@
 #include <math.h>
 #include <numbers>
 
-Plot::Plot(Window* p_parent) : Widget(p_parent), m_plotRect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_plotBounds(Math::Rect(0.f, 1.f, 1.f, 0.f)), m_lockXZoom(false), m_lockYZoom(false) {
-
-	// create geometry and text resource
-	mp_backgroundGeometryResource = new GeometryResource(mp_graphics, Style::Primary());
-	mp_axisGeometryResource = new GeometryResource(mp_graphics, Style::AxisLine());
-	mp_linesGeometryResource = new GeometryResource(mp_graphics, Style::AxisLineDashed());
-
-	mp_textResource = new TextResource(mp_graphics, Style::Normal());
-	mp_textResource->setTextAlignment(Alignment::Center);
-}
-
-Plot::~Plot() {
-
-	delete mp_textResource;
-	delete mp_backgroundGeometryResource;
-	delete mp_axisGeometryResource;
-	delete mp_linesGeometryResource;
-}
+Plot::Plot(Window* p_parent, std::wstring xAxis, std::wstring yAxis, WidgetStyle style) :
+	Widget(p_parent, style),
+	
+	m_plotRect(Math::Rect(0.f, 0.f, 0.f, 0.f)), m_plotBounds(Math::Rect(0.f, 1.f, 1.f, 0.f)),
+	m_xAxis(xAxis), m_yAxis(yAxis),
+	m_xAxisScale(AxisScale::Linear), m_yAxisScale(AxisScale::Linear),
+	m_lockXZoom(false), m_lockYZoom(false),
+	m_xAxisUnit(Unit::Second), m_yAxisUnit(Unit::Volts),
+	m_plotImpl(mp_graphics, style) { }
 
 void Plot::onPaint() {
 
-	Widget::onPaint();
-
 	// draw background
-	mp_backgroundGeometryResource->drawRectangle(m_hitboxRect);
+	m_widgetImpl.onPaint();
 
 	// draw axis
-	Math::Point2D origin(m_plotRect.left() - 10, m_plotRect.bottom() + 10);
-	Math::Point2D x_axis(m_plotRect.right(), m_plotRect.bottom() + 10);
-	Math::Point2D y_axis(m_plotRect.left() - 10, m_plotRect.top());
-
-	mp_axisGeometryResource->drawArrow(origin, x_axis, 10.0f);
-	mp_axisGeometryResource->drawArrow(origin, y_axis, 10.0f);
-
+	m_plotImpl.onPaintAxis(m_xAxis + L" / " + unit_symbols[m_xAxisUnit], m_yAxis + L" / " + unit_symbols[m_yAxisUnit]);
 
 	// define prescaler
 	float prescaler_x = m_xAxisUnit == Unit::Radians ? std::numbers::pi : 1.0f;
@@ -80,12 +63,15 @@ void Plot::onPaint() {
 		float x = x0 + xStep * i;
 		float y = y0 + yStep * i;
 
+		Math::Point2D screenSpace = plotToScreenSpace(Math::Point2D(x * prescaler_x, y * prescaler_y));
+
 		// check if line is in plot
 		if (x < m_plotBounds.right()) {
-			drawVerticalTicks(x * prescaler_x, floatToString(x) + xSuffix);
+
+			m_plotImpl.onPaintVerticalTicks(screenSpace.x(), floatToString(x) + xSuffix);
 		}
 		if (y < m_plotBounds.top()) {
-			drawHorizontalTicks(y * prescaler_y, floatToString(y) + ySuffix);
+			m_plotImpl.onPaintHorizontalTicks(screenSpace.y(), floatToString(y) + ySuffix);
 		}
 	}
 
@@ -101,6 +87,9 @@ void Plot::onResize(Math::Rect availableRect) {
 	Widget::onResize(availableRect);
 
 	m_plotRect = Math::shrinkRect(m_contentRect, 60);
+
+	// update plot rect of plot implementation
+	m_plotImpl.onResize(m_plotRect, Math::Rect());
 }
 
 void Plot::onMouseHover(Math::Point2D point) {
@@ -218,42 +207,4 @@ float Plot::calculateTickStep(float width, int prefDivs, int base, float prefact
 	float step = approxStep / mag >= prefactor / 2 ? prefactor * mag : mag;
 
 	return step;
-}
-
-void Plot::drawHorizontalTicks(float value, std::wstring text) {
-
-	// calculate points
-	Math::Point2D lineBegin = plotToScreenSpace(Math::Point2D(m_plotBounds.left(), value));
-	Math::Point2D lineEnd = plotToScreenSpace(Math::Point2D(m_plotBounds.right(), value));
-	Math::Point2D tickBegin = lineBegin - Math::Point2D(15, 0);
-	Math::Point2D tickEnd = lineBegin - Math::Point2D(5, 0);
-	Math::Rect textRect(lineBegin.x() - 55, lineBegin.x() - 20, lineBegin.y() - 10, lineBegin.y() + 10);
-
-	// draw dashed line
-	mp_linesGeometryResource->drawLine(lineBegin, lineEnd);
-
-	// draw tick
-	mp_axisGeometryResource->drawLine(tickBegin, tickEnd);
-
-	// draw text
-	mp_textResource->drawText(text, textRect, Alignment::CenterRight);
-}
-
-void Plot::drawVerticalTicks(float value, std::wstring text) {
-
-	// calculate points
-	Math::Point2D lineBegin = plotToScreenSpace(Math::Point2D(value, m_plotBounds.bottom()));
-	Math::Point2D lineEnd = plotToScreenSpace(Math::Point2D(value, m_plotBounds.top()));
-	Math::Point2D tickBegin = lineBegin + Math::Point2D(0, 15);
-	Math::Point2D tickEnd = lineBegin + Math::Point2D(0, 5);
-	Math::Rect textRect(lineBegin.x() - 20, lineBegin.x() + 20, lineBegin.y() + 20, lineBegin.y() + 40);
-
-	// draw dashed line
-	mp_linesGeometryResource->drawLine(lineBegin, lineEnd);
-
-	// draw tick
-	mp_axisGeometryResource->drawLine(tickBegin, tickEnd);
-
-	// draw text
-	mp_textResource->drawText(text, textRect, Alignment::TopCenter);
 }

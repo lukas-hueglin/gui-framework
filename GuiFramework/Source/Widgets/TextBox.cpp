@@ -3,22 +3,19 @@
 #include "Style/Style.h"
 
 
-TextBox::TextBox(Window* p_parent, std::wstring text) : Label(p_parent, text), m_firstCursor(0), m_lastCursor(0), m_edit(false), m_dragFirstCursor(false), m_animCycle(0), m_requireDoubleClk(false), m_prefix(L""), m_suffix(L"")  {
+TextBox::TextBox(Window* p_parent, std::wstring text, WidgetStyle style) :
+	Widget(p_parent, style),
 
-	// change text
-	m_text = m_prefix + m_text + m_suffix;
+	m_text(text), m_backupText(text),
+	
+	m_firstCursor(0), m_lastCursor(0),
+	
+	m_edit(false), m_dragFirstCursor(false), m_animCycle(0), m_requireDoubleClk(false),
+	m_prefix(L""), m_suffix(L""),
+	m_textBoxImpl(mp_graphics, style) {
 
-	// create geometry resources
-	mp_rectangleResource = new GeometryResource(mp_graphics, Style::Secondary());
-	mp_cursorResource = new GeometryResource(mp_graphics, Style::Cursor());
-	mp_selectionResource = new GeometryResource(mp_graphics, Style::TextSelection());
-}
-
-TextBox::~TextBox() {
-
-	delete mp_rectangleResource;
-	delete mp_cursorResource;
-	delete mp_selectionResource;
+	// update text for the textbox implementation
+	updateText();
 }
 
 void TextBox::onTick(float deltaTime) {
@@ -33,38 +30,31 @@ void TextBox::onTick(float deltaTime) {
 void TextBox::onPaint() {
 
 	// draw background
-	mp_rectangleResource->setStyle(m_edit ? Style::Accent() : Style::Secondary());
-	mp_rectangleResource->drawRectangle(m_hitboxRect);
+	m_widgetImpl.onPaint();
 
-	// draw text
-	Label::onPaint();
-
+	// draw textBox
+	WidgetState state = m_mouseDown ? WidgetState::Click : m_mouseHover ? WidgetState::Hover : WidgetState::Normal;
+	m_textBoxImpl.onPaint(state);
+	
 	// draw cursor
-	if (m_edit) {
-		if (m_firstCursor == m_lastCursor) {
+	m_textBoxImpl.onPaintCursor(m_firstCursor + m_prefix.size(), m_lastCursor + m_prefix.size(), m_dragFirstCursor, m_edit && (m_animCycle < 0.5));
 
-			// check animation cycle
-			if (m_animCycle < 0.5) {
-				// get cursor position
-				Math::Rect rect = mp_textResource->getCursorPosition(m_firstCursor);
-				mp_cursorResource->drawRectangle(rect);
-			}
-		}
-		else {
-			// get cursor positions
-			Math::Point2D firstCursor = mp_textResource->getCursorPosition(m_firstCursor + m_prefix.size(), m_dragFirstCursor).topLeft();
-			Math::Point2D lastCursor = mp_textResource->getCursorPosition(m_lastCursor + m_prefix.size()).bottomRight();
-			Math::Rect rect = Math::Rect(firstCursor, lastCursor);
+	// call parent function
+	Frame::onPaint();
+}
 
-			mp_cursorResource->drawRectangle(rect);
-		}
-	}
+void TextBox::onResize(Math::Rect availableRect) {
+
+	// call parent function
+	Widget::onResize(availableRect);
+
+	m_textBoxImpl.onResize(m_hitboxRect, m_contentRect);
 }
 
 void TextBox::onMouseLeave() {
 
 	// call parent function
-	Label::onMouseLeave();
+	Widget::onMouseLeave();
 
 	disableEditMode(false);
 }
@@ -74,7 +64,7 @@ void TextBox::onMouseHover(Math::Point2D point) {
 	if (m_edit && m_mouseDown) {
 
 		// get cursor position
-		int cursor = min(mp_textResource->getMousePosition(point) - m_prefix.size(), m_text.size());
+		int cursor = min(m_textBoxImpl.getMousePosition(point) - m_prefix.size(), m_text.size());
 
 		cursor = min(cursor, m_text.size());
 
@@ -102,7 +92,7 @@ void TextBox::onMouseHover(Math::Point2D point) {
 void TextBox::onMouseDown(bool doubleClk, Math::Point2D point) {
 
 	// call parent function
-	Label::onMouseDown(doubleClk, point);
+	Widget::onMouseDown(doubleClk, point);
 
 	// if it is the first click/double click
 	if (!m_edit && (m_requireDoubleClk ? doubleClk : true)) {
@@ -116,7 +106,7 @@ void TextBox::onMouseDown(bool doubleClk, Math::Point2D point) {
 	if (m_edit || (m_requireDoubleClk ? false : doubleClk)) {
 
 		// update cursor position
-		m_firstCursor = m_lastCursor = min(mp_textResource->getMousePosition(point) - m_prefix.size(), m_text.size());
+		m_firstCursor = m_lastCursor = min(m_textBoxImpl.getMousePosition(point) - m_prefix.size(), m_text.size());
 	}
 	else {
 
@@ -266,7 +256,7 @@ void TextBox::disableEditMode(bool backup) {
 
 void TextBox::updateText() {
 
-	mp_textResource->setText(m_prefix + m_text + m_suffix);
+	m_textBoxImpl.setText(m_prefix + m_text + m_suffix);
 }
 
 bool TextBox::filterInput(char key) { return true; }

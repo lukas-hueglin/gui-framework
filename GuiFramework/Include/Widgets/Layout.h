@@ -1,6 +1,12 @@
 #pragma once
 #include "Widgets/Frame.h"
+#include "Style/Style.h"
 #include <vector>
+
+#ifdef WIN32
+	#include "Platform/Win32/Win32LayoutImpl.h"
+	using LayoutImpl = Win32LayoutImpl;
+#endif
 
 class GUI_API Layout : public Frame {
 
@@ -8,14 +14,13 @@ protected:
 	std::vector<Frame*> m_frames;
 	std::vector<float> m_weights;
 
+	LayoutImpl m_layoutImpl;
+
 private:
 	Frame* m_mouseHoverFrame;
 
-	GeometryResource* mp_backgroundResource;
-
 public:
-	Layout(Window* p_parent);
-	~Layout();
+	Layout(Window* p_parent, WidgetStyle style = Style::Layout());
 
 	void onPaint() override;
 	void onTick(float deltaTime) override;

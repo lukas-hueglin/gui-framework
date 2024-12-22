@@ -3,18 +3,9 @@
 #include "Style/Style.h"
 #include "Widgets/Plot.h"
 
-PlotSeries::PlotSeries(Plot* p_parent) : mp_parent(p_parent), mp_graphics(p_parent->mp_graphics) {
+PlotSeries::PlotSeries(Plot* p_parent) : mp_parent(p_parent), mp_graphics(p_parent->mp_graphics), m_fillArea(false) { }
 
-	// create geometryResource
-	mp_geometryResource = new GeometryResource(mp_graphics, Style::Plot3(0));
-}
+void PlotSeries::setFillArea(bool fillArea) {
 
-PlotSeries::~PlotSeries() {
-
-	delete mp_geometryResource;
-}
-
-void PlotSeries::setStyle(DrawStyle style) {
-
-	mp_geometryResource->setStyle(style);
+	m_fillArea = fillArea;
 }

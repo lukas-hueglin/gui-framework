@@ -10,6 +10,7 @@
 #include "Widgets/ComboBox.h"
 #include "Widgets/Plot.h"
 #include "Widgets/PlotSeries1D.h"
+#include "Style/Palette.h"
 
 #include <string>
 #include <numbers>
@@ -42,9 +43,9 @@ int main(int argc, char** argv) {
 	w2->setPadding(10);
 
 	// create a layout
-	LinearLayout* l2 = new LinearLayout(window, Orientation::Horizontal);
-	l2->setAlignment(Alignment::Center);
-	l2->setFillMode(FillMode::Shrink);
+	//LinearLayout* l2 = new LinearLayout(window, Orientation::Horizontal);
+	//l2->setAlignment(Alignment::Center);
+	//l2->setFillMode(FillMode::Shrink);
 
 	// create a button
 	Button* w3 = new Button(window, L"Left Button");
@@ -52,23 +53,22 @@ int main(int argc, char** argv) {
 	w3->setPadding(10);
 
 	// create a button
-	Button* w4 = new Button(window, L"Right Button");
+	TextBox* w4 = new TextBox(window, L"TextBox");
 	w4->setMargin(10);
 	w4->setPadding(10);
 
 	// create a plot
-	Plot* plot = new Plot(window);
+	Plot* plot = new Plot(window, L"Time", L"Voltage");
 	plot->setFillMode(FillMode::Expand);
-	plot->setXUnit(Unit::Radians);
 
 	// create a plot series
 	float data[100];
 
 	for (int i = 0; i < 100; ++i) {
-		data[i] = sin(i / 50.0 * std::numbers::pi);
+		data[i] = sin(i / 49.5 * std::numbers::pi);
 	}
 
-	PlotSeries1D* series = new PlotSeries1D(plot, data, 0, 2*std::numbers::pi, 100);
+	PlotSeries1D* series = new PlotSeries1D(plot, data, 0, 2*std::numbers::pi, 100, Palette::Plot(0));
 
 	plot->addPlotSeries(series);
 
@@ -77,11 +77,13 @@ int main(int argc, char** argv) {
 	w5->setMargin(10);
 	w5->setPadding(10);
 
-	l2->addFrame(w3);
-	l2->addFrame(w4);
+	//l2->addFrame(w3);
+	//l2->addFrame(w4);
 
 	l1->addFrame(w1);
-	l1->addFrame(l2);
+	l1->addFrame(w2);
+	l1->addFrame(w3);
+	l1->addFrame(w4);
 	l1->addFrame(w5);
 	l1->addFrame(plot);
 

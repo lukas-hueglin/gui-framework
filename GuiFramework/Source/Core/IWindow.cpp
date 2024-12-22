@@ -56,6 +56,9 @@ void IWindow::onTick(float deltaTime) {
 void IWindow::onBegin() {
 
 	mp_graphics->createGraphicsAssets();
+
+	// redraw all
+	onPaint();
 }
 
 

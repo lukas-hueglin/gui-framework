@@ -1,10 +1,13 @@
 #pragma once
 #include "Widgets/Widget.h"
-#include "Core/TextResource.h"
-#include "Core/GeometryResource.h"
 #include "Widgets/PlotSeries.h"
 
 #include <vector>
+
+#ifdef WIN32
+	#include "Platform/Win32/Win32PlotImpl.h"
+	using PlotImpl = Win32PlotImpl;
+#endif
 
 enum AxisScale {
 	Linear = 0,
@@ -25,14 +28,13 @@ enum Unit {
 	Radians = 9
 };
 
-const wchar_t unit_symbols[10] = { L's', L'm', L'g', L'A', L'K', L'mol', L'cd', L'V', L'Hz', L'rad' };
+const std::wstring unit_symbols[10] = { L"s", L"m", L"g", L"A", L"K", L"mol", L"cd", L"V", L"Hz", L"rad" };
 const wchar_t unit_prefixes[8] = { L'n', L'\u00B5', L'm', L' ', L'k', L'M', L'G', L'T' };
 
 
 class GUI_API Plot : public Widget {
 
 private:
-
 	Math::Rect m_plotRect;
 	Math::Rect m_plotBounds;
 
@@ -45,22 +47,16 @@ private:
 	Unit m_xAxisUnit;
 	Unit m_yAxisUnit;
 
-	float m_xPrescaler;
-	float m_yPrescaler;
-
 	std::vector<PlotSeries*> mp_series;
-
-	GeometryResource* mp_backgroundGeometryResource;
-	GeometryResource* mp_axisGeometryResource;
-	GeometryResource* mp_linesGeometryResource;
-	TextResource* mp_textResource;
 
 	bool m_lockXZoom;
 	bool m_lockYZoom;
 
+protected:
+	PlotImpl m_plotImpl;
+
 public:
-	Plot(Window* p_parent);
-	~Plot();
+	Plot(Window* p_parent, std::wstring xAxis, std::wstring yAxis, WidgetStyle style = Style::Default());
 
 	void onPaint() override;
 	void onResize(Math::Rect availableRect) override;
@@ -86,9 +82,6 @@ public:
 
 private:
 	float calculateTickStep(float width, int prefDivs, int base, float prefactor);
-
-	void drawHorizontalTicks(float value, std::wstring text);
-	void drawVerticalTicks(float value, std::wstring text);
 
 	// make PlotSeries a friend
 	friend class PlotSeries;

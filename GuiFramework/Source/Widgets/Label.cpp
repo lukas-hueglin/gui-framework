@@ -2,25 +2,18 @@
 #include "Widgets/Label.h"
 #include "Style/Style.h"
 
-Label::Label(Window* p_parent, std::wstring text) : Widget(p_parent), m_text(text), m_textAlignment(Alignment::CenterLeft) {
-
-	// create text resource
-	mp_textResource = new TextResource(mp_graphics, Style::Normal());
-	mp_textResource->setText(m_text);
-	mp_textResource->setTextAlignment(m_textAlignment);
-}
-
-Label::~Label() {
-
-	delete mp_textResource;
-}
+Label::Label(Window* p_parent, std::wstring text, WidgetStyle style) : Widget(p_parent, style), m_text(text), m_labelImpl(mp_graphics, style) { }
 
 void Label::onPaint() {
 
-	Widget::onPaint();
+	// draw background by calling the widgetImpl's onPaint
+	m_widgetImpl.onPaint();
 
 	// draw text
-	mp_textResource->drawText();
+	m_labelImpl.onPaint(m_text);
+
+	// call master parent function
+	Frame::onPaint();
 }
 
 void Label::onResize(Math::Rect availableRect) {
@@ -28,5 +21,10 @@ void Label::onResize(Math::Rect availableRect) {
 	// call parent function
 	Widget::onResize(availableRect);
 
-	mp_textResource->setRect(m_contentRect);
+	m_labelImpl.onResize(m_contentRect);
+}
+
+void Label::setText(std::wstring text) {
+
+	m_text = text;
 }

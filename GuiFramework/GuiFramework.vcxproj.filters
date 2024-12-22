@@ -138,9 +138,6 @@
     <ClInclude Include="Include\Style\TextStyleBuilder.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Widgets\Button.h">
-      <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Widgets\Label.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
@@ -167,24 +164,6 @@
     </ClInclude>
     <ClInclude Include="Include\Common\EventUtils.h">
       <Filter>Source\Common\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\ITextResource.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\GeometryResource.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\IGeometryResource.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\TextResource.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\Win32GeometryResource.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\Win32TextResource.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Widgets\TextBox.h">
       <Filter>Source\Widgets\Public</Filter>
@@ -225,6 +204,72 @@
     <ClInclude Include="Include\Widgets\PlotSeries1D.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Style\WidgetStyle.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\WidgetStyleBuilder.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Button.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\AButtonImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\AFrameImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\ALabelImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\ASliderImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\ATextBoxImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\AWidgetImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32ButtonImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32FrameImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32LabelImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32SliderImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32TextBoxImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32WidgetImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\Palette.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\APlotImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\APlotSeries1DImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32PlotImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32PlotSeries1DImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\ALayoutImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win32\Win32LayoutImpl.h">
+      <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -234,9 +279,6 @@
       <Filter>Source\Core\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Style\Color.cpp">
-      <Filter>Source\Style\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Style\DrawStyle.cpp">
       <Filter>Source\Style\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\MathUtils.cpp">
@@ -254,9 +296,6 @@
     <ClCompile Include="Source\Style\Style.cpp">
       <Filter>Source\Style\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Style\DrawStyleBuilder.cpp">
-      <Filter>Source\Style\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Platform\Win32\Win32MainWindow.cpp">
       <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
@@ -265,12 +304,6 @@
     </ClCompile>
     <ClCompile Include="Source\Widgets\Widget.cpp">
       <Filter>Source\Widgets\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Style\TextStyle.cpp">
-      <Filter>Source\Style\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Style\TextStyleBuilder.cpp">
-      <Filter>Source\Style\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\Button.cpp">
       <Filter>Source\Widgets\Private</Filter>
@@ -301,18 +334,6 @@
     </ClCompile>
     <ClCompile Include="Source\Common\EventUtils.cpp">
       <Filter>Source\Common\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\Win32GeometryResource.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\Win32TextResource.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\IGeometryResource.cpp">
-      <Filter>Source\Core\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\ITextResource.cpp">
-      <Filter>Source\Core\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\TextBox.cpp">
       <Filter>Source\Widgets\Private</Filter>
@@ -346,6 +367,42 @@
     </ClCompile>
     <ClCompile Include="Source\Widgets\PlotSeries1D.cpp">
       <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\WidgetStyle.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\WidgetStyleBuilder.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32ButtonImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32FrameImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32LabelImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32SliderImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32TextBoxImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32WidgetImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\Palette.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32PlotImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32PlotSeries1DImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\Win32LayoutImpl.cpp">
+      <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

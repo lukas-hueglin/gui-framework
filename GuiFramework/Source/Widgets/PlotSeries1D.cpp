@@ -1,21 +1,18 @@
 #include "Gui.h"
 #include "Widgets/PlotSeries1D.h"
 #include "Widgets/Plot.h"
+#include "Core/Graphics2D.h"
 
 #include <vector>
 
-PlotSeries1D::PlotSeries1D(Plot* p_parent, float* pa_data, float lower, float upper, int size) :
-	PlotSeries(p_parent), mpa_data(pa_data), m_size(size) {
+PlotSeries1D::PlotSeries1D(Plot* p_parent, float* pa_data, float lower, float upper, int size, Color color) :
+	PlotSeries(p_parent), mpa_data(pa_data), m_size(size), m_plotSeries1DImpl(mp_graphics, color) {
 
 	// set bounds, that way a x data array is initialized
 	setBounds(lower, upper);
 }
 
-PlotSeries1D::~PlotSeries1D() {
-
-}
-
-void PlotSeries1D::onPaint(Math::Rect& available) {
+void PlotSeries1D::onUpdate() {
 
 	// create Point2D vector
 	std::vector<Math::Point2D> points;
@@ -31,9 +28,20 @@ void PlotSeries1D::onPaint(Math::Rect& available) {
 	}
 
 	// draw polygon
-	mp_geometryResource->setMask(available);
-	mp_geometryResource->drawPolygon(&points);
-	mp_geometryResource->releaseMask();
+	m_plotSeries1DImpl.onUpdate(&points);
+}
+
+void PlotSeries1D::onPaint(Math::Rect& available) {
+
+	// update plot
+	onUpdate(); // this is wrong!! has to be changed
+
+	m_plotSeries1DImpl.onPaint(available, m_fillArea);
+}
+
+void PlotSeries1D::setColor(Color color) {
+
+	m_plotSeries1DImpl.setColor(color);
 }
 
 void PlotSeries1D::setBounds(float lower, float upper) {

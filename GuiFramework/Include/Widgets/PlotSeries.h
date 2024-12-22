@@ -1,6 +1,7 @@
 #pragma once
-#include "Style/DrawStyle.h"
-#include "Core/GeometryResource.h"
+#include "Style/Color.h"
+#include "Core/Graphics2D.h"
+#include "Common/MathUtils.h"
 
 // forward declare Plot
 class Plot;
@@ -11,14 +12,18 @@ protected:
 	Plot* mp_parent;
 	Graphics2D* mp_graphics;
 
-	GeometryResource* mp_geometryResource;
+	bool m_fillArea;
 
 public:
 	PlotSeries(Plot* p_parent);
-	~PlotSeries();
 
 public:
+	virtual void onUpdate() = 0;
+
 	virtual void onPaint(Math::Rect& available) = 0;
-	void setStyle(DrawStyle style);
+
+	virtual void setColor(Color color) = 0;
+
+	void setFillArea(bool fillArea);
 
 };

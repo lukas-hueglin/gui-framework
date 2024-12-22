@@ -2,7 +2,6 @@
 #include "Gui.h"
 #include "Common/MathUtils.h"
 #include "Common/EventUtils.h"
-#include "Core/GeometryResource.h"
 #include "Core/Graphics2D.h"
 
 // forward declare layout

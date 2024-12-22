@@ -5,6 +5,11 @@
 #include "Common/WidgetUtils.h"
 #include "Core/Object.h"
 
+#ifdef WIN32
+	#include "Platform/Win32/Win32FrameImpl.h"
+	using FrameImpl = Win32FrameImpl;
+#endif
+
 
 class GUI_API Frame : public Object {
 
@@ -27,15 +32,11 @@ protected:
 	bool m_requestRedraw;
 
 #ifdef DEBUG_UI
-private:
-	GeometryResource* mp_debugResource1;
-	GeometryResource* mp_debugResource2;
-	GeometryResource* mp_debugResource3;
+	FrameImpl m_frameImpl;
 #endif
 
 public:
 	Frame(Window* p_parent);
-	~Frame();
 
 	virtual void onPaint();
 	virtual void onTick(float deltaTime) = 0;

@@ -7,9 +7,9 @@
 namespace Win32Utils {
 
     // conversion functions
-    D2D1_POINT_2F D2D1Point(Math::Point2D& point);
-    D2D1_RECT_F D2D1Rect(Math::Rect& rect);
-    D2D1_COLOR_F D2D1Color(Color& color);
+    D2D1_POINT_2F D2D1Point(Math::Point2D point);
+    D2D1_RECT_F D2D1Rect(Math::Rect rect);
+    D2D1_COLOR_F D2D1Color(Color color);
 
     Key convertWin32Keys(WPARAM wParam);
 
@@ -24,4 +24,7 @@ namespace Win32Utils {
             *ppT = NULL;
         }
     }
+
+    // draw functions
+    void createRoundedRect(Math::Rect rect, float topLeftRadius, float topRightRadius, float bottomLeftRadius, float bottomRightRadius, ID2D1PathGeometry* p_pathGeometry);
 }

@@ -10,8 +10,14 @@ public:
 	float a;
 
 public:
+	RGBColor();
 	RGBColor(int hex);
 	RGBColor(float r, float g, float b, float a = 1.0f);
+
+	RGBColor lighten(float value) const;
+	RGBColor darken(float value) const;
+
+	RGBColor makeTransparent(float value) const;
 
 public:
 	static const RGBColor AliceBlue;

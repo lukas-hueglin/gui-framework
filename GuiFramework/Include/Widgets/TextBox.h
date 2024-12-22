@@ -1,15 +1,16 @@
 #pragma once
-#include "Widgets/Label.h"
-#include "Core/TextResource.h"
+#include "Widgets/Widget.h"
 
-class GUI_API TextBox : public Label {
+#ifdef WIN32
+	#include "Platform/Win32/Win32TextBoxImpl.h"
+	using TextBoxImpl = Win32TextBoxImpl;
+#endif
 
-private:
+class GUI_API TextBox : public Widget {
+
+protected:
+	std::wstring m_text;
 	std::wstring m_backupText;
-
-	GeometryResource* mp_rectangleResource;
-	GeometryResource* mp_cursorResource;
-	GeometryResource* mp_selectionResource;
 
 	int m_firstCursor;
 	int m_lastCursor;
@@ -17,20 +18,21 @@ private:
 
 	bool m_dragFirstCursor;
 
-protected:
 	bool m_edit;
 	bool m_requireDoubleClk;
 
 	std::wstring m_prefix;
 	std::wstring m_suffix;
 
+	TextBoxImpl m_textBoxImpl;
 
 public:
-	TextBox(Window* p_parent, std::wstring text);
-	~TextBox();
+	TextBox(Window* p_parent, std::wstring, WidgetStyle style = Style::Default());
 
 	void onTick(float deltaTime) override;
 	void onPaint() override;
+
+	void onResize(Math::Rect availableRect) override;
 
 	void onMouseLeave() override;
 

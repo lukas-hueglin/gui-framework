@@ -7,8 +7,10 @@ private:
 	int m_active;
 	std::vector<std::wstring> m_elements;
 
+	WidgetStyle m_style;
+
 public:
-	ComboBox(Window* p_parent, std::vector<std::wstring> elements);
+	ComboBox(Window* p_parent, std::vector<std::wstring> elements, WidgetStyle style = Style::Default());
 
 private:
 	void onSignalReceived(int id) override;

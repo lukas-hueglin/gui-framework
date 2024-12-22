@@ -2,25 +2,30 @@
 #include "Widgets/Button.h"
 #include "Style/Style.h"
 
-Button::Button(Window* p_parent, std::wstring text) : Label(p_parent, text), mp_client(nullptr), m_id(0) {
-
-	// create geometry resources
-	mp_rectangleResource = new GeometryResource(mp_graphics, Style::Secondary());
-}
-
-Button::~Button() {
-	
-	delete mp_rectangleResource;
-}
+Button::Button(Window* p_parent, std::wstring text, WidgetStyle style) : Label(p_parent, text, style), mp_client(nullptr), m_id(0), m_buttonImpl(mp_graphics, style) { }
 
 void Button::onPaint() {
 
-	// draw background
-	mp_rectangleResource->setStyle(m_mouseDown ? Style::Highlight() : m_mouseHover ? Style::Accent() : Style::Secondary());
-	mp_rectangleResource->drawRectangle(m_hitboxRect);
+	// draw background by calling the widgetImpl's onPaint
+	//m_widgetImpl.onPaint();
+
+	// draw box
+	WidgetState state = m_mouseDown ? WidgetState::Click : m_mouseHover ? WidgetState::Hover : WidgetState::Normal;
+	m_buttonImpl.onPaint(state);
 
 	// draw text
-	Label::onPaint();
+	m_labelImpl.onPaint(m_text);
+
+	// call master parent function
+	Frame::onPaint();
+}
+
+void Button::onResize(Math::Rect availableRect) {
+
+	// call parent function
+	Label::onResize(availableRect);
+
+	m_buttonImpl.onResize(m_hitboxRect);
 }
 
 void Button::onMouseRelease(Math::Point2D point) {

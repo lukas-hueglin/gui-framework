@@ -17,32 +17,17 @@ Frame::Frame(Window* p_parent) :
 	m_margin(0), m_padding(0),
 
 	m_immediateMode(false),
-	m_requestRedraw(false) {
-
+	m_requestRedraw(true)
+	
 #ifdef DEBUG_UI
-	// create geometry resources
-	mp_debugResource1 = new GeometryResource(mp_graphics, Style::Debug1());
-	mp_debugResource2 = new GeometryResource(mp_graphics, Style::Debug2());
-	mp_debugResource3 = new GeometryResource(mp_graphics, Style::Debug3());
+	,m_frameImpl(mp_graphics)
 #endif
-
-}
-
-Frame::~Frame() {
-
-#ifdef DEBUG_UI
-	delete mp_debugResource1;
-	delete mp_debugResource2;
-	delete mp_debugResource3;
-#endif
-}
+{ }
 
 
 void Frame::onPaint() {
 #ifdef DEBUG_UI
-	mp_debugResource1->drawRectangle(m_usedRect);
-	mp_debugResource2->drawRectangle(m_hitboxRect);
-	mp_debugResource3->drawRectangle(m_contentRect);
+	m_frameImpl.onPaint();
 #endif
 
 	m_requestRedraw = false;
@@ -116,6 +101,10 @@ void Frame::onResize(Math::Rect availableRect) {
 	// calculate other rects
 	m_hitboxRect = Math::shrinkRect(m_usedRect, m_margin);
 	m_contentRect = Math::shrinkRect(m_hitboxRect, m_padding);
+
+#ifdef DEBUG_UI
+	m_frameImpl.onResize(m_usedRectm m_hitboxRect, m_contentRect);
+#endif
 }
 
 float Frame::getMargin() {

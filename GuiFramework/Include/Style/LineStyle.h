@@ -1,3 +1,4 @@
+#pragma once
 #include "Gui.h"
 
 enum GUI_API LineStyle {

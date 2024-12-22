@@ -2,36 +2,27 @@
 #include "Widgets/Layout.h"
 #include "Style/Style.h"
 
-Layout::Layout(Window* p_parent) : Frame(p_parent), m_mouseHoverFrame(nullptr) {
+Layout::Layout(Window* p_parent, WidgetStyle style) : Frame(p_parent), m_mouseHoverFrame(nullptr), m_layoutImpl(mp_graphics, style) {
 	
 	// override FillMode to Expand
 	m_fillMode = FillMode::Expand;
-
-	// override alignment to TopLeft
-	m_alignment = Alignment::TopLeft;
-
-	// create geometry resource
-	mp_backgroundResource = new GeometryResource(mp_graphics, Style::Primary());
 
 	// override immediate mode
 	enableImmediateMode();
 }
 
-Layout::~Layout() {
-	delete mp_backgroundResource;
-}
-
 void Layout::onPaint() {
 
-	Frame::onPaint();
-
-	// draw background
-	mp_backgroundResource->drawRectangle(m_usedRect);
+	// paint background
+	m_layoutImpl.onPaint(m_usedRect);
 
 	// iterate over all frames
 	for (Frame* w : m_frames) {
 		w->onPaint();
 	}
+
+	// call parent function
+	Frame::onPaint();
 }
 
 void Layout::onTick(float deltaTime) {

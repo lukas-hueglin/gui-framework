@@ -1,19 +1,25 @@
 #pragma once
 #include "Widgets/Label.h"
 
+#ifdef WIN32
+	#include "Platform/Win32/Win32ButtonImpl.h"
+	using ButtonImpl = Win32ButtonImpl;
+#endif
+
 class GUI_API Button : public Label {
 
 protected:
 	Object* mp_client;
 	int m_id;
 
-	GeometryResource* mp_rectangleResource;
+	ButtonImpl m_buttonImpl;
 
 public:
-	Button(Window* p_parent, std::wstring text);
-	~Button();
+	Button(Window* p_parent, std::wstring text, WidgetStyle style = Style::Default());
 
 	void onPaint() override;
+	void onResize(Math::Rect availableRect) override;
+
 	void onMouseRelease(Math::Point2D point) override;
 
 	void connect(Object* p_client, int id);
