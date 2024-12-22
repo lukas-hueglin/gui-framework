@@ -8,24 +8,24 @@ void LinearLayout::onResize(Math::Rect availableRect) {
 	// call parent function
 	Layout::onResize(availableRect);
 
-	// iterate over all frames and get the sum of all the shrinking frames sizes
-	Math::Size sumShrinkSize = Math::Size(0.0f, 0.0f);
+	// calculate the sum of all weights
 	float sumExpandWeights = 0;
 
 	for (int i = 0; i < m_frames.size(); ++i) {
-		
-		if (m_frames.at(i)->getFillMode() == FillMode::Expand)
+
+		if (m_frames.at(i)->getFillMode() == FillMode::Expand) {
 			sumExpandWeights += m_weights.at(i);
-		else
-			sumShrinkSize += m_frames.at(i)->getMinSize();
+		}
 	}
 
 	// iterate over all frames again and set their available space
-	Math::Rect avRect = m_contentRect;
+	Math::Rect minRect(availableRect.getCenter().x() - m_minSize.width() / 2, availableRect.getCenter().x() + m_minSize.width() / 2,
+		availableRect.getCenter().y() - m_minSize.height() / 2, availableRect.getCenter().y() + m_minSize.height() / 2);
+
+	Math::Rect avRect = Math::maxRect(availableRect, minRect);
 
 	// calculate space required for shrink widgets and space left for expanding widgets
-	float shrinkSpan = sumShrinkSize[m_orientation];
-	float spaceLeft = avRect.getSize()[m_orientation] - shrinkSpan;
+	float spaceLeft = availableRect.getSize()[m_orientation] - m_minSize[m_orientation];
 
 	// calculate integral sizes
 	float expandSpan;
@@ -33,10 +33,12 @@ void LinearLayout::onResize(Math::Rect availableRect) {
 
 	// check if expanding widgets are present
 	if (sumExpandWeights == 0) {
+
 		// if not align the content
-		avRect.left() += spaceLeft / 2 * (int) getJustification(m_alignment, m_orientation);
+		avRect.topLeft()[m_orientation] += spaceLeft / 2 * (int)getJustification(m_alignment, m_orientation);
 	}
 	else {
+
 		// if there are calculate the size of each one.
 		expandSpan = spaceLeft / sumExpandWeights;
 	}
@@ -59,4 +61,29 @@ void LinearLayout::onResize(Math::Rect availableRect) {
 		avRect.topLeft()[m_orientation] = avRect.bottomRight()[m_orientation];
 	}
 	
+}
+
+void LinearLayout::calcMinSize() {
+
+	float width = 0.0f;
+	float height = 0.0f;
+
+	if (m_orientation == Orientation::Horizontal) {
+
+		for (int i = 0; i < m_frames.size(); ++i) {
+
+			width += m_frames.at(i)->getMinSize().width();
+			height = max(height, m_frames.at(i)->getMinSize().height());
+		}
+	}
+	else {
+
+		for (int i = 0; i < m_frames.size(); ++i) {
+
+			width = max(width, m_frames.at(i)->getMinSize().width());
+			height += m_frames.at(i)->getMinSize().height();
+		}
+	}
+
+	m_minSize = Math::Size(width, height);
 }

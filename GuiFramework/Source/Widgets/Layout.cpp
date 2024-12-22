@@ -25,6 +25,15 @@ void Layout::onPaint() {
 	Frame::onPaint();
 }
 
+void Layout::onResize(Math::Rect availableRect) {
+
+	// call parent function
+	Frame::onResize(availableRect);
+
+	// calculate minimal size
+	calcMinSize();
+}
+
 void Layout::onTick(float deltaTime) {
 
 	// iterate over all frames
@@ -110,7 +119,6 @@ void Layout::addFrame(Frame* p_frame, float weight) {
 	m_frames.push_back(p_frame);
 	m_weights.push_back(weight);
 
-	// resize layout
 	onResize(m_usedRect);
 }
 

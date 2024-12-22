@@ -10,6 +10,7 @@ namespace Math {
 		float m_height;
 
 	public:
+		Size();
 		Size(float width, float height);
 		Size(Point2D point);
 

@@ -23,6 +23,7 @@ public:
 	Layout(Window* p_parent, WidgetStyle style = Style::Layout());
 
 	void onPaint() override;
+	void onResize(Math::Rect availableRect) override;
 	void onTick(float deltaTime) override;
 
 	void onMouseHover(Math::Point2D point) override;
@@ -37,4 +38,7 @@ public:
 
 	void addFrame(Frame* p_frame, float weight = 1.0f);
 	void removeFrame(Frame* p_frame);
+
+private:
+	virtual void calcMinSize() = 0;
 };

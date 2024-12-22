@@ -1,6 +1,8 @@
 #include "Gui.h"
 #include "Common/Size.h"
 
+Math::Size::Size() :m_width(0.0f), m_height(0.0f) { }
+
 Math::Size::Size(float width, float height) : m_width(width), m_height(height) { }
 
 Math::Size::Size(Point2D point) : m_width(point.x()), m_height(point.y()) { }

@@ -11,5 +11,8 @@ namespace Math {
 	Rect expandRect(Rect& rect, float offset);
 	Rect shrinkRect(Rect& rect, float offset);
 
+	Rect minRect(Rect& a, Rect& b);
+	Rect maxRect(Rect& a, Rect& b);
+
 	bool pointInRect(Rect rect, Point2D point);
 }

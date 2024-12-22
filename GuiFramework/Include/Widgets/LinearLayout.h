@@ -12,4 +12,7 @@ public:
 
 public:
 	void onResize(Math::Rect availableRect) override;
+
+private:
+	void calcMinSize() override;
 };
