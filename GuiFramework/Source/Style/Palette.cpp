@@ -6,9 +6,14 @@ Color Palette::Background() {
 	return Color(0x232323);
 }
 
-Color Palette::Widget() {
+Color Palette::PrimaryWidget() {
 
 	return Color(0x282b32);
+}
+
+Color Palette::SecondaryWidget() {
+
+	return Color(0x1f2126);
 }
 
 Color Palette::Highlight() {

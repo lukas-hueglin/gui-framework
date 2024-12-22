@@ -1,5 +1,6 @@
 #pragma once
 #include "Widgets/Widget.h"
+#include "Common/Signal.h"
 
 #ifdef WIN32
 	#include "Platform/Win32/Win32TextBoxImpl.h"
@@ -44,6 +45,8 @@ public:
 	void setRequireDoubleClick(bool requireDoubleClk);
 	void setPrefix(std::wstring prefix);
 	void setSuffix(std::wstring suffix);
+
+	Signal<std::wstring> onTextChanged;
 
 protected:
 	virtual bool filterInput(char key);

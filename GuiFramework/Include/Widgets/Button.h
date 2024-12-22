@@ -1,5 +1,6 @@
 #pragma once
 #include "Widgets/Label.h"
+#include "Common/Signal.h"
 
 #ifdef WIN32
 	#include "Platform/Win32/Win32ButtonImpl.h"
@@ -9,9 +10,6 @@
 class GUI_API Button : public Label {
 
 protected:
-	Object* mp_client;
-	int m_id;
-
 	ButtonImpl m_buttonImpl;
 
 public:
@@ -22,5 +20,6 @@ public:
 
 	void onMouseRelease(Math::Point2D point) override;
 
-	void connect(Object* p_client, int id);
+	Signal<> onButtonClick;
+	Signal<int> onButtonClickId;
 };

@@ -5,6 +5,7 @@
 Widget::Widget(Window* p_parent, WidgetStyle style) :
 	Frame(p_parent),
 
+	m_id(0),
 	m_mouseHover(false),
 	m_mouseDown(false),
 	m_lastMousePos(Math::Point2D(.0f, .0f)),
@@ -66,3 +67,13 @@ void Widget::onMouseScroll(bool up, bool shift, bool ctr) { }
 void Widget::onKeyDown(Key key) { }
 
 void Widget::onKeyDown(char key) { }
+
+void Widget::setId(int id) {
+
+	m_id = id;
+}
+
+int Widget::getId() {
+
+	return m_id;
+}

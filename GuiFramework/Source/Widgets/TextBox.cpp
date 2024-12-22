@@ -248,6 +248,9 @@ void TextBox::disableEditMode(bool backup) {
 		m_text = m_backupText;
 		updateText();
 	}
+	else {
+		EMIT(onTextChanged, m_text)
+	}
 
 	m_edit = false;
 	disableImmediateMode();

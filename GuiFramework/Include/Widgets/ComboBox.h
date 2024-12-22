@@ -1,4 +1,5 @@
 #include "Widgets/Button.h"
+#include "Common/Signal.h"
 #include <vector>
 
 class GUI_API ComboBox : public Button {
@@ -13,7 +14,10 @@ public:
 	ComboBox(Window* p_parent, std::vector<std::wstring> elements, WidgetStyle style = Style::Default());
 
 private:
-	void onSignalReceived(int id) override;
+	void createDropDown();
+	void closeDropDown(int id);
+
+	Signal<int> onValueChanged;
 
 	// make DropDown a friend class
 	friend class DropDown;

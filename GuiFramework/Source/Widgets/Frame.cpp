@@ -38,7 +38,6 @@ void Frame::onResize(Math::Rect availableRect) {
 	if (m_fillMode == FillMode::Expand) {
 
 		m_usedRect = availableRect;
-
 	}
 	else {
 
@@ -103,7 +102,7 @@ void Frame::onResize(Math::Rect availableRect) {
 	m_contentRect = Math::shrinkRect(m_hitboxRect, m_padding);
 
 #ifdef DEBUG_UI
-	m_frameImpl.onResize(m_usedRectm m_hitboxRect, m_contentRect);
+	m_frameImpl.onResize(m_usedRect, m_hitboxRect, m_contentRect);
 #endif
 }
 

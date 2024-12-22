@@ -74,6 +74,8 @@ void Slider<T>::onMouseHover(Math::Point2D point) {
 		// update the text
 		m_text = floatToString(m_value);
 
+		EMIT(onValueChanged, m_value)
+
 		updateText();
 		requestRedraw();
 	}
@@ -93,6 +95,8 @@ void Slider<T>::disableEditMode(bool backup) {
 	if (!backup) {
 		m_value = std::stof(m_text);
 		m_value = max(m_min, min(m_max, m_value));
+
+		EMIT(onValueChanged, m_value)
 	}
 
 	// calculate new slider rectangle

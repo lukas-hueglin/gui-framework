@@ -7,14 +7,19 @@ DropDown::DropDown(Window* p_parent, Frame* p_client, Math::Point2D origin, std:
 	// add all elements to the layout
 	for (int i = 0; i < elements.size(); ++i) {
 
+		// get justification
+		Justification justification = i == 0 ? Justification::Leading : i == elements.size() - 1 ? Justification::Trailing : Justification::Middle;
+
 		// create button
-		Button* b = new Button(p_parent, elements.at(i), style);
+		Button* b = new Button(p_parent, elements.at(i), Style::DropDown(justification));
 
 		// set margin and minsize
 		b->setPadding(10.0f);
 		b->setMinSize(Math::Size(130, 30));
 
-		b->connect(p_client, i);
+		// set id and connect button
+		b->setId(i);
+		connect<Button, DropDown, int>(this, &DropDown::onButtonClick, b->onButtonClickId);
 
 		// add button
 		addFrame(b);
@@ -31,4 +36,9 @@ DropDown::~DropDown() {
 	for (Frame* frame : m_frames) {
 		delete frame;
 	}
+}
+
+void DropDown::onButtonClick(int id) {
+
+	EMIT(onDropDownClose, id)
 }

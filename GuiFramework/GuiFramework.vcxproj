@@ -139,6 +139,7 @@
     <ClInclude Include="Include\Common\Rect.h" />
     <ClInclude Include="Include\Common\Reflection\Field.h" />
     <ClInclude Include="Include\Common\Reflection\Internal.h" />
+    <ClInclude Include="Include\Common\Signal.h" />
     <ClInclude Include="Include\Common\Size.h" />
     <ClInclude Include="Include\Common\WidgetUtils.h" />
     <ClInclude Include="Include\Common\XmlHandler.h" />
@@ -150,7 +151,6 @@
     <ClInclude Include="Include\Core\IGraphics2D.h" />
     <ClInclude Include="Include\Core\IWindow.h" />
     <ClInclude Include="Include\Core\MainWindow.h" />
-    <ClInclude Include="Include\Core\Object.h" />
     <ClInclude Include="Include\Core\Window.h" />
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Application.h" />
@@ -207,6 +207,7 @@
     <ClCompile Include="Source\Common\Rect.cpp" />
     <ClCompile Include="Source\Common\Reflection\Field.cpp" />
     <ClCompile Include="Source\Common\Reflection\Internal.cpp" />
+    <ClCompile Include="Source\Common\Signal.cpp" />
     <ClCompile Include="Source\Common\Size.cpp" />
     <ClCompile Include="Source\Common\WidgetUtils.cpp" />
     <ClCompile Include="Source\Common\XmlHandler.cpp" />

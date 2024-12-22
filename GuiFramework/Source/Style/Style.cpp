@@ -7,11 +7,11 @@
 WidgetStyle Style::Default() {
 
 	return WidgetStyle::create()
-		.edgeColor(Palette::Widget().lighten(1.2f))
+		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
 		.edgeThickness(1.0f)
-		.fillColor(Palette::Widget(), WidgetState::Normal)
-		.fillColor(Palette::Widget().lighten(1.5f), WidgetState::Hover)
-		.fillColor(Palette::Widget().lighten(1.3f), WidgetState::Click)
+		.fillColor(Palette::PrimaryWidget(), WidgetState::Normal)
+		.fillColor(Palette::PrimaryWidget().lighten(1.5f), WidgetState::Hover)
+		.fillColor(Palette::PrimaryWidget().lighten(1.3f), WidgetState::Click)
 		.fontName(L"SegoeUI")
 		.fontSize(12)
 		.lineStyle(LineStyle::Solid)
@@ -23,7 +23,7 @@ WidgetStyle Style::Default() {
 WidgetStyle Style::Layout()
 {
 	return WidgetStyle::create()
-		.edgeColor(Palette::Widget().lighten(1.2f))
+		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
 		.edgeThickness(1.0f)
 		.fillColor(Palette::Background(), WidgetState::Normal)
 		.fontName(L"SegoeUI")
@@ -36,11 +36,11 @@ WidgetStyle Style::Layout()
 
 WidgetStyle Style::Slider() {
 	return WidgetStyle::create()
-		.edgeColor(Palette::Widget().lighten(1.2f))
+		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
 		.edgeThickness(1.0f)
-		.fillColor(Palette::Widget(), WidgetState::Normal)
-		.fillColor(Palette::Widget().lighten(1.5f), WidgetState::Hover)
-		.fillColor(Palette::Widget().lighten(1.3f), WidgetState::Click)
+		.fillColor(Palette::PrimaryWidget(), WidgetState::Normal)
+		.fillColor(Palette::PrimaryWidget().lighten(1.5f), WidgetState::Hover)
+		.fillColor(Palette::PrimaryWidget().lighten(1.3f), WidgetState::Click)
 		.fontName(L"SegoeUI")
 		.fontSize(12)
 		.highlightColor(Palette::Highlight(), WidgetState::Normal)
@@ -50,4 +50,30 @@ WidgetStyle Style::Slider() {
 		.radius(7.0f)
 		.textAlignment(Alignment::CenterRight)
 		.textColor(Palette::Text());
+}
+
+WidgetStyle Style::DropDown(Justification justification)
+{
+	WidgetStyleBuilder builder = WidgetStyle::create()
+		.edgeColor(Palette::SecondaryWidget().lighten(1.2f))
+		.edgeThickness(1.0f)
+		.fillColor(Palette::SecondaryWidget(), WidgetState::Normal)
+		.fillColor(Palette::SecondaryWidget().lighten(1.5f), WidgetState::Hover)
+		.fillColor(Palette::SecondaryWidget().lighten(1.3f), WidgetState::Click)
+		.fontName(L"SegoeUI")
+		.fontSize(12)
+		.lineStyle(LineStyle::Solid)
+		.textAlignment(Alignment::CenterLeft)
+		.textColor(Palette::Text());
+
+	switch (justification) {
+
+	case Justification::Leading:
+		return builder.radius(7.0f, 7.0f, 0.0f, 0.0f);
+	case Justification::Middle:
+		return builder.radius(0.0f);
+	case Justification::Trailing:
+		return builder.radius(0.0f, 0.0f, 7.0f, 7.0f);
+
+	}
 }

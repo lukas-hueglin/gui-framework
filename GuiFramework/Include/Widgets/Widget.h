@@ -16,6 +16,8 @@
 class GUI_API Widget : public Frame {
 
 protected:
+	int m_id;
+
 	bool m_mouseHover;
 	bool m_mouseDown;
 
@@ -41,4 +43,7 @@ public:
 
 	virtual void onKeyDown(Key key);
 	virtual void onKeyDown(char key);
+
+	void setId(int id);
+	int getId();
 };

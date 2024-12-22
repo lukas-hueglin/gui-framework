@@ -28,6 +28,8 @@ public:
 
 	void setRequireDoubleClk(bool requireDoubleClk) = delete;
 
+	Signal<T> onValueChanged;
+
 private:
 	bool filterInput(char key) override;
 

@@ -177,9 +177,6 @@
     <ClInclude Include="Include\Widgets\DropDown.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Core\Object.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Common\XmlHandler.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
@@ -269,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="Include\Platform\Win32\Win32LayoutImpl.h">
       <Filter>Source\Platform\Win32\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Common\Signal.h">
+      <Filter>Source\Common\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\Win32\Win32LayoutImpl.cpp">
       <Filter>Source\Platform\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Signal.cpp">
+      <Filter>Source\Common\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

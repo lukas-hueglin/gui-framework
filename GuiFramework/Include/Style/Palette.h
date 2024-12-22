@@ -10,7 +10,8 @@ public:
 public:
 	static Color Background();
 
-	static Color Widget();
+	static Color PrimaryWidget();
+	static Color SecondaryWidget();
 	static Color Highlight();
 
 	static Color Text();

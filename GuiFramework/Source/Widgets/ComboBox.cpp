@@ -4,27 +4,33 @@
 
 ComboBox::ComboBox(Window* p_parent, std::vector<std::wstring> elements, WidgetStyle style) : Button(p_parent, elements.at(0), style), m_active(0), m_elements(elements), m_style(style) {
 
-	connect(this, -1);
+	// connect in such a way, that a dropdown is created, when the button is clicked
+	connect<ComboBox, ComboBox>(this, &ComboBox::createDropDown, onButtonClick);
 }
 
-void ComboBox::onSignalReceived(int id) {
+void ComboBox::createDropDown() {
 
-	// negative ids mean the button was pressed
-	if (id < 0) {
+	// create drop down
+	DropDown* p_dropDown = new DropDown(mp_parent, this, Math::Point2D(Frame::m_hitboxRect.left(), Frame::m_hitboxRect.bottom()), m_elements, m_style);
 
-		// create drop down
-		DropDown* p_dropDown = new DropDown(mp_parent, this, Math::Point2D(Frame::m_hitboxRect.left(), Frame::m_hitboxRect.bottom()), m_elements, m_style);
+	// connect drop down
+	connect<DropDown, ComboBox, int>(this, &ComboBox::closeDropDown, p_dropDown->onDropDownClose);
 
-		// register dropdown
-		mp_parent->registerDropDown(p_dropDown);
+	// register dropdown
+	mp_parent->registerDropDown(p_dropDown);
+}
+
+void ComboBox::closeDropDown(int index) {
+
+	if (m_active != index) {
+
+		m_active = index;
+		m_text = m_elements.at(index);
+
+		// emit on value changed signal
+		EMIT(onValueChanged, m_active)
 	}
 
-	// positive ids are the answers
-	else if (id < m_elements.size()) {
-		m_active = id;
-		m_text = m_elements.at(id);
-
-		requestRedraw();
-		mp_parent->unregisterDropDown();
-	}
+	requestRedraw();
+	mp_parent->unregisterDropDown();
 }

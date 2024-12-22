@@ -3,7 +3,6 @@
 #include "Core/Window.h"
 #include "Core/Graphics2D.h"
 #include "Common/WidgetUtils.h"
-#include "Core/Object.h"
 
 #ifdef WIN32
 	#include "Platform/Win32/Win32FrameImpl.h"
@@ -11,7 +10,7 @@
 #endif
 
 
-class GUI_API Frame : public Object {
+class GUI_API Frame {
 
 protected:
 	Window* mp_parent;
