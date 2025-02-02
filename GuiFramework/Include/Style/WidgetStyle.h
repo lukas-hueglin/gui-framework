@@ -1,8 +1,28 @@
 #pragma once
 #include "Gui.h"
 #include "Style/Color.h"
-#include "Style/LineStyle.h"
 #include "Common/WidgetUtils.h"
+
+enum FontWeight {
+	Thin = 100,
+	Light = 300,
+	Regular = 400,
+	SemiBold = 600,
+	Bold = 700,
+	Heavy = 900
+};
+
+enum FontStyle {
+	Standard = 0,
+	Italic = 1,
+	Oblique = 2
+};
+
+enum GUI_API LineStyle {
+	Solid = 0,
+	Dashed = 1,
+	Dotted = 2
+};
 
 class WidgetStyleBuilder;
 
@@ -20,6 +40,8 @@ private:
 	Color m_clickHighlightColor;
 
 	Color m_textColor;
+	FontWeight m_fontWeight;
+	FontStyle m_fontStyle;
 
 	Alignment m_textAlignment;
 
@@ -46,6 +68,9 @@ public:
 	Color& getFillColor(WidgetState state);
 	Color& getHighlightColor(WidgetState state);
 	Color& getTextColor();
+
+	FontWeight& getFontWeight();
+	FontStyle& getFontStyle();
 
 	Alignment getTextAlignment();
 

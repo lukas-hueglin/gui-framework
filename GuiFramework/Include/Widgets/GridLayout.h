@@ -15,7 +15,7 @@ private:
 	int m_size;
 
 public:
-	GridLayout(Window* p_parent, int p_rows, int p_cols);
+	GridLayout(Window* p_parent, int rows, int cols);
 	~GridLayout();
 
 public:

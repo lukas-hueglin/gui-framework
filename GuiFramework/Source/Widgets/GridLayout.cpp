@@ -1,7 +1,7 @@
 #include "Gui.h"
 #include "Widgets/GridLayout.h"
 
-GridLayout::GridLayout(Window* p_parent, int p_rows, int p_cols) : Layout(p_parent), m_rows(p_rows), m_cols(p_cols) {
+GridLayout::GridLayout(Window* p_parent, int rows, int cols) : Layout(p_parent), m_rows(rows), m_cols(cols) {
 	
 	// calculate size of array
 	m_size = m_rows * m_cols;

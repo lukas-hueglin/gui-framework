@@ -87,9 +87,6 @@
     <ClInclude Include="Include\Style\Color.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Style\DrawStyle.h">
-      <Filter>Source\Style\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Common\MathUtils.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
@@ -117,9 +114,6 @@
     <ClInclude Include="Include\Style\Style.h">
       <Filter>Source\Style\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Style\DrawStyleBuilder.h">
-      <Filter>Source\Style\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Platform\Win32\Win32MainWindow.h">
       <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
@@ -131,12 +125,6 @@
     </ClInclude>
     <ClInclude Include="Include\Widgets\Widget.h">
       <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Style\TextStyle.h">
-      <Filter>Source\Style\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Style\TextStyleBuilder.h">
-      <Filter>Source\Style\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Widgets\Label.h">
       <Filter>Source\Widgets\Public</Filter>
@@ -188,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="Include\Common\Reflection\Internal.h">
       <Filter>Source\Common\Reflection\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Style\LineStyle.h">
-      <Filter>Source\Style\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Widgets\Plot.h">
       <Filter>Source\Widgets\Public</Filter>
@@ -271,6 +256,9 @@
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Widgets\GridLayout.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\GroupBox.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
   </ItemGroup>
@@ -411,6 +399,9 @@
       <Filter>Source\Common\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Widgets\GridLayout.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\GroupBox.cpp">
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>

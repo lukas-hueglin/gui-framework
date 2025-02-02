@@ -52,6 +52,23 @@ WidgetStyle Style::Slider() {
 		.textColor(Palette::Text());
 }
 
+WidgetStyle Style::Title() {
+
+	return WidgetStyle::create()
+		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
+		.edgeThickness(1.0f)
+		.fillColor(Palette::PrimaryWidget(), WidgetState::Normal)
+		.fillColor(Palette::PrimaryWidget().lighten(1.5f), WidgetState::Hover)
+		.fillColor(Palette::PrimaryWidget().lighten(1.3f), WidgetState::Click)
+		.fontName(L"SegoeUI")
+		.fontSize(14)
+		.fontWeight(FontWeight::SemiBold)
+		.lineStyle(LineStyle::Solid)
+		.radius(7.0f)
+		.textAlignment(Alignment::CenterLeft)
+		.textColor(Palette::Text());
+}
+
 WidgetStyle Style::DropDown(Justification justification)
 {
 	WidgetStyleBuilder builder = WidgetStyle::create()

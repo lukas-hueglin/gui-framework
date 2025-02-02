@@ -42,7 +42,20 @@ WidgetStyleBuilder& WidgetStyleBuilder::highlightColor(const Color& highlightCol
 }
 
 WidgetStyleBuilder& WidgetStyleBuilder::textColor(const Color& textColor) {
+
 	m_widgetStyle.m_textColor = textColor;
+	return *this;
+}
+
+WidgetStyleBuilder& WidgetStyleBuilder::fontWeight(const FontWeight& fontWeight) {
+
+	m_widgetStyle.m_fontWeight = fontWeight;
+	return *this;
+}
+
+WidgetStyleBuilder& WidgetStyleBuilder::fontStyle(const FontStyle& fontStyle) {
+
+	m_widgetStyle.m_fontStyle = fontStyle;
 	return *this;
 }
 

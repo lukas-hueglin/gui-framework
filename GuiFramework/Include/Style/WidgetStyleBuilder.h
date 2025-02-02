@@ -16,6 +16,9 @@ public:
     WidgetStyleBuilder& highlightColor(const Color& highlightColor, WidgetState state);
     WidgetStyleBuilder& textColor(const Color& textColor);
 
+    WidgetStyleBuilder& fontWeight(const FontWeight& fontWeight);
+    WidgetStyleBuilder& fontStyle(const FontStyle& fontStyle);
+
     WidgetStyleBuilder& textAlignment(const Alignment textAlignment);
 
     WidgetStyleBuilder& lineStyle(const LineStyle lineStyle);

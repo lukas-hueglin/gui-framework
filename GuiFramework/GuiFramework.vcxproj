@@ -168,13 +168,8 @@
     <ClInclude Include="Include\Platform\Win32\Win32WidgetImpl.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Window.h" />
     <ClInclude Include="Include\Style\Color.h" />
-    <ClInclude Include="Include\Style\DrawStyle.h" />
-    <ClInclude Include="Include\Style\DrawStyleBuilder.h" />
-    <ClInclude Include="Include\Style\LineStyle.h" />
     <ClInclude Include="Include\Style\Palette.h" />
     <ClInclude Include="Include\Style\Style.h" />
-    <ClInclude Include="Include\Style\TextStyle.h" />
-    <ClInclude Include="Include\Style\TextStyleBuilder.h" />
     <ClInclude Include="Include\Style\WidgetStyle.h" />
     <ClInclude Include="Include\Style\WidgetStyleBuilder.h" />
     <ClInclude Include="Include\Widgets\ALayoutImpl.h" />
@@ -191,6 +186,7 @@
     <ClInclude Include="Include\Widgets\DropDown.h" />
     <ClInclude Include="Include\Widgets\Frame.h" />
     <ClInclude Include="Include\Widgets\GridLayout.h" />
+    <ClInclude Include="Include\Widgets\GroupBox.h" />
     <ClInclude Include="Include\Widgets\Label.h" />
     <ClInclude Include="Include\Widgets\Layout.h" />
     <ClInclude Include="Include\Widgets\LinearLayout.h" />
@@ -239,6 +235,7 @@
     <ClCompile Include="Source\Widgets\DropDown.cpp" />
     <ClCompile Include="Source\Widgets\Frame.cpp" />
     <ClCompile Include="Source\Widgets\GridLayout.cpp" />
+    <ClCompile Include="Source\Widgets\GroupBox.cpp" />
     <ClCompile Include="Source\Widgets\Label.cpp" />
     <ClCompile Include="Source\Widgets\Layout.cpp" />
     <ClCompile Include="Source\Widgets\LinearLayout.cpp" />

@@ -16,6 +16,8 @@ WidgetStyle::WidgetStyle() :
 
 	m_fontName(L"SegoeUI"),
 	m_fontSize(12),
+	m_fontWeight(FontWeight::Regular),
+	m_fontStyle(FontStyle::Standard),
 
 	m_edgeThickness(1.0f),
 
@@ -60,7 +62,18 @@ Color& WidgetStyle::getHighlightColor(WidgetState state) {
 }
 
 Color& WidgetStyle::getTextColor() {
+
 	return m_textColor;
+}
+
+FontWeight& WidgetStyle::getFontWeight() {
+
+	return m_fontWeight;
+}
+
+FontStyle& WidgetStyle::getFontStyle() {
+	
+	return m_fontStyle;
 }
 
 Alignment WidgetStyle::getTextAlignment() {

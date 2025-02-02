@@ -4,6 +4,7 @@
 #include "Core/MainWindow.h"
 #include "Widgets/Button.h"
 #include "Widgets/LinearLayout.h"
+#include "Widgets/GroupBox.h"
 #include "Widgets/GridLayout.h"
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
@@ -33,9 +34,6 @@ void App::initUI() {
 
 	// create a layout
 	GridLayout* gridLayout = new GridLayout(window, 4, 2);
-	gridLayout->setMargin(10);
-	gridLayout->setPadding(10);
-	gridLayout->setFillMode(FillMode::Shrink);
 
 	// create a label
 	Label* l1 = new Label(window, L"Frequency");
@@ -82,7 +80,6 @@ void App::initUI() {
 
 	gridLayout->addFrame(t1, 2, 1);
 
-
 	// create a label
 	Label* l4 = new Label(window, L"Choose a Number");
 	l4->setMargin(10);
@@ -97,6 +94,11 @@ void App::initUI() {
 
 	gridLayout->addFrame(c1, 3, 1);
 
+	// create GroupBox
+	GroupBox* g1 = new GroupBox(window, gridLayout, L"Parameters");
+	g1->setMargin(10);
+	g1->setPadding(10);
+
 	// create a plot
 	Plot* plot = new Plot(window, L"Time", L"Voltage");
 	plot->setFillMode(FillMode::Expand);
@@ -107,7 +109,7 @@ void App::initUI() {
 
 	// add to layouts
 	horizontalLayout->addFrame(plot);
-	horizontalLayout->addFrame(gridLayout);
+	horizontalLayout->addFrame(g1);
 }
 
 std::wstring App::getApplicationName() {

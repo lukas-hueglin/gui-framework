@@ -189,8 +189,8 @@ void Win32TextBoxImpl::initGraphicsResources() {
 		p_writeFactory->CreateTextFormat(
 			m_style.getFontName().c_str(),
 			NULL,
-			DWRITE_FONT_WEIGHT_REGULAR,
-			DWRITE_FONT_STYLE_NORMAL,
+			(DWRITE_FONT_WEIGHT)m_style.getFontWeight(),
+			(DWRITE_FONT_STYLE)m_style.getFontStyle(),
 			DWRITE_FONT_STRETCH_NORMAL,
 			m_style.getFontSize(),
 			L"en-us",
