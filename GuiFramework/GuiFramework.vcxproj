@@ -155,6 +155,7 @@
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Application.h" />
     <ClInclude Include="Include\Platform\Win32\Win32ButtonImpl.h" />
+    <ClInclude Include="Include\Platform\Win32\Win32CheckBoxImpl.h" />
     <ClInclude Include="Include\Platform\Win32\Win32FrameImpl.h" />
     <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h" />
     <ClInclude Include="Include\Platform\Win32\Win32LabelImpl.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Include\Style\Style.h" />
     <ClInclude Include="Include\Style\WidgetStyle.h" />
     <ClInclude Include="Include\Style\WidgetStyleBuilder.h" />
+    <ClInclude Include="Include\Widgets\ACheckBoxImpl.h" />
     <ClInclude Include="Include\Widgets\ALayoutImpl.h" />
     <ClInclude Include="Include\Widgets\APlotImpl.h" />
     <ClInclude Include="Include\Widgets\APlotSeries1DImpl.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="Include\Widgets\ASliderImpl.h" />
     <ClInclude Include="Include\Widgets\ATextBoxImpl.h" />
     <ClInclude Include="Include\Widgets\AWidgetImpl.h" />
+    <ClInclude Include="Include\Widgets\CheckBox.h" />
     <ClInclude Include="Include\Widgets\ComboBox.h" />
     <ClInclude Include="Include\Widgets\DropDown.h" />
     <ClInclude Include="Include\Widgets\Frame.h" />
@@ -213,6 +216,7 @@
     <ClCompile Include="Source\Core\IWindow.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32ButtonImpl.cpp" />
+    <ClCompile Include="Source\Platform\Win32\Win32CheckBoxImpl.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32FrameImpl.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32Graphics2D.cpp" />
     <ClCompile Include="Source\Platform\Win32\Win32LabelImpl.cpp" />
@@ -231,6 +235,7 @@
     <ClCompile Include="Source\Style\WidgetStyle.cpp" />
     <ClCompile Include="Source\Style\WidgetStyleBuilder.cpp" />
     <ClCompile Include="Source\Widgets\Button.cpp" />
+    <ClCompile Include="Source\Widgets\CheckBox.cpp" />
     <ClCompile Include="Source\Widgets\ComboBox.cpp" />
     <ClCompile Include="Source\Widgets\DropDown.cpp" />
     <ClCompile Include="Source\Widgets\Frame.cpp" />

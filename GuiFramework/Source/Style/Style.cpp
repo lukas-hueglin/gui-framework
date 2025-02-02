@@ -35,6 +35,7 @@ WidgetStyle Style::Layout()
 }
 
 WidgetStyle Style::Slider() {
+
 	return WidgetStyle::create()
 		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
 		.edgeThickness(1.0f)
@@ -49,6 +50,22 @@ WidgetStyle Style::Slider() {
 		.lineStyle(LineStyle::Solid)
 		.radius(7.0f)
 		.textAlignment(Alignment::CenterRight)
+		.textColor(Palette::Text());
+}
+
+WidgetStyle Style::CheckBox() {
+
+	return WidgetStyle::create()
+		.edgeColor(Palette::PrimaryWidget().lighten(1.2f))
+		.edgeThickness(1.0f)
+		.fillColor(Palette::PrimaryWidget(), WidgetState::Normal)
+		.fillColor(Palette::Highlight().makeTransparent(0.75f), WidgetState::Hover)
+		.fillColor(Palette::Highlight(), WidgetState::Click)
+		.fontName(L"SegoeUI")
+		.fontSize(12)
+		.lineStyle(LineStyle::Solid)
+		.radius(4.0f)
+		.textAlignment(Alignment::CenterLeft)
 		.textColor(Palette::Text());
 }
 

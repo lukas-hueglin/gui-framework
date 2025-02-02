@@ -39,6 +39,7 @@ private:
 	friend class Win32WidgetImpl;
 	friend class Win32LayoutImpl;
 	friend class Win32LabelImpl;
+	friend class Win32CheckBoxImpl;
 	friend class Win32ButtonImpl;
 	friend class Win32TextBoxImpl;
 	friend class Win32SliderImpl;

@@ -71,5 +71,4 @@ void Win32LabelImpl::initGraphicsResources() {
             mp_textFormat->SetParagraphAlignment((DWRITE_PARAGRAPH_ALIGNMENT)vertical_alignment);
         }
     }
-
 }

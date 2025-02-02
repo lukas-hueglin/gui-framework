@@ -6,6 +6,7 @@
 #include "Widgets/LinearLayout.h"
 #include "Widgets/GroupBox.h"
 #include "Widgets/GridLayout.h"
+#include "Widgets/CheckBox.h"
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
 #include "Widgets/ComboBox.h"
@@ -33,7 +34,7 @@ void App::initUI() {
 	window->setLayout(horizontalLayout);
 
 	// create a layout
-	GridLayout* gridLayout = new GridLayout(window, 4, 2);
+	GridLayout* gridLayout = new GridLayout(window, 5, 2);
 
 	// create a label
 	Label* l1 = new Label(window, L"Frequency");
@@ -67,7 +68,7 @@ void App::initUI() {
 	gridLayout->addFrame(b1, 1, 1);
 
 	// create a label
-	Label* l3 = new Label(window, L"Write if you want:");
+	Label* l3 = new Label(window, L"Write if you want");
 	l3->setMargin(10);
 	l3->setPadding(10);
 
@@ -93,6 +94,20 @@ void App::initUI() {
 	c1->setPadding(10);
 
 	gridLayout->addFrame(c1, 3, 1);
+
+	// create a label
+	Label* l5 = new Label(window, L"Enable Warp Drive");
+	l5->setMargin(10);
+	l5->setPadding(10);
+
+	gridLayout->addFrame(l5, 4, 0);
+
+	// create checkbox
+	CheckBox* c2 = new CheckBox(window, L"Warp Drive", false);
+	c2->setMargin(10);
+	c2->setPadding(10);
+
+	gridLayout->addFrame(c2, 4, 1);
 
 	// create GroupBox
 	GroupBox* g1 = new GroupBox(window, gridLayout, L"Parameters");
