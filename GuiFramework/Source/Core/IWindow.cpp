@@ -58,6 +58,7 @@ void IWindow::onBegin() {
 	mp_graphics->createGraphicsAssets();
 
 	// redraw all
+	onResize(m_rect);
 	onPaint();
 }
 

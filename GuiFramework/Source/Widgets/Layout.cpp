@@ -15,57 +15,15 @@ void Layout::onPaint() {
 
 	// paint background
 	m_layoutImpl.onPaint(m_usedRect);
-
-	// iterate over all frames
-	for (Frame* w : m_frames) {
-		w->onPaint();
-	}
-
-	// call parent function
-	Frame::onPaint();
 }
 
 void Layout::onResize(Math::Rect availableRect) {
 
-	// call parent function
-	Frame::onResize(availableRect);
-
 	// calculate minimal size
 	calcMinSize();
-}
 
-void Layout::onTick(float deltaTime) {
-
-	// iterate over all frames
-	for (Frame* w : m_frames) {
-		if (w->isImmediateMode())
-			w->onTick(deltaTime);
-		if (w->hasRequestedRedraw())
-			w->onPaint();
-	}
-}
-
-void Layout::onMouseHover(Math::Point2D point) {
-
-	// iterate over all frames
-	for (Frame* w : m_frames) {
-
-		if (Math::pointInRect(w->getHitbox(), point)) {
-
-			// check if mouse was already hovering
-			if (w != m_mouseHoverFrame) {
-				w->onMouseEnter();
-				m_mouseHoverFrame = w;
-			}
-
-			w->onMouseHover(point);
-		}
-		// check if mouse is registered as hovering
-		else if (w == m_mouseHoverFrame) {
-			w->onMouseLeave();
-			m_mouseHoverFrame = nullptr;
-		}
-	}
+	// call parent function
+	Frame::onResize(availableRect);
 }
 
 void Layout::onMouseEnter() {}
@@ -114,19 +72,8 @@ void Layout::onKeyDown(char key) {
 	}
 }
 
-void Layout::addFrame(Frame* p_frame, float weight) {
+Math::Size Layout::getMinSize() {
 
-	m_frames.push_back(p_frame);
-	m_weights.push_back(weight);
-
-	onResize(m_usedRect);
-}
-
-void Layout::removeFrame(Frame* p_frame) {
-
-	// find index
-	int index = std::distance(m_frames.begin(), std::find(m_frames.begin(), m_frames.end(), p_frame));
-
-	m_frames.erase(m_frames.begin() + index);
-	m_weights.erase(m_weights.begin() + index);
+	calcMinSize();
+	return m_minSize;
 }

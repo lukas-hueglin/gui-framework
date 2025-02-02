@@ -4,6 +4,7 @@
 #include "Core/MainWindow.h"
 #include "Widgets/Button.h"
 #include "Widgets/LinearLayout.h"
+#include "Widgets/GridLayout.h"
 #include "Widgets/Slider.h"
 #include "Widgets/TextBox.h"
 #include "Widgets/ComboBox.h"
@@ -26,37 +27,75 @@ void App::initUI() {
 	MainWindow* window = MainWindow::create(s);
 	setMainWindow(window);
 
+	// create a horizontal layout
+	LinearLayout* horizontalLayout = new LinearLayout(window, Orientation::Horizontal);
+	window->setLayout(horizontalLayout);
+
 	// create a layout
-	LinearLayout* l1 = new LinearLayout(window, Orientation::Horizontal);
-	window->setLayout(l1);
-
-	// create a widget
-	Slider<float>* w1 = new Slider<float>(window, mp_functional->getFreqIncrement(), 0, 1);
-	w1->setSuffix(L" Hz");
-	w1->setMargin(10);
-	w1->setPadding(10);
-
-	connect<Slider<float>, Functional, float>(mp_functional, &Functional::setFreqIncrement, w1->onValueChanged);
+	GridLayout* gridLayout = new GridLayout(window, 4, 2);
+	gridLayout->setMargin(10);
+	gridLayout->setPadding(10);
+	gridLayout->setFillMode(FillMode::Shrink);
 
 	// create a label
-	Label* w2 = new Label(window, L"Label");
-	w2->setMargin(10);
-	w2->setPadding(10);
+	Label* l1 = new Label(window, L"Frequency");
+	l1->setMargin(10);
+	l1->setPadding(10);
 
-	// create a layout
-	LinearLayout* l2 = new LinearLayout(window, Orientation::Vertical);
-	l2->setAlignment(Alignment::Center);
-	l2->setFillMode(FillMode::Shrink);
+	gridLayout->addFrame(l1, 0, 0);
+
+	// create a Slider
+	Slider<float>* s1 = new Slider<float>(window, mp_functional->getFreqIncrement(), 0, 1);
+	s1->setSuffix(L" Hz");
+	s1->setMargin(10);
+	s1->setPadding(10);
+
+	connect<Slider<float>, Functional, float>(mp_functional, &Functional::setFreqIncrement, s1->onValueChanged);
+
+	gridLayout->addFrame(s1, 0, 1);
+
+	// create a label
+	Label* l2 = new Label(window, L"Action");
+	l2->setMargin(10);
+	l2->setPadding(10);
+
+	gridLayout->addFrame(l2, 1, 0);
 
 	// create a button
-	Button* w3 = new Button(window, L"Left Button");
-	w3->setMargin(10);
-	w3->setPadding(10);
+	Button* b1 = new Button(window, L"Button");
+	b1->setMargin(10);
+	b1->setPadding(10);
 
-	// create a button
-	TextBox* w4 = new TextBox(window, L"TextBox");
-	w4->setMargin(10);
-	w4->setPadding(10);
+	gridLayout->addFrame(b1, 1, 1);
+
+	// create a label
+	Label* l3 = new Label(window, L"Write if you want:");
+	l3->setMargin(10);
+	l3->setPadding(10);
+
+	gridLayout->addFrame(l3, 2, 0);
+
+	// create a textBox
+	TextBox* t1 = new TextBox(window, L"Here...");
+	t1->setMargin(10);
+	t1->setPadding(10);
+
+	gridLayout->addFrame(t1, 2, 1);
+
+
+	// create a label
+	Label* l4 = new Label(window, L"Choose a Number");
+	l4->setMargin(10);
+	l4->setPadding(10);
+
+	gridLayout->addFrame(l4, 3, 0);
+
+	// create a combobox
+	ComboBox* c1 = new ComboBox(window, std::vector<std::wstring>({ L"Number 1", L"Number 2", L"Number 3", L"Number 4" }));
+	c1->setMargin(10);
+	c1->setPadding(10);
+
+	gridLayout->addFrame(c1, 3, 1);
 
 	// create a plot
 	Plot* plot = new Plot(window, L"Time", L"Voltage");
@@ -66,19 +105,9 @@ void App::initUI() {
 	PlotSeries1D* series = new PlotSeries1D(plot, mp_functional->getPlotData(), 0, 2 * std::numbers::pi, mp_functional->getPlotSize(), Palette::Plot(0));
 	plot->addPlotSeries(series);
 
-	// create a combobox
-	ComboBox* w5 = new ComboBox(window, std::vector<std::wstring>({ L"Number 1", L"Number 2", L"Number 3", L"Number 4" }));
-	w5->setMargin(10);
-	w5->setPadding(10);
-
-	l2->addFrame(w1);
-	l2->addFrame(w2);
-	l2->addFrame(w3);
-	l2->addFrame(w4);
-	l2->addFrame(w5);
-
-	l1->addFrame(plot);
-	l1->addFrame(l2);
+	// add to layouts
+	horizontalLayout->addFrame(plot);
+	horizontalLayout->addFrame(gridLayout);
 }
 
 std::wstring App::getApplicationName() {

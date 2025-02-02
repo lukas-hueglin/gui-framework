@@ -270,6 +270,9 @@
     <ClInclude Include="Include\Common\Signal.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Widgets\GridLayout.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Platform\Win32\Win32Application.cpp">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="Source\Common\Signal.cpp">
       <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\GridLayout.cpp">
+      <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,7 @@ public:
 
 	float getMargin();
 	float getPadding();
-	Math::Size getMinSize();
+	virtual Math::Size getMinSize();
 	Alignment getAlignment();
 	FillMode getFillMode();
 
