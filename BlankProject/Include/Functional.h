@@ -29,7 +29,10 @@ public:
 	Signal<> onUpdatePlot;
 
 private:
-	void onTick(float deltaTime);
+	void onTick(float deltaTime) override;
+
+	void onBegin() override {};
+	void onClose() override {};
 
 	IMPLEMENT_LOADSAVE(Functional);
 
