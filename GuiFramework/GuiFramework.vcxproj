@@ -87,6 +87,9 @@
     <PostBuildEvent>
       <Command>copy $(OutDir)\GuiFramework.dll  $(SolutionDir)\Build\BlankProject\$(Configuration)</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugUI|x64'">
     <ClCompile>
