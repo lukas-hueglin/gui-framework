@@ -118,6 +118,8 @@ void App::initUI() {
 	Plot* plot = new Plot(window, L"Time", L"Voltage");
 	plot->setFillMode(FillMode::Expand);
 
+	connect<Functional, Plot>(plot, &Plot::onUpdate, mp_functional->onUpdatePlot);
+
 	// create a plot series
 	PlotSeries1D* series = new PlotSeries1D(plot, mp_functional->getPlotData(), 0, 2 * std::numbers::pi, mp_functional->getPlotSize(), Palette::Plot(0));
 	plot->addPlotSeries(series);
