@@ -3,6 +3,7 @@
 
 #include "Core/MainWindow.h"
 #include "Widgets/Button.h"
+#include "Widgets/StateButton.h"
 #include "Widgets/LinearLayout.h"
 #include "Widgets/GroupBox.h"
 #include "Widgets/GridLayout.h"
@@ -34,7 +35,7 @@ void App::initUI() {
 	window->setLayout(horizontalLayout);
 
 	// create a layout
-	GridLayout* gridLayout = new GridLayout(window, 5, 2);
+	GridLayout* gridLayout = new GridLayout(window, 6, 2);
 
 	// create a label
 	Label* l1 = new Label(window, L"Frequency");
@@ -108,6 +109,20 @@ void App::initUI() {
 	c2->setPadding(10);
 
 	gridLayout->addFrame(c2, 4, 1);
+
+	// create a label
+	Label* l6 = new Label(window, L"Audio");
+	l6->setMargin(10);
+	l6->setPadding(10);
+
+	gridLayout->addFrame(l6, 5, 0);
+
+	// create checkbox
+	StateButton* b2 = new StateButton(window, std::vector<std::wstring>({ L"On", L"Off" }));
+	b2->setMargin(10);
+	b2->setPadding(10);
+
+	gridLayout->addFrame(b2, 5, 1);
 
 	// create GroupBox
 	GroupBox* g1 = new GroupBox(window, gridLayout, L"Parameters");
