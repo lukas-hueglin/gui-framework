@@ -91,8 +91,11 @@ void App::initUI() {
 
 	// create a combobox
 	ComboBox* c1 = new ComboBox(window, std::vector<std::wstring>({ L"Number 1", L"Number 2", L"Number 3", L"Number 4" }));
+	c1->setState(mp_functional->getNumber());
 	c1->setMargin(10);
 	c1->setPadding(10);
+
+	connect<ComboBox, Functional, int>(mp_functional, &Functional::setNumber, c1->onStateChanged);
 
 	gridLayout->addFrame(c1, 3, 1);
 

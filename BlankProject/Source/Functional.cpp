@@ -4,10 +4,11 @@
 
 #include <numbers>
 
-Functional::Functional() : m_freqIncrement(1.0f), m_frequency(1.0f),  m_bufferSize(100), m_timeSinceUpdate(0.0f) {
+Functional::Functional() : m_freqIncrement(1.0f), m_frequency(1.0f), m_number(0), m_bufferSize(100), m_timeSinceUpdate(0.0f) {
 
 	// add members to reflection
-	ADD_FIELD(float, m_freqIncrement)
+	ADD_FIELD(float, m_freqIncrement);
+	ADD_FIELD(int, m_number);
 
 	// initialize buffer
 	for (int i = 0; i < m_bufferSize; ++i) {
@@ -32,6 +33,16 @@ float Functional::getFreqIncrement() {
 void Functional::setFreqIncrement(float freqIncrement) {
 
 	m_freqIncrement = freqIncrement;
+}
+
+int Functional::getNumber() {
+
+	return m_number;
+}
+
+void Functional::setNumber(int number) {
+
+	m_number = number;
 }
 
 void Functional::onTick(float deltaTime) {

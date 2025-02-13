@@ -8,6 +8,7 @@ class Functional : public IFunctional {
 
 private:
 	float m_freqIncrement;
+	int m_number;
 
 	float m_frequency;
 
@@ -25,6 +26,9 @@ public:
 
 	float getFreqIncrement();
 	void setFreqIncrement(float freqIncrement);
+
+	int getNumber();
+	void setNumber(int number);
 
 	Signal<> onUpdatePlot;
 
