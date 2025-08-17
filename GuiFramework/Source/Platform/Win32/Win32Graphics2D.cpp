@@ -1,7 +1,7 @@
 #include "Gui.h"
 #include "Platform/Win32/Win32Graphics2D.h"
 #include "Platform/Win32/Win32Utils.h"
-#include "Widgets/Widget.h"
+//#include "Widgets/Widget.h"
 
 Win32Graphics2D::Win32Graphics2D(HWND hWnd) : m_hWnd(hWnd), mp_2DFactory(nullptr), mp_writeFactory(nullptr), mp_renderTarget(nullptr) { }
 

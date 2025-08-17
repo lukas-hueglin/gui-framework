@@ -13,7 +13,7 @@
 protected: \
 	Internal __internal;
 
-// define a macro that returns the internal mamber
+// define a macro that returns the internal member
 #define REFLECTION __internal
 
 // define a member that should be reflected

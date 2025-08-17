@@ -1,18 +1,21 @@
 #pragma once
-#include "Core/IWindow.h"
+#include "Core/Window.h"
 
-class GUI_API Win32Window : public IWindow {
+class GUI_API Window::Impl {
+
+    LINK_DEFINITION(Window)
 
 protected:
 	HWND m_hWnd;
 
 public:
-	Win32Window();
-	~Win32Window();
+	Impl(Window& def);
+	~Impl();
+
+public:
+    void initialize(std::wstring windowName);
 
 private:
-    void initialize(std::wstring title) override;
-
     void createHwnd(
         PCWSTR lpWindowName,
         DWORD dwStyle,
@@ -26,7 +29,7 @@ private:
     );
 
 	static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-    virtual LRESULT handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+    virtual LRESULT handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
     virtual PCWSTR getClassName();
 };

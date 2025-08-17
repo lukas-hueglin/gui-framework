@@ -7,7 +7,7 @@ Math::Rect::Rect(float left, float right, float top, float bottom) : m_topLeft(M
 
 Math::Rect::Rect(Point2D& topLeft, Point2D& bottomRight) : m_topLeft(topLeft), m_bottomRight(bottomRight) { }
 
-Math::Rect::Rect(RECT& rect) : Rect(rect.left, rect.right, rect.top, rect.bottom) { }
+Math::Rect::Rect(RECT& rect) : Rect((float)rect.left, (float)rect.right, (float)rect.top, (float)rect.bottom) { }
 
 float& Math::Rect::left() {
 	return m_topLeft.x();

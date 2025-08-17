@@ -1,10 +1,13 @@
 #pragma once
 
+// convert macro into string
+#define STR(s) #s
+
 // if windows is used
 #ifdef WIN32
 
 	// include important headers
-	#include<Windows.h>
+	#include <Windows.h>
 	#include <windowsx.h>
 	#include <d2d1.h>
 	#include <d2d1_1.h>
@@ -17,6 +20,8 @@
 	// define macros
 	#define HInstance() GetModuleHandle(NULL)
 	#define MAX_STRING_SIZE 64
+
+	#define PLATFORM(file) STR(Platform/Win32/ ## file)
 
 #endif
 

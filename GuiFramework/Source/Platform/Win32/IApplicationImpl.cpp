@@ -1,18 +1,15 @@
 #include "Gui.h"
-#include "Platform/Win32/Win32Application.h"
+#include "Platform/Win32/IApplicationImpl.h"
 #include "shlobj.h"
 
 #include <chrono>
 
-Win32Application::Win32Application(int argc, char** argv) : IApplication(argc, argv) { }
+IApplication::Impl::Impl(IApplication& def) : DEF(def) { }
 
-int Win32Application::exec() {
+int IApplication::Impl::programLoop() {
 
     // setup console if debug mode
     SETUP_CONSOLE()
-
-    // call onBegin
-    onBegin();
 
     // create time stamp and duration object
     std::chrono::time_point<std::chrono::system_clock> now, lastFrame;
@@ -35,19 +32,16 @@ int Win32Application::exec() {
             deltaTime = now - lastFrame;
 
             if (deltaTime.count() >= 1.0f / 30.0f) {
-                onTick(deltaTime.count());
+                DEF.onTick(deltaTime.count());
                 lastFrame = now;
             }
         }
     }
 
-    // call onClose
-    onClose();
-
 	return 0;
 }
 
-std::wstring Win32Application::getIniPath() {
+std::wstring IApplication::Impl::getIniPath() {
 
     // create a path
     PWSTR appDataLocal;
@@ -58,13 +52,18 @@ std::wstring Win32Application::getIniPath() {
 
     // create path
     std::wstringstream ss;
-    ss << appDataLocal << L"\\" << getApplicationName();
+    ss << appDataLocal << L"\\" << DEF.getApplicationName();
 
     // Create Folder
     CreateDirectory(ss.str().c_str(), NULL);
 
     // add file name
-    ss << L"\\" << PROJECT_NAME << L".ini";
+    ss << L"\\" << DEF.getApplicationName() << L".ini";
 
     return ss.str();
+}
+
+void IApplication::Impl::invokeClose() {
+
+    PostQuitMessage(0);
 }

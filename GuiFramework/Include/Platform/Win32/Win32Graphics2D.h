@@ -38,7 +38,7 @@ private:
 	IDWriteFactory* getWriteFactory();
 
 	// make widget implementations a friend
-	friend class Win32FrameImpl;
+	/*friend class Win32FrameImpl;
 	friend class Win32WidgetImpl;
 	friend class Win32LayoutImpl;
 	friend class Win32LabelImpl;
@@ -48,5 +48,5 @@ private:
 	friend class Win32SliderImpl;
 	friend class Win32PlotImpl;
 	friend class Win32PlotSeries1DImpl;
-	friend class Win32PlotSeries1DImpl;
+	friend class Win32PlotSeries1DImpl;*/
 };

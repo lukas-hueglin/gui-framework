@@ -18,7 +18,7 @@ private:
 	float m_timeSinceUpdate;
 
 public:
-	Functional();
+	Functional(const Credentials& creds, IApplication* p_app);
 
 public:
 	int getPlotSize();
@@ -34,9 +34,6 @@ public:
 
 private:
 	void onTick(float deltaTime) override;
-
-	void onBegin() override {};
-	void onClose() override {};
 
 	IMPLEMENT_LOADSAVE(Functional);
 

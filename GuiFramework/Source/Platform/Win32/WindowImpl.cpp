@@ -1,23 +1,20 @@
 #include "Gui.h"
-#include "Platform/Win32/Win32Window.h"
+#include "Platform/Win32/WindowImpl.h"
 #include "Platform/Win32/Win32Utils.h"
 #include "Core/Graphics2D.h"
+#include "Core/IApplication.h"
 
+Window::Impl::Impl(Window& def) : DEF(def), m_hWnd(NULL) { }
 
-Win32Window::Win32Window() : m_hWnd(NULL) { }
+Window::Impl::~Impl() { }
 
-Win32Window::~Win32Window() {
-
-    DestroyWindow(m_hWnd);
-}
-
-void Win32Window::initialize(std::wstring title) {
+void Window::Impl::initialize(std::wstring windowName) {
 
     // create win32 hWnd
-    createHwnd(title.c_str(), WS_OVERLAPPEDWINDOW);
+    createHwnd(windowName.c_str(), WS_OVERLAPPEDWINDOW);
 }
 
-void Win32Window::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu) {
+void Window::Impl::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu) {
 
     // create window class struct
     WNDCLASS wc = { 0 };
@@ -27,7 +24,7 @@ void Win32Window::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle
     if (!GetClassInfo(HInstance(), getClassName(), &wc)) {
 
         // Register the window class.
-        wc.lpfnWndProc = Win32Window::windowProc;
+        wc.lpfnWndProc = Window::Impl::windowProc;
         wc.hInstance = HInstance();
         wc.lpszClassName = getClassName();
 
@@ -51,22 +48,22 @@ void Win32Window::createHwnd(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle
     );
 }
 
-LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT Window::Impl::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
-    Win32Window* p_this = nullptr;
+    Window::Impl* p_this = nullptr;
 
     // Check if window is created
     if (uMsg == WM_NCCREATE) {
 
         CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;
-        p_this = (Win32Window*)pCreate->lpCreateParams;
+        p_this = (Window::Impl*)pCreate->lpCreateParams;
         SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)p_this);
 
         // set window handle member variable
         p_this->m_hWnd = hWnd;
 
         // create graphics_type
-        p_this->mp_graphics = new Graphics2D(hWnd);
+        p_this->DEF.mp_graphics = new Graphics2D(hWnd);
 
         // show window
         ShowWindow(hWnd, 1);
@@ -74,7 +71,7 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     else {
 
         // get window pointer from the userdata
-        p_this = (Win32Window*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+        p_this = (Window::Impl*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
     }
 
     if (p_this) {
@@ -84,18 +81,17 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
         case WM_CREATE:
         {
-            p_this->onBegin();
+            p_this->DEF.onBegin();
             return 1;
         }
-        case WM_DESTROY:
+        case WM_NCDESTROY:
         {
-            p_this->onDestroy();
-            PostQuitMessage(0); // if any window is closed, the program will exit
+            p_this->DEF.getApplication()->invokeWindowClose(&p_this->DEF);
             return 1;
         }
         case WM_PAINT:
         {
-            p_this->onPaint();
+            p_this->DEF.onPaint();
             return 1;
         }
         case WM_SIZE:
@@ -104,42 +100,42 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
             GetClientRect(p_this->m_hWnd, &rc);
             float dpiScale = GetDpiForWindow(p_this->m_hWnd) / ((float)USER_DEFAULT_SCREEN_DPI);
 
-            p_this->onResize(Math::Rect(0, rc.right / dpiScale, 0, rc.bottom / dpiScale));
+            p_this->DEF.onResize(Math::Rect(0, rc.right / dpiScale, 0, rc.bottom / dpiScale));
             return 1;
         }
         case WM_MOUSEMOVE:
         {
             float dpiScale = GetDpiForWindow(p_this->m_hWnd) / ((float)USER_DEFAULT_SCREEN_DPI);
 
-            p_this->onMouseMove(Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
+            p_this->DEF.onMouseMove(Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
             return 1;
         }
         case WM_LBUTTONDBLCLK:
         {
             float dpiScale = GetDpiForWindow(p_this->m_hWnd) / ((float)USER_DEFAULT_SCREEN_DPI);
 
-            p_this->onMouseDown(true, Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
+            p_this->DEF.onMouseDown(true, Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
             return 1;
         }
         case WM_LBUTTONDOWN:
         {
             float dpiScale = GetDpiForWindow(p_this->m_hWnd) / ((float)USER_DEFAULT_SCREEN_DPI);
 
-            p_this->onMouseDown(false, Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
+            p_this->DEF.onMouseDown(false, Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
             return 1;
         }
         case WM_LBUTTONUP:
         {
             float dpiScale = GetDpiForWindow(p_this->m_hWnd) / ((float) USER_DEFAULT_SCREEN_DPI);
 
-            p_this->onMouseRelease(Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
+            p_this->DEF.onMouseRelease(Math::Point2D(GET_X_LPARAM(lParam) / dpiScale, GET_Y_LPARAM(lParam) / dpiScale));
             return 1;
         }
         case WM_KEYDOWN:
         {
             Key key = Win32Utils::convertWin32Keys(wParam);
             if (key != Key::Empty) {
-                p_this->onKeyDown(key);
+                p_this->DEF.onKeyDown(key);
             }
             return 1;
         }
@@ -147,7 +143,7 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         {
             // if characters are printable
             if (wParam >= 0x20 && wParam <= 0x7E) {
-                p_this->onKeyDown((char)wParam);
+                p_this->DEF.onKeyDown((char)wParam);
             }
             return 1;
         }
@@ -157,7 +153,7 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
             float zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
             int fwKeys = GET_KEYSTATE_WPARAM(wParam);
 
-            p_this->onMouseScroll(GET_WHEEL_DELTA_WPARAM(wParam) > 0, (fwKeys >> 2) & 1, (fwKeys >> 3) & 1);
+            p_this->DEF.onMouseScroll(GET_WHEEL_DELTA_WPARAM(wParam) > 0, (fwKeys >> 2) & 1, (fwKeys >> 3) & 1);
             return 1;
         }
         default:
@@ -171,7 +167,12 @@ LRESULT Win32Window::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     }
 }
 
-PCWSTR Win32Window::getClassName() {
+LRESULT Window::Impl::handleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    	
+    return DefWindowProc(this->m_hWnd, uMsg, wParam, lParam);
+}
+
+PCWSTR Window::Impl::getClassName() {
     
     return L"Window";
 }

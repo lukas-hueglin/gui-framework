@@ -4,7 +4,7 @@
 
 #include <numbers>
 
-Functional::Functional() : m_freqIncrement(1.0f), m_frequency(1.0f), m_number(0), m_bufferSize(100), m_timeSinceUpdate(0.0f) {
+Functional::Functional(const Credentials& creds, IApplication* p_app) : IFunctional(creds, p_app), m_freqIncrement(1.0f), m_frequency(1.0f), m_number(0), m_bufferSize(100), m_timeSinceUpdate(0.0f) {
 
 	// add members to reflection
 	ADD_FIELD(float, m_freqIncrement);

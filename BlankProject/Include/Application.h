@@ -1,14 +1,14 @@
 #pragma once
-#include "Core/Application.h"
+#include "Core/IApplication.h"
 #include "Functional.h"
 
-class App : public Application {
+class Application : public IApplication {
 
 private:
-	Functional* mp_functional;
+	Functional& m_functional;
 
 public:
-	App(int argc, char** argv);
+	Application(int argc, char** argv);
 
 private:
 	void initUI() override;
