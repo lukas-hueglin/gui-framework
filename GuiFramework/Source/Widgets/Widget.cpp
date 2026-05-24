@@ -16,7 +16,7 @@ Widget::Widget(const Credentials& creds, IApplication* p_app, Window* p_window, 
     m_alignment(Alignment::Center),
     m_fillMode(FillMode::Shrink),
 
-    m_margin(0), m_padding(0),
+    m_margin(5), m_padding(5),
 
     m_immediateMode(false),
     m_requestRedraw(true),
@@ -118,7 +118,7 @@ void Widget::onResize(Math::Rect availableRect) {
 	updateVisalTransform();
 
     // resize swapchain bitmap
-    handleResize(m_hitboxRect.getWidth(), m_hitboxRect.getHeight());
+    handleResize(m_usedRect.getWidth(), m_usedRect.getHeight());
 
     // paint
 	handlePaint();

@@ -2,13 +2,17 @@
 #include "Widgets/Layout.h"
 #include "Style/Style.h"
 
-Layout::Layout(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style) : Widget2d(creds, p_app, p_window, p_parent, style), m_mouseHoverWidget(nullptr) {
+Layout::Layout(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style):
+	Widget2d(creds, p_app, p_window, p_parent, style), m_mouseHoverWidget(nullptr) {
 	
 	// override FillMode to Expand
 	m_fillMode = FillMode::Expand;
 
 	// override immediate mode
 	enableImmediateMode();
+
+	// override draw background
+	setDrawBackground(true);
 }
 
 void Layout::onResize(Math::Rect availableRect) {

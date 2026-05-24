@@ -5,6 +5,9 @@
 
 class GUI_API Widget2d : public Widget {
 
+private:
+	bool m_drawBackground;
+
 // Win32 members
 protected:
 	// direct 2d
@@ -17,11 +20,22 @@ protected:
 	// consumables
 	ID2D1SolidColorBrush* mp_backgroundBrush;
 
+#ifdef DEBUG_UI
+	ID2D1SolidColorBrush* mp_usedBrush;
+	ID2D1SolidColorBrush* mp_hitboxBrush;
+	ID2D1SolidColorBrush* mp_contentBrush;
+	ID2D1SolidColorBrush* mp_textBrush;
+	bool m_tickFlip;
+#endif // DEBUG_UI
+
 public:
 	Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style = Style::Default());
 	~Widget2d();
 public:
 	virtual void onPaint() override;
+
+	void setDrawBackground(bool drawBackground);
+	bool getDrawBackground() const;
 
 // Win32 methods
 protected:

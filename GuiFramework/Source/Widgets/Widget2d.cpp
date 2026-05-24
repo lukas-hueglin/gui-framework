@@ -7,10 +7,20 @@
 Widget2d::Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style):
 	Widget(creds, p_app, p_window, p_parent, style),
 
+	m_drawBackground(false),
 	mp_d2d1DeviceContext(nullptr),
 	mp_dwriteFactory(nullptr),
 	mp_d2d1TargetBitmap(nullptr),
-	mp_backgroundBrush(nullptr) { }
+	mp_backgroundBrush(nullptr)
+
+#ifdef DEBUG_UI
+	,mp_usedBrush(nullptr),
+	mp_hitboxBrush(nullptr),
+	mp_contentBrush(nullptr),
+	mp_textBrush(nullptr),
+	m_tickFlip(false)
+#endif // DEBUG_UI
+{ }
 
 Widget2d::~Widget2d() {
 
@@ -18,6 +28,14 @@ Widget2d::~Widget2d() {
 	Win32Utils::safeRelease(&mp_dwriteFactory);
 	Win32Utils::safeRelease(&mp_d2d1TargetBitmap);
 	Win32Utils::safeRelease(&mp_backgroundBrush);
+
+#ifdef DEBUG_UI
+	Win32Utils::safeRelease(&mp_usedBrush);
+	Win32Utils::safeRelease(&mp_hitboxBrush);
+	Win32Utils::safeRelease(&mp_contentBrush);
+	Win32Utils::safeRelease(&mp_textBrush);
+#endif // DEBUG_UI
+
 }
 
 void Widget2d::onPaint() {
@@ -34,12 +52,36 @@ void Widget2d::onPaint() {
 	}
 }
 
+void Widget2d::setDrawBackground(bool drawBackground) {
+	m_drawBackground = drawBackground;
+}
+
+bool Widget2d::getDrawBackground() const {
+	return m_drawBackground;
+}
+
 HRESULT Widget2d::paintUI() {
 
 	HRESULT hr = (mp_d2d1DeviceContext == nullptr) || (mp_backgroundBrush == nullptr) ? E_POINTER : S_OK;
 
 	if (SUCCEEDED(hr)) {
-		mp_d2d1DeviceContext->Clear(Win32Utils::D2D1Color(Palette::Background()));
+		if (m_drawBackground) {
+			mp_d2d1DeviceContext->Clear(Win32Utils::D2D1Color(Palette::Background()));
+		}
+
+#ifdef DEBUG_UI
+		mp_d2d1DeviceContext->DrawRectangle(Win32Utils::D2D1Rect(m_usedRect), mp_usedBrush);
+		mp_d2d1DeviceContext->DrawRectangle(Win32Utils::D2D1Rect(m_hitboxRect), mp_hitboxBrush);
+		mp_d2d1DeviceContext->DrawRectangle(Win32Utils::D2D1Rect(m_contentRect), mp_contentBrush);
+
+		if (m_tickFlip) {
+			Math::Point2D center(m_contentRect.right() - 5, m_contentRect.top() + 5);
+
+			mp_d2d1DeviceContext->FillEllipse(D2D1::Ellipse(Win32Utils::D2D1Point(center), 3, 3), mp_textBrush);
+		}
+		m_tickFlip = !m_tickFlip;
+#endif // DEBUG_UI
+
 	}
 
 	return hr;
@@ -47,8 +89,26 @@ HRESULT Widget2d::paintUI() {
 
 HRESULT Widget2d::initializeConsumables(IDXGIDevice* p_dxgiDevice, ID2D1Device* p_d2d1Device, IDCompositionDevice* p_dcompDevice) {
 
+	HRESULT hr;
 	// create background brush
-	return mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Color::Transparent), &mp_backgroundBrush);;
+	hr = mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Color::Transparent), &mp_backgroundBrush);
+
+	// create brushed for debug strokes
+#ifdef DEBUG_UI
+	if (SUCCEEDED(hr)) {
+		hr = mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Palette::Debug1()), &mp_usedBrush);
+	}
+	if (SUCCEEDED(hr)) {
+		hr = mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Palette::Debug2()), &mp_hitboxBrush);
+	}
+	if (SUCCEEDED(hr)) {
+		hr = mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Palette::Debug3()), &mp_contentBrush);
+	}
+	if (SUCCEEDED(hr)) {
+		hr = mp_d2d1DeviceContext->CreateSolidColorBrush(Win32Utils::D2D1Color(Palette::Text()), &mp_textBrush);
+	}
+#endif // DEBUG_UI
+	return hr;
 }
 
 HRESULT Widget2d::initializeBitmap() {
