@@ -1,6 +1,5 @@
 #pragma once
 #include "Gui.h"
-#include "Common/Pimpl.h"
 
 #include <list>
 
@@ -9,19 +8,14 @@
 
 class Object;
 class Window;
-class MainWindow;
 class IFunctional;
 
 class GUI_API IApplication {
 
-	ADD_IMPL_CLASS()
-
 private:
-	MainWindow* mp_mainWindow;
-
-protected:
 	std::list<Window*> mp_windows;
 	std::list<IFunctional*> mp_functionals;
+	std::list<Object*> mp_objects;
 
 public:
 	IApplication(int argc, char** argv);
@@ -32,6 +26,7 @@ public:
 
 	void registerObject(Window* p_window);
 	void registerObject(IFunctional* p_functional);
+	void registerObject(Object* p_object);
 
 	void invokeApplicationClose();
 	void invokeWindowClose(Window* p_window);
@@ -45,6 +40,10 @@ private:
 
 	void onBegin();
 	void onClose();
+
+	void programLoop();
+
+	std::wstring getIniPath();
 
 	virtual void initUI() = 0;
 	virtual std::wstring getApplicationName() = 0;

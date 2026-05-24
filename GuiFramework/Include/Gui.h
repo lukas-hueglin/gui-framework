@@ -1,8 +1,5 @@
 #pragma once
 
-// convert macro into string
-#define STR(s) #s
-
 // if windows is used
 #ifdef WIN32
 
@@ -12,16 +9,18 @@
 	#include <d2d1.h>
 	#include <d2d1_1.h>
 	#include <dwrite.h>
+	#include <d3d11.h>
+	#include <dcomp.h>
 
 	// add lib comments
+	#pragma comment(lib, "d3d11")
 	#pragma comment(lib, "d2d1")
 	#pragma comment(lib, "dwrite")
+	#pragma comment(lib, "dcomp")
 
 	// define macros
 	#define HInstance() GetModuleHandle(NULL)
 	#define MAX_STRING_SIZE 64
-
-	#define PLATFORM(file) STR(Platform/Win32/ ## file)
 
 #endif
 

@@ -1,10 +1,13 @@
 #include "Gui.h"
 #include "Widgets/Frame.h"
 #include "Style/Style.h"
+#include "Style/Palette.h"
+#include "Common/Win32Utils.h"
 
-Frame::Frame(Window* p_parent) :
+Frame::Frame(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent) :
+	Object(creds, p_app),
+	mp_window(p_window),
 	mp_parent(p_parent),
-	mp_graphics(p_parent->getGraphics()),
 
 	m_minSize(Math::Size(150, 50)),
 	m_usedRect(Math::Rect(0.f, 0.0f, 0.f, 0.f)),
@@ -17,18 +20,21 @@ Frame::Frame(Window* p_parent) :
 	m_margin(0), m_padding(0),
 
 	m_immediateMode(false),
-	m_requestRedraw(true)
-	
-#ifdef DEBUG_UI
-	,m_frameImpl(mp_graphics)
-#endif
-{ }
+	m_requestRedraw(true),
 
+	mp_dcompVisual(nullptr) {
+}
+
+Frame::~Frame() {
+
+	Win32Utils::safeRelease(&mp_dcompVisual);
+}
+
+void Frame::onBegin() {
+	
+}
 
 void Frame::onPaint() {
-#ifdef DEBUG_UI
-	m_frameImpl.onPaint();
-#endif
 
 	m_requestRedraw = false;
 }
@@ -85,7 +91,6 @@ void Frame::onResize(Math::Rect availableRect) {
 
 			m_usedRect.top() = center.y() - halfHeight;
 			m_usedRect.bottom() = center.y() + halfHeight;
-
 		}
 
 		// if vertical aligned bottom
@@ -93,7 +98,6 @@ void Frame::onResize(Math::Rect availableRect) {
 
 			m_usedRect.bottom() = availableRect.bottom();
 			m_usedRect.top() = m_usedRect.bottom() - min(m_minSize.height(), availableRect.getHeight());
-
 		}
 	}
 
@@ -101,9 +105,8 @@ void Frame::onResize(Math::Rect availableRect) {
 	m_hitboxRect = Math::shrinkRect(m_usedRect, m_margin);
 	m_contentRect = Math::shrinkRect(m_hitboxRect, m_padding);
 
-#ifdef DEBUG_UI
-	m_frameImpl.onResize(m_usedRect, m_hitboxRect, m_contentRect);
-#endif
+	// update visual transform
+	updateVisalTransform();
 }
 
 float Frame::getMargin() {
@@ -190,4 +193,46 @@ void Frame::enableImmediateMode() {
 void Frame::disableImmediateMode() {
 
 	m_immediateMode = false;
+}
+
+HRESULT Frame::initializeGraphicsResources(ID3D11Device* p_d3d11Device, IDXGIDevice* p_dxgiDevice, ID2D1Device* p_d2d1Device, IDCompositionDevice* p_dcompDevice) {
+
+	return initializeCompVisual(p_dxgiDevice, p_d2d1Device, p_dcompDevice);
+}
+
+HRESULT Frame::initializeCompVisual(IDXGIDevice* p_dxgiDevice, ID2D1Device* p_d2d1Device, IDCompositionDevice* p_dcompDevice) {
+
+	// create direct composition visual
+	HRESULT hr;
+
+	hr = p_dcompDevice->CreateVisual(&mp_dcompVisual);
+
+	if (SUCCEEDED(hr) && mp_parent != nullptr) {
+		hr = mp_dcompVisual->AddVisual(mp_dcompVisual, FALSE, mp_parent->getVisual());
+	}
+
+	return hr;
+}
+
+HRESULT Frame::setContent(IDCompositionVisual* p_child) {
+	return mp_dcompVisual->AddVisual(p_child, FALSE, mp_dcompVisual);
+}
+
+HRESULT Frame::updateVisalTransform() {
+
+	HRESULT hr = mp_dcompVisual == nullptr ? E_POINTER : S_OK;
+
+	if (SUCCEEDED(hr)) {
+		// create transformation matrix
+		D2D_MATRIX_3X2_F transform = D2D1::Matrix3x2F::Translation(m_hitboxRect.left(), m_hitboxRect.top());
+		
+		// set visual transform
+		hr = mp_dcompVisual->SetTransform(transform);
+	}
+
+	return hr;
+}
+
+IDCompositionVisual* Frame::getVisual() {
+	return mp_dcompVisual;
 }

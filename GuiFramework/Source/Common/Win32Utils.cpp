@@ -1,5 +1,5 @@
 #include "Gui.h"
-#include "Platform/Win32/Win32Utils.h"
+#include "Common/Win32Utils.h"
 
 D2D1_POINT_2F Win32Utils::D2D1Point(Math::Point2D point) {
 
@@ -9,6 +9,11 @@ D2D1_POINT_2F Win32Utils::D2D1Point(Math::Point2D point) {
 D2D1_RECT_F Win32Utils::D2D1Rect(Math::Rect rect) {
 
     return D2D1::RectF(rect.left(), rect.top(), rect.right(), rect.bottom());
+}
+
+RECT Win32Utils::Win32Rect(Math::Rect rect) {
+
+    return RECT{ (long) rect.left(), (long) rect.top(), (long) rect.right(), (long) rect.bottom() };
 }
 
 D2D1_COLOR_F Win32Utils::D2D1Color(Color color){

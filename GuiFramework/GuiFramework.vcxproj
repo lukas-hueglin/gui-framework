@@ -76,7 +76,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)\GuiFramework\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Gui.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -99,7 +99,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>D:\repos\gui-framework\GuiFramework\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Gui.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -121,7 +121,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>D:\repos\gui-framework\GuiFramework\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Gui.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -138,7 +138,6 @@
   <ItemGroup>
     <ClInclude Include="Include\Common\EventUtils.h" />
     <ClInclude Include="Include\Common\MathUtils.h" />
-    <ClInclude Include="Include\Common\Pimpl.h" />
     <ClInclude Include="Include\Common\Point2D.h" />
     <ClInclude Include="Include\Common\Rect.h" />
     <ClInclude Include="Include\Common\Reflection\Field.h" />
@@ -146,20 +145,26 @@
     <ClInclude Include="Include\Common\Signal.h" />
     <ClInclude Include="Include\Common\Size.h" />
     <ClInclude Include="Include\Common\WidgetUtils.h" />
+    <ClInclude Include="Include\Common\Win32Utils.h" />
     <ClInclude Include="Include\Common\XmlHandler.h" />
     <ClInclude Include="Include\Core\IApplication.ipp" />
     <ClInclude Include="Include\Core\IFunctional.h" />
-    <ClInclude Include="Include\Core\Graphics2D.h" />
     <ClInclude Include="Include\Core\IApplication.h" />
-    <ClInclude Include="Include\Core\IGraphics.h" />
-    <ClInclude Include="Include\Core\IGraphics2D.h" />
     <ClInclude Include="Include\Core\Object.h" />
     <ClInclude Include="Include\Core\Window.h" />
     <ClInclude Include="Include\Gui.h" />
-    <ClInclude Include="Include\Platform\Win32\IApplicationImpl.h" />
-    <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h" />
-    <ClInclude Include="Include\Platform\Win32\Win32Utils.h" />
-    <ClInclude Include="Include\Platform\Win32\WindowImpl.h" />
+    <ClInclude Include="Include\Style\Color.h" />
+    <ClInclude Include="Include\Style\Palette.h" />
+    <ClInclude Include="Include\Style\Style.h" />
+    <ClInclude Include="Include\Style\WidgetStyle.h" />
+    <ClInclude Include="Include\Style\WidgetStyleBuilder.h" />
+    <ClInclude Include="Include\Widgets\AFrameImpl.h" />
+    <ClInclude Include="Include\Widgets\ALabelImpl.h" />
+    <ClInclude Include="Include\Widgets\AWidgetImpl.h" />
+    <ClInclude Include="Include\Widgets\Frame.h" />
+    <ClInclude Include="Include\Widgets\Label.h" />
+    <ClInclude Include="Include\Widgets\Widget.h" />
+    <ClInclude Include="Include\Widgets\Widget2d.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\EventUtils.cpp" />
@@ -171,15 +176,21 @@
     <ClCompile Include="Source\Common\Signal.cpp" />
     <ClCompile Include="Source\Common\Size.cpp" />
     <ClCompile Include="Source\Common\WidgetUtils.cpp" />
+    <ClCompile Include="Source\Common\Win32Utils.cpp" />
     <ClCompile Include="Source\Common\XmlHandler.cpp" />
     <ClCompile Include="Source\Core\IFunctional.cpp" />
     <ClCompile Include="Source\Core\IApplication.cpp" />
     <ClCompile Include="Source\Core\Object.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
-    <ClCompile Include="Source\Platform\Win32\IApplicationImpl.cpp" />
-    <ClCompile Include="Source\Platform\Win32\Win32Graphics2D.cpp" />
-    <ClCompile Include="Source\Platform\Win32\Win32Utils.cpp" />
-    <ClCompile Include="Source\Platform\Win32\WindowImpl.cpp" />
+    <ClCompile Include="Source\Style\Color.cpp" />
+    <ClCompile Include="Source\Style\Palette.cpp" />
+    <ClCompile Include="Source\Style\Style.cpp" />
+    <ClCompile Include="Source\Style\WidgetStyle.cpp" />
+    <ClCompile Include="Source\Style\WidgetStyleBuilder.cpp" />
+    <ClCompile Include="Source\Widgets\Frame.cpp" />
+    <ClCompile Include="Source\Widgets\Label.cpp" />
+    <ClCompile Include="Source\Widgets\Widget.cpp" />
+    <ClCompile Include="Source\Widgets\Widget2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Gui.cpp" />

@@ -78,32 +78,11 @@
     <ClInclude Include="Include\Core\IApplication.h">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\IApplicationImpl.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Common\MathUtils.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Core\IGraphics.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\Graphics2D.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\IGraphics2D.h">
-      <Filter>Source\Core\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Core\Window.h">
       <Filter>Source\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\WindowImpl.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\Win32Utils.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Platform\Win32\Win32Graphics2D.h">
-      <Filter>Source\Platform\Win32\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Common\WidgetUtils.h">
       <Filter>Source\Common\Public</Filter>
@@ -135,20 +114,53 @@
     <ClInclude Include="Include\Common\Signal.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Common\Pimpl.h">
-      <Filter>Source\Common\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Core\Object.h">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\IApplication.ipp">
       <Filter>Source\Core\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Common\Win32Utils.h">
+      <Filter>Source\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\AFrameImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\ALabelImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\AWidgetImpl.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Frame.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Label.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Widget.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Widget2d.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\Color.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\Palette.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\Style.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\WidgetStyle.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Style\WidgetStyleBuilder.h">
+      <Filter>Source\Style\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Platform\Win32\IApplicationImpl.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Core\IApplication.cpp">
       <Filter>Source\Core\Private</Filter>
     </ClCompile>
@@ -157,15 +169,6 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Window.cpp">
       <Filter>Source\Core\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\Win32Graphics2D.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\Win32Utils.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\Win32\WindowImpl.cpp">
-      <Filter>Source\Platform\Win32\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\WidgetUtils.cpp">
       <Filter>Source\Common\Private</Filter>
@@ -199,6 +202,36 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Object.cpp">
       <Filter>Source\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Win32Utils.cpp">
+      <Filter>Source\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Frame.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Label.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Widget.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Widget2d.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\Color.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\Palette.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\Style.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\WidgetStyle.cpp">
+      <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Style\WidgetStyleBuilder.cpp">
+      <Filter>Source\Style\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

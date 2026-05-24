@@ -1,20 +1,15 @@
 #pragma once
 #include "Common/MathUtils.h"
 #include "Core/Window.h"
-#include "Core/Graphics2D.h"
 #include "Common/WidgetUtils.h"
-
-#ifdef WIN32
-	#include "Platform/Win32/Win32FrameImpl.h"
-	using FrameImpl = Win32FrameImpl;
-#endif
+#include "Core/Object.h"
 
 
-class GUI_API Frame {
+class GUI_API Frame : public Object {
 
 protected:
-	Window* mp_parent;
-	Graphics2D* mp_graphics;
+	Window* mp_window;
+	Frame* mp_parent;
 
 	Math::Size m_minSize;
 	Math::Rect m_usedRect;
@@ -30,16 +25,18 @@ protected:
 	bool m_immediateMode;
 	bool m_requestRedraw;
 
-#ifdef DEBUG_UI
-	FrameImpl m_frameImpl;
-#endif
+// Win32 members
+protected:
+	// direct composition
+	IDCompositionVisual* mp_dcompVisual;
 
 public:
-	Frame(Window* p_parent);
+	Frame(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent);
+	~Frame();
+
+	virtual void onBegin() override;
 
 	virtual void onPaint();
-	virtual void onTick(float deltaTime) = 0;
-
 	virtual void onResize(Math::Rect availableRect);
 
 	virtual void onMouseHover(Math::Point2D point) = 0;
@@ -52,6 +49,7 @@ public:
 	virtual void onKeyDown(Key key) = 0;
 	virtual void onKeyDown(char key) = 0;
 
+public:
 	float getMargin();
 	float getPadding();
 	virtual Math::Size getMinSize();
@@ -73,4 +71,18 @@ protected:
 	void requestRedraw();
 	void enableImmediateMode();
 	void disableImmediateMode();
+
+// Win32 methods
+protected:
+	virtual HRESULT initializeGraphicsResources(ID3D11Device* p_d3d11Device, IDXGIDevice* p_dxgiDevice, ID2D1Device* p_d2d1Device, IDCompositionDevice* p_dcompDevice);
+
+	HRESULT initializeCompVisual(IDXGIDevice* p_dxgiDevice, ID2D1Device* p_d2d1Device, IDCompositionDevice* p_dcompDevice);
+	HRESULT setContent(IDCompositionVisual* p_child);
+
+
+	HRESULT updateVisalTransform();
+	IDCompositionVisual* getVisual();
+
+
+	friend class Window;
 };

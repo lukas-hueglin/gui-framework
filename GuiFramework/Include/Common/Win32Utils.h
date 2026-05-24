@@ -9,6 +9,7 @@ namespace Win32Utils {
     // conversion functions
     D2D1_POINT_2F D2D1Point(Math::Point2D point);
     D2D1_RECT_F D2D1Rect(Math::Rect rect);
+    RECT Win32Rect(Math::Rect rect);
     D2D1_COLOR_F D2D1Color(Color color);
 
     Key convertWin32Keys(WPARAM wParam);
