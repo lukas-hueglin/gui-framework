@@ -3,6 +3,7 @@
 
 #include "Core/Window.h"
 #include "Widgets/Label.h"
+#include "Widgets/LinearLayout.h"
 
 #include <numbers>
 #include <string>
@@ -15,13 +16,15 @@ void Application::initUI() {
 	Window& window = create<Window>(L"Window");
 
 	// create background
-	Widget2d& background = create<Widget2d>(&window, nullptr);
-	background.setFillMode(FillMode::Expand);
-	window.setFrame(&background);
+	LinearLayout& layout = create<LinearLayout>(&window, nullptr, Orientation::Horizontal);
+
+	window.setWidget(&layout);
 
 	// create Label
-	//Label& label = create<Label>(&window, nullptr, L"Hello, World!");
-	//window.setFrame(&label);
+	Label& label1 = create<Label>(&window, &layout, L"Hello, World!");
+	layout.addWidget(&label1);
+	Label& label2 = create<Label>(&window, &layout, L"This works!");
+	layout.addWidget(&label2);
 
 }
 

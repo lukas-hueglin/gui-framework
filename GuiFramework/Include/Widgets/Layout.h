@@ -1,23 +1,16 @@
 #pragma once
-#include "Widgets/Frame.h"
+#include "Widgets/Widget2d.h"
 #include "Style/Style.h"
 #include <vector>
 
-#ifdef WIN32
-	#include "Platform/Win32/Win32LayoutImpl.h"
-	using LayoutImpl = Win32LayoutImpl;
-#endif
-
-class GUI_API Layout : public Frame {
+class GUI_API Layout : public Widget2d {
 
 protected:
-	LayoutImpl m_layoutImpl;
-	Frame* m_mouseHoverFrame;
+	Widget* m_mouseHoverWidget;
 
 public:
-	Layout(Window* p_parent, WidgetStyle style = Style::Layout());
+	Layout(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style = Style::Layout());
 
-	void onPaint() override;
 	void onResize(Math::Rect availableRect) override;
 
 	void onMouseEnter() override;

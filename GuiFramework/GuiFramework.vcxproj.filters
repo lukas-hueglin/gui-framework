@@ -123,18 +123,6 @@
     <ClInclude Include="Include\Common\Win32Utils.h">
       <Filter>Source\Common\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Widgets\AFrameImpl.h">
-      <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Widgets\ALabelImpl.h">
-      <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Widgets\AWidgetImpl.h">
-      <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Widgets\Frame.h">
-      <Filter>Source\Widgets\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Widgets\Label.h">
       <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
@@ -158,6 +146,12 @@
     </ClInclude>
     <ClInclude Include="Include\Style\WidgetStyleBuilder.h">
       <Filter>Source\Style\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\Layout.h">
+      <Filter>Source\Widgets\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Widgets\LinearLayout.h">
+      <Filter>Source\Widgets\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +200,6 @@
     <ClCompile Include="Source\Common\Win32Utils.cpp">
       <Filter>Source\Common\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Widgets\Frame.cpp">
-      <Filter>Source\Widgets\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Widgets\Label.cpp">
       <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
@@ -232,6 +223,12 @@
     </ClCompile>
     <ClCompile Include="Source\Style\WidgetStyleBuilder.cpp">
       <Filter>Source\Style\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\Layout.cpp">
+      <Filter>Source\Widgets\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Widgets\LinearLayout.cpp">
+      <Filter>Source\Widgets\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

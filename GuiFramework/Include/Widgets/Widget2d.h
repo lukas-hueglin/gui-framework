@@ -18,9 +18,9 @@ protected:
 	ID2D1SolidColorBrush* mp_backgroundBrush;
 
 public:
-	Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent, WidgetStyle style = Style::Default());
+	Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style = Style::Default());
 	~Widget2d();
-private:
+public:
 	virtual void onPaint() override;
 
 // Win32 methods

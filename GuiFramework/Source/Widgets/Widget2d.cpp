@@ -4,7 +4,7 @@
 #include "Style/Color.h"
 #include "Style/Palette.h"
 
-Widget2d::Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent, WidgetStyle style):
+Widget2d::Widget2d(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style):
 	Widget(creds, p_app, p_window, p_parent, style),
 
 	mp_d2d1DeviceContext(nullptr),
@@ -40,7 +40,6 @@ HRESULT Widget2d::paintUI() {
 
 	if (SUCCEEDED(hr)) {
 		mp_d2d1DeviceContext->Clear(Win32Utils::D2D1Color(Palette::Background()));
-		//mp_d2d1DeviceContext->FillRectangle(D2D1::RectF(0, 0, m_hitboxRect.getWidth(), m_hitboxRect.getHeight()), mp_backgroundBrush);
 	}
 
 	return hr;

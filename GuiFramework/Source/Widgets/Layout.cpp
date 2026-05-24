@@ -2,7 +2,7 @@
 #include "Widgets/Layout.h"
 #include "Style/Style.h"
 
-Layout::Layout(Window* p_parent, WidgetStyle style) : Frame(p_parent), m_mouseHoverFrame(nullptr), m_layoutImpl(mp_graphics, style) {
+Layout::Layout(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, WidgetStyle style) : Widget2d(creds, p_app, p_window, p_parent, style), m_mouseHoverWidget(nullptr) {
 	
 	// override FillMode to Expand
 	m_fillMode = FillMode::Expand;
@@ -11,64 +11,58 @@ Layout::Layout(Window* p_parent, WidgetStyle style) : Frame(p_parent), m_mouseHo
 	enableImmediateMode();
 }
 
-void Layout::onPaint() {
-
-	// paint background
-	m_layoutImpl.onPaint(m_usedRect);
-}
-
 void Layout::onResize(Math::Rect availableRect) {
 
 	// calculate minimal size
 	calcMinSize();
 
 	// call parent function
-	Frame::onResize(availableRect);
+	Widget2d::onResize(availableRect);
 }
 
 void Layout::onMouseEnter() {}
 
 void Layout::onMouseLeave() {
 
-	// make sure mouse left child frame
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseLeave();
-		m_mouseHoverFrame = nullptr;
+	// make sure mouse left child widget
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onMouseLeave();
+		m_mouseHoverWidget = nullptr;
 	}
 }
 
 void Layout::onMouseDown(bool doubleClk, Math::Point2D point) {
 
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseDown(doubleClk, point);
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onMouseDown(doubleClk, point);
 	}
 }
 
 void Layout::onMouseRelease(Math::Point2D point) {
 
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseRelease(point);
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onMouseRelease(point);
 	}
 }
 
 void Layout::onMouseScroll(bool up, bool shift, bool ctr) {
 
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onMouseScroll(up, shift, ctr);
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onMouseScroll(up, shift, ctr);
 	}
 }
 
 void Layout::onKeyDown(Key key) {
 
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onKeyDown(key);
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onKeyDown(key);
 	}
 }
 
 void Layout::onKeyDown(char key) {
 
-	if (m_mouseHoverFrame != nullptr) {
-		m_mouseHoverFrame->onKeyDown(key);
+	if (m_mouseHoverWidget != nullptr) {
+		m_mouseHoverWidget->onKeyDown(key);
 	}
 }
 

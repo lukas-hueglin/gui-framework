@@ -2,7 +2,7 @@
 #include "Core/Window.h"
 #include "Core/IApplication.h"
 #include "Common/Win32Utils.h"
-#include "Widgets/Frame.h"
+#include "Widgets/Widget.h"
 
 //#include "Widgets/Layout.h"
 //#include "Widgets/DropDown.h"
@@ -13,10 +13,10 @@
 
 Window::Window(const Credentials& creds, IApplication* p_app, std::wstring windowName) : Object(creds, p_app),
 	m_windowName(windowName),
-    mp_frame(nullptr),
+    mp_widget(nullptr),
     /* mp_dropDown(nullptr), */
 	m_rect(Math::Rect(0.f, 0.f, 0.f, 0.f)),
-    m_frameMouseHover(false),
+    m_widgetMouseHover(false),
     m_dropDownMouseHover(false),
 	
     m_hWnd(nullptr),
@@ -37,11 +37,11 @@ Window::~Window() {
 	Win32Utils::safeRelease(&mp_dcompTarget);
 }
 
-void Window::setFrame(Frame* p_frame) {
+void Window::setWidget(Widget* p_widget) {
 
-	mp_frame = p_frame;
+	mp_widget = p_widget;
 
-	mp_frame->onResize(m_rect);
+	mp_widget->onResize(m_rect);
 }
 
 /*void Window::registerDropDown(DropDown* p_dropDown) {
@@ -55,9 +55,9 @@ void Window::setFrame(Frame* p_frame) {
 
 void Window::onTick(float deltaTime) {
 
-	// update frame
-	if (mp_frame != nullptr) {
-		mp_frame->onTick(deltaTime);
+	// update widget
+	if (mp_widget != nullptr) {
+		mp_widget->onTick(deltaTime);
 	}
 
 	// draw dropdown
@@ -73,23 +73,21 @@ void Window::onInitialize() {
     // IMPORTANT: WS_EX_NOREDIRECTIONBITMAP ensures that no edge artefacts occur when resizing
     createHwnd(m_windowName.c_str(), WS_OVERLAPPEDWINDOW, WS_EX_NOREDIRECTIONBITMAP);
 
-
-
 	handleUpdate();
 }
 
 void Window::onBegin() {
 
+	onResize(m_rect);
 
     // initialize graphics
     initializeGraphicsResources();
 
-    // call on begin for frame
-    if (mp_frame != nullptr) {
-        mp_frame->onBegin();
+    // call on begin for widget
+    if (mp_widget != nullptr) {
+        mp_widget->onBegin();
     }
 
-	onResize(m_rect);
 	onPaint();
 
     // update graphics
@@ -99,9 +97,9 @@ void Window::onBegin() {
 
 void Window::onPaint() {
 
-	// draw frame
-	if (mp_frame != nullptr) {
-		mp_frame->onPaint();
+	// draw widget
+	if (mp_widget != nullptr) {
+		mp_widget->onPaint();
 	}
 
 	// draw dropdown
@@ -120,9 +118,9 @@ void Window::onResize(Math::Rect rect) {
 	// update rect
 	m_rect = rect;
 
-	// resize frame
-	if (mp_frame != nullptr) {
-		mp_frame->onResize(m_rect);
+	// resize widget
+	if (mp_widget != nullptr) {
+		mp_widget->onResize(m_rect);
 	}
 
 	// delete dropdown if it exists
@@ -156,98 +154,98 @@ void Window::onMouseMove(Math::Point2D point) {
 		}
 	}*/
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
-		if (Math::pointInRect(mp_frame->getHitbox(), point)) {
+		if (Math::pointInRect(mp_widget->getHitbox(), point)) {
 
 			// check if mouse was already hovering
-			if (!m_frameMouseHover) {
-				mp_frame->onMouseEnter();
-				m_frameMouseHover = true;
+			if (!m_widgetMouseHover) {
+				mp_widget->onMouseEnter();
+				m_widgetMouseHover = true;
 				m_dropDownMouseHover = false;
 			}
 
-			mp_frame->onMouseHover(point);
+			mp_widget->onMouseHover(point);
 		}
 		// check if mouse is registered as hovering
-		else if (m_frameMouseHover) {
-			mp_frame->onMouseLeave();
-			m_frameMouseHover = false;
+		else if (m_widgetMouseHover) {
+			mp_widget->onMouseLeave();
+			m_widgetMouseHover = false;
 		}
 	}
 }
 
 void Window::onMouseDown(bool doubleClk, Math::Point2D point) {
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
 		// check if mouse hover over dropdown
 		/*if (mp_dropDown != nullptr && Math::pointInRect(mp_dropDown->getHitbox(), point)) {
 			mp_dropDown->onMouseDown(doubleClk, point);
 		}*/
 
-		// check if mouse hovers over frame
-		/*else */ if (m_frameMouseHover) {
+		// check if mouse hovers over widget
+		/*else */ if (m_widgetMouseHover) {
 
 			// delete dropdown if it exists
 			//unregisterDropDown();
 
-			mp_frame->onMouseDown(doubleClk, point);
+			mp_widget->onMouseDown(doubleClk, point);
 		}
 	}
 }
 
 void Window::onMouseRelease(Math::Point2D point) {
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
 		// check if mouse hovers over dropdown
 		/*if (m_dropDownMouseHover) {
 			mp_dropDown->onMouseRelease(point);
 		}*/
 
-		// check if mouse hovers over frame
-		/*else*/ if (m_frameMouseHover) {
-			mp_frame->onMouseRelease(point);
+		// check if mouse hovers over widget
+		/*else*/ if (m_widgetMouseHover) {
+			mp_widget->onMouseRelease(point);
 		}
 	}
 }
 
 void Window::onMouseScroll(bool up, bool shift, bool ctr) {
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
-		// check if mouse hovers over frame
-		if (m_frameMouseHover) {
-			mp_frame->onMouseScroll(up, shift, ctr);
+		// check if mouse hovers over widget
+		if (m_widgetMouseHover) {
+			mp_widget->onMouseScroll(up, shift, ctr);
 		}
 	}
 }
 
 void Window::onKeyDown(Key key) {
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
-		// check if mouse hovers over frame
-		if (m_frameMouseHover) {
-			mp_frame->onKeyDown(key);
+		// check if mouse hovers over widget
+		if (m_widgetMouseHover) {
+			mp_widget->onKeyDown(key);
 		}
 	}
 }
 
 void Window::onKeyDown(char key) {
 
-	// check if a frame exists
-	if (mp_frame != nullptr) {
+	// check if a widget exists
+	if (mp_widget != nullptr) {
 
-		// check if mouse hovers over frame
-		if (m_frameMouseHover) {
-			mp_frame->onKeyDown(key);
+		// check if mouse hovers over widget
+		if (m_widgetMouseHover) {
+			mp_widget->onKeyDown(key);
 		}
 	}
 }
@@ -352,12 +350,12 @@ HRESULT Window::initializeGraphicsResources() {
         hr = mp_dcompDevice->CreateTargetForHwnd(m_hWnd, TRUE, &mp_dcompTarget);
     }
 
-    if (SUCCEEDED(hr) && mp_frame != nullptr) {
-        hr = mp_frame->initializeGraphicsResources(mp_d3d11Device, mp_dxgiDevice, mp_d2d1Device, mp_dcompDevice);
+    if (SUCCEEDED(hr) && mp_widget != nullptr) {
+        hr = mp_widget->initializeGraphicsResources(mp_d3d11Device, mp_dxgiDevice, mp_d2d1Device, mp_dcompDevice);
     }
 
-    if (SUCCEEDED(hr) && mp_frame != nullptr) {
-        hr = setTargetRoot(mp_frame->getVisual());
+    if (SUCCEEDED(hr) && mp_widget != nullptr) {
+        hr = setTargetRoot(mp_widget->getVisual());
     }
 
     // delete d2d1 factory

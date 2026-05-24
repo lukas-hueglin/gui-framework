@@ -13,7 +13,7 @@ protected:
 	IDWriteTextFormat* mp_textFormat;
 
 public:
-	Label(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent, std::wstring text, WidgetStyle style = Style::Default());
+	Label(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, std::wstring text, WidgetStyle style = Style::Default());
 	~Label();
 
 	virtual void setText(std::wstring text);

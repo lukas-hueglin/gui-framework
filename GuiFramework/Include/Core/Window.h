@@ -4,7 +4,7 @@
 #include "Common/EventUtils.h"
 #include "Core/Object.h"
 
-class Frame;
+class Widget;
 //class DropDown;
 
 class GUI_API Window : public Object {
@@ -13,9 +13,9 @@ private:
 	std::wstring m_windowName;
 	Math::Rect m_rect;
 
-	Frame* mp_frame;
+	Widget* mp_widget;
 	//DropDown* mp_dropDown;
-	bool m_frameMouseHover;
+	bool m_widgetMouseHover;
 	bool m_dropDownMouseHover;
 
 // Win32 members
@@ -39,7 +39,7 @@ public:
 	~Window();
 
 public:
-	void setFrame(Frame* p_frame);
+	void setWidget(Widget* p_widget);
 
 	//void registerDropDown(DropDown* p_dropDown);
 	//void unregisterDropDown();
@@ -91,6 +91,6 @@ private:
 
 	// make friend classes
 	friend class IApplication;
-	friend class Frame;
+	friend class Widget;
 	friend class Widget2d;
 };

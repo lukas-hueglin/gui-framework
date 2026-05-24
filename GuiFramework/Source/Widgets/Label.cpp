@@ -1,9 +1,10 @@
 #include "Gui.h"
 #include "Widgets/Label.h"
 #include "Style/Style.h"
+#include "Style/Palette.h"
 #include "Common/Win32Utils.h"
 
-Label::Label(const Credentials& creds, IApplication* p_app, Window* p_window, Frame* p_parent, std::wstring text, WidgetStyle style):
+Label::Label(const Credentials& creds, IApplication* p_app, Window* p_window, Widget* p_parent, std::wstring text, WidgetStyle style):
     Widget2d(creds, p_app, p_window, p_parent, style),
     m_text(text),
     mp_textBrush(nullptr),
@@ -15,10 +16,12 @@ Label::~Label() {
 }
 
 HRESULT Label::paintUI() {
+    
+    Widget2d::paintUI();
 
     // call perent
-    HRESULT hr = Widget2d::paintUI();
-	hr = (mp_textBrush == nullptr) || (mp_textFormat == nullptr) ? E_POINTER : hr;
+    HRESULT hr;
+	hr = (mp_textBrush == nullptr) || (mp_textFormat == nullptr) ? E_POINTER : S_OK;
 
 	if (SUCCEEDED(hr)) {
 		// draw text
